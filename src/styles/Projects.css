@@ -1,0 +1,16 @@
+
+#projects-section {
+    transition: background-color 0.5s ease;
+  }
+  
+#projects-section .text-gray-700 {
+line-height: 1.6;
+}
+
+#projects-section .bg-white {
+border: 1px solid #e0e0e0;
+}
+
+#projects-section .bg-gray-200 {
+border: 1px dashed #cccccc;
+}

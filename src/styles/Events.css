@@ -1,0 +1,50 @@
+#upcoming-events-section {
+    background-color: #000;
+}
+
+.growing-squares-bg {
+    z-index: 0;
+    pointer-events: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2rem; /* Spacing between squares */
+}
+
+.square {
+    width: 15vw;
+    height: 15vw;
+    background-color: rgba(42, 42, 42, 0.5); /* A dark gray from your palette */
+    opacity: 0;
+    animation: grow-and-fade 10s infinite;
+}
+
+/* Delay for each square to create the staggered effect */
+.square:nth-child(2) { animation-delay: 2s; }
+.square:nth-child(3) { animation-delay: 4s; }
+.square:nth-child(4) { animation-delay: 6s; }
+.square:nth-child(5) { animation-delay: 8s; }
+.square:nth-child(6) { animation-delay: 10s; }
+.square:nth-child(7) { animation-delay: 12s; }
+.square:nth-child(8) { animation-delay: 14s; }
+.square:nth-child(9) { animation-delay: 16s; }
+
+
+@keyframes grow-and-fade {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+}
