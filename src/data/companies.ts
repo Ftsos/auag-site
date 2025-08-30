@@ -39,7 +39,7 @@ export const companies: Company[] = [
   { 
     id: 'blackrock', 
     name: 'BlackRock', 
-    logo: 'https://logo.clearbit.com/blackrock.com' 
+    logo: '/BlackRock.png' 
   },
   { 
     id: 'pwc', 
