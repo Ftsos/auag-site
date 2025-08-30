@@ -47,8 +47,8 @@ export const CompanyLogosSection: React.FC<CompanyLogosSectionProps> = () => {
                 src={company.logo || ''} 
                 alt={company.name}
                 className={`logo-item logo-${index + 1}`}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: -40 }}
                 exit={{ opacity: 0, y: -50 }}
                 transition={{
                   delay: index * 0.2,
