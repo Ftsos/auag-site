@@ -25,7 +25,7 @@ export const CompanyLogosSection: React.FC<CompanyLogosSectionProps> = () => {
 
   return (
     <section className="trusted-by">
-      <h2>Trusted by leading companies</h2>
+      <h2>Representatives at companies like</h2>
       <div className="logo-slider">
         <div className="logo-row">
           {currentLogos.map((company, index) => (
