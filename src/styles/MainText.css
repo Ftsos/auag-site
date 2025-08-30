@@ -1,16 +1,17 @@
 .main-text {
   position: relative;
-  text-align: center;
+  text-align: left;
   z-index: 10;
-  margin: 60px auto 100px auto;
-  max-width: 800px;
+  margin: 20px auto 100px auto;
+  max-width: 300px;
+  padding: 10px;
 }
 
 .title {
   font-size: 6rem;
   font-weight: 700;
   color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   letter-spacing: 2px;
   line-height: 1.2;
   text-transform: uppercase;
@@ -23,6 +24,7 @@
 
 .red-text {
   color: #ff0000;
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
 }
 
 .accent-line {

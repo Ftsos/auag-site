@@ -2,29 +2,29 @@ import { type Company } from '../types/companies';
 
 export const companies: Company[] = [
   { 
+    id: 'apple', 
+    name: 'Apple', 
+    logo: '/256px-Apple_logo_white.svg.png' 
+  },
+  { 
     id: 'nvidia', 
     name: 'NVIDIA', 
     logo: '/NVIDIA-logo-white-16x9.png' 
   },
   { 
-    id: 'apple', 
-    name: 'Apple', 
-    logo: '/64px-Apple_logo_black.svg.png' 
-  },
-  { 
     id: 'spacex', 
     name: 'SpaceX', 
-    logo: '/spacex-logo-svgrepo-com.svg' 
+    logo: '/SpaceX-Logo.png' 
+  },
+  { 
+    id: 'jpmorgan-chase', 
+    name: 'JPMorgan Chase', 
+    logo: '/JPMorgan-Chase-Logo-SVG-desktop.jpg' 
   },
   { 
     id: 'tesla', 
     name: 'Tesla', 
-    logo: '/64px-Tesla_Motors.svg.png' 
-  },
-  { 
-    id: 'tyton-holdings', 
-    name: 'Tyton Holdings', 
-    logo: '/TytonHoldings-Logo.png' 
+    logo: '/256px-Tesla_Motors.svg.png' 
   },
   { 
     id: 'intel', 
@@ -32,14 +32,19 @@ export const companies: Company[] = [
     logo: '/256px-Intel_logo_(2020,_light_blue).svg.png' 
   },
   { 
-    id: 'pwc', 
-    name: 'PwC', 
-    logo: '/128px-PricewaterhouseCoopers_Logo.svg.png' 
+    id: 'tyton-holdings', 
+    name: 'Tyton Holdings', 
+    logo: '/TytonHoldings-Logo.png' 
   },
   { 
     id: 'blackrock', 
     name: 'BlackRock', 
     logo: 'https://logo.clearbit.com/blackrock.com' 
+  },
+  { 
+    id: 'pwc', 
+    name: 'PwC', 
+    logo: '/PWC_logo.png' 
   },
   { 
     id: 'adventhealth', 
@@ -52,19 +57,14 @@ export const companies: Company[] = [
     logo: '/Scotiabank_logo.svg.png' 
   },
   { 
+    id: 'ariya-capital', 
+    name: 'Ariya Capital', 
+    logo: '/Ariya_Capital.png' 
+  },
+  { 
     id: 'oaknorth', 
     name: 'OakNorth', 
     logo: '/OakNorth_Bank_logo_(2023).svg.png' 
-  },
-  { 
-    id: 'jpmorgan-chase', 
-    name: 'JPMorgan Chase', 
-    logo: '/JPMorgan-Chase-Logo-SVG-desktop.jpg' 
-  },
-  { 
-    id: 'ariya-capital', 
-    name: 'Ariya Capital', 
-    logo: '/Ariya Cap.jpg' 
   },
   { 
     id: 'lsw-architects', 
@@ -72,9 +72,9 @@ export const companies: Company[] = [
     logo: '/LSW_Logo.jpg' 
   },
   { 
-    id: '015-capital-partners', 
-    name: '015 Capital Partners', 
-    logo: '/015.jpeg' 
+    id: 'coca-cola', 
+    name: 'Coca-Cola', 
+    logo: '/256px-Coca-Cola_logo.svg.png' 
   },
   { 
     id: 'astrazeneca', 
@@ -84,12 +84,22 @@ export const companies: Company[] = [
   { 
     id: 'flitestar', 
     name: 'Flitestar', 
-    logo: 'https://logo.clearbit.com/flitestar.com' 
+    logo: '/FliteStar.png' 
   },
   { 
-    id: 'coca-cola', 
-    name: 'Coca-Cola', 
-    logo: '/256px-Coca-Cola_logo.svg.png' 
+    id: '015-capital-partners', 
+    name: '015 Capital Partners', 
+    logo: '/015CP.png' 
+  },
+  { 
+    id: 'adventhealth', 
+    name: 'AdventHealth', 
+    logo: '/256px-AdventHealth_Logo.svg.png' 
+  },
+  { 
+    id: 'intel', 
+    name: 'Intel', 
+    logo: '/256px-Intel_logo_(2020,_light_blue).svg.png' 
   },
 ];
 

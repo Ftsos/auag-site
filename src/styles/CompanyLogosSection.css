@@ -2,15 +2,15 @@
   text-align: center;
   padding: 3rem 1rem;
   background: transparent;
-  margin: 100px auto;
+  margin: 40px auto 100px auto;
   max-width: 1000px;
   position: relative;
   z-index: 10;
 }
 
 .trusted-by h2 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
   font-weight: 600;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
@@ -18,9 +18,11 @@
 
 .logo-slider {
   width: 100%;
-  overflow: hidden;
   position: relative;
-  height: 100px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo-row {
@@ -34,71 +36,21 @@
 .logo-item {
   max-height: 60px;
   max-width: 120px;
-  opacity: 0;
-  transform: translateY(100px);
   object-fit: contain;
   filter: brightness(1.1) contrast(1.1);
-  transition: all 0.3s ease;
+  cursor: grab;
+  position: relative;
+  z-index: 1;
 }
 
-.logo-item:hover {
-  filter: brightness(1.2) contrast(1.2);
-  transform: scale(1.05);
+.logo-item:active {
+  cursor: grabbing;
 }
 
 .logo-placeholder {
   width: 120px;
   height: 60px;
   background: transparent;
-}
-
-/* Staggered swipe-up animation for each logo group */
-.logo-item.logo-1 { 
-  animation: swipeUpIn 2s ease-out 0s forwards, swipeUpOut 2s ease-in 4s forwards; 
-}
-.logo-item.logo-2 { 
-  animation: swipeUpIn 2s ease-out 0.2s forwards, swipeUpOut 2s ease-in 4.2s forwards; 
-}
-.logo-item.logo-3 { 
-  animation: swipeUpIn 2s ease-out 0.4s forwards, swipeUpOut 2s ease-in 4.4s forwards; 
-}
-.logo-item.logo-4 { 
-  animation: swipeUpIn 2s ease-out 0.6s forwards, swipeUpOut 2s ease-in 4.6s forwards; 
-}
-.logo-item.logo-5 { 
-  animation: swipeUpIn 2s ease-out 0.8s forwards, swipeUpOut 2s ease-in 4.8s forwards; 
-}
-
-/* Swipe Up In Animation - logos slide up from below */
-@keyframes swipeUpIn {
-  0% {
-    opacity: 0;
-    transform: translateY(100px);
-  }
-  50% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Swipe Up Out Animation - logos slide up and out */
-@keyframes swipeUpOut {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-100px);
-  }
 }
 
 /* Responsive display - show fewer companies on smaller screens */
