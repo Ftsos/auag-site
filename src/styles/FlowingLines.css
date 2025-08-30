@@ -1,0 +1,127 @@
+.flowing-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.line-group {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.line-group.top-left {
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(100, 100, 100, 0.8) 20px,
+      rgba(100, 100, 100, 0.8) 22px
+    );
+  background-size: 60px 60px;
+  animation: flowTopLeft 12s linear infinite;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+}
+
+.line-group.bottom-left {
+  background: 
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 20px,
+      rgba(100, 100, 100, 0.8) 20px,
+      rgba(100, 100, 100, 0.8) 22px
+    );
+  background-size: 60px 60px;
+  animation: flowBottomLeft 15s linear infinite reverse;
+  bottom: -10%;
+  right: -10%;
+  width: 120%;
+  height: 120%;
+}
+
+@keyframes flowTopLeft {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 60px 60px;
+  }
+}
+
+@keyframes flowBottomLeft {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -60px -60px;
+  }
+}
+
+/* Alternative approach with more visible lines */
+.flowing-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 30px,
+      rgba(120, 120, 120, 0.6) 30px,
+      rgba(120, 120, 120, 0.6) 32px
+    );
+  background-size: 80px 80px;
+  animation: flowDiagonal 20s linear infinite;
+  z-index: -1;
+}
+
+.flowing-lines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0px,
+      transparent 25px,
+      rgba(80, 80, 80, 0.7) 25px,
+      rgba(80, 80, 80, 0.7) 27px
+    );
+  background-size: 70px 70px;
+  animation: flowDiagonalReverse 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes flowDiagonal {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 80px 80px;
+  }
+}
+
+@keyframes flowDiagonalReverse {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -70px -70px;
+  }
+}
