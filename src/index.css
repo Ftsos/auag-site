@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
+@import "tailwindcss";
+@theme {
+  --font-arimo: "Arimo", sans-serif; 
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;*/
+  font-family: 'Arimo', "arial", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,17 +20,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+}*/
 
 body {
-  font-family: 'Arial', sans-serif;
   background: #000000;
   color: #ffffff;
   overflow-x: hidden;
@@ -33,11 +39,10 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .App {
   min-height: 100vh;
   position: relative;
-  background: #000000;
+  background: radial-gradient(circle at top, #DC2626 0%, #000000 75%);
 }
 
 .content-container {
