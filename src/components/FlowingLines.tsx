@@ -4,30 +4,32 @@ import '../styles/FlowingLines.css';
 export const FlowingLines: React.FC = () => {
   return (
     <div className="flowing-lines">
-      <motion.div 
+      {/* Top-left lines */}
+      <motion.div
         className="line-group top-left"
         animate={{
-          backgroundPosition: ["0px 0px", "60px 60px"]
+          backgroundPosition: ["0px 0px", "100px 100px"] // Larger movement
         }}
         transition={{
-          duration: 12,
+          duration: 25, // Slower duration
           ease: "linear",
           repeat: Infinity
         }}
       />
-      <motion.div 
+      {/* Bottom-left lines */}
+      <motion.div
         className="line-group bottom-left"
         animate={{
-          backgroundPosition: ["0px 0px", "-60px -60px"]
+          backgroundPosition: ["0px 0px", "-100px -100px"] // Larger movement
         }}
         transition={{
-          duration: 15,
+          duration: 30, // Slower duration
           ease: "linear",
           repeat: Infinity
         }}
       />
       
-      {/* Additional diagonal lines with Framer Motion */}
+      {/* Additional diagonal lines */}
       <motion.div
         className="diagonal-line-1"
         style={{
@@ -39,18 +41,18 @@ export const FlowingLines: React.FC = () => {
           background: `repeating-linear-gradient(
             45deg,
             transparent 0px,
-            transparent 30px,
-            rgba(120, 120, 120, 0.6) 30px,
-            rgba(120, 120, 120, 0.6) 32px
+            transparent 45px,
+            rgba(120, 120, 120, 0.6) 45px,
+            rgba(120, 120, 120, 0.6) 47px
           )`,
-          backgroundSize: '80px 80px',
+          backgroundSize: '100px 100px', // Larger line size
           zIndex: -1
         }}
         animate={{
-          backgroundPosition: ["0px 0px", "80px 80px"]
+          backgroundPosition: ["0px 0px", "100px 100px"] // Matches background size
         }}
         transition={{
-          duration: 20,
+          duration: 35, // Slower duration
           ease: "linear",
           repeat: Infinity
         }}
@@ -67,18 +69,18 @@ export const FlowingLines: React.FC = () => {
           background: `repeating-linear-gradient(
             -45deg,
             transparent 0px,
-            transparent 25px,
-            rgba(80, 80, 80, 0.7) 25px,
-            rgba(80, 80, 80, 0.7) 27px
+            transparent 40px,
+            rgba(80, 80, 80, 0.7) 40px,
+            rgba(80, 80, 80, 0.7) 42px
           )`,
-          backgroundSize: '70px 70px',
+          backgroundSize: '90px 90px', // Larger line size
           zIndex: -1
         }}
         animate={{
-          backgroundPosition: ["0px 0px", "-70px -70px"]
+          backgroundPosition: ["0px 0px", "-90px -90px"] // Matches background size
         }}
         transition={{
-          duration: 25,
+          duration: 40, // Slower duration
           ease: "linear",
           repeat: Infinity
         }}
