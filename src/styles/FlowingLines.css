@@ -1,5 +1,5 @@
 .flowing-lines {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -7,6 +7,10 @@
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
+  mask-image: linear-gradient(to top, transparent 0%, black 20%),
+              linear-gradient(to bottom, transparent 0%, black 20%);
+  mask-composite: intersect;
+  -webkit-mask-composite: intersect; /* For Safari compatibility */
 }
 
 .line-group {
@@ -21,8 +25,8 @@
       45deg,
       transparent 0px,
       transparent 20px,
-      rgba(100, 100, 100, 0.8) 20px,
-      rgba(100, 100, 100, 0.8) 22px
+      rgba(50, 50, 50, 0.4) 20px, /* Darker, less opaque */
+      rgba(50, 50, 50, 0.4) 22px
     );
   background-size: 60px 60px;
   top: -10%;
@@ -37,8 +41,8 @@
       -45deg,
       transparent 0px,
       transparent 20px,
-      rgba(100, 100, 100, 0.8) 20px,
-      rgba(100, 100, 100, 0.8) 22px
+      rgba(50, 50, 50, 0.4) 20px, /* Darker, less opaque */
+      rgba(50, 50, 50, 0.4) 22px
     );
   background-size: 60px 60px;
   bottom: -10%;
