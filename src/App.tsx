@@ -1,9 +1,11 @@
-import { FlowingLines } from './components/FlowingLines';
+﻿import { FlowingLines } from './components/FlowingLines';
 import { MainText } from './components/MainText';
 import { CompanyLogosSection } from './components/CompanyLogosSection';
 import './App.css';
 import Navbar from './components/Navbar';
 import GetInvolved from './components/GetInvolved';
+import GetInvolvedStudents from './components/GetInvolvedStudents';
+import Projects from './components/Projects';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <MainText />
         <CompanyLogosSection />
         <GetInvolved />
+        <GetInvolvedStudents />
+        <Projects />
       </div>
     </div>
   );
