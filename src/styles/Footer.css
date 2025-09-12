@@ -1,0 +1,5 @@
+footer {
+    /* Ensures the footer spans the full width and has a minimum height */
+    width: 100%;
+    min-height: 200px;
+}

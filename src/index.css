@@ -46,7 +46,7 @@ body {
 .App {
   min-height: 100vh;
   position: relative;
-  background: radial-gradient(circle at top, #DC2626 0%, #000000 75%);
+  background: radial-gradient(circle at top, #DC2626 0%, #000000 25%);
 }
 
 .content-container {

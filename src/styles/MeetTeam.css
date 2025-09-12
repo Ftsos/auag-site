@@ -1,0 +1,12 @@
+#meet-our-team-section h2 {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#meet-our-team-section .text-gray-700 {
+  line-height: 1.6;
+}
+
+#meet-our-team-section .rounded-full {
+  /* This is a placeholder for a circular image */
+  border: 3px solid #f0f0f0;
+}

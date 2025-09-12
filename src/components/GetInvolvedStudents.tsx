@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import { FlowingLines } from "./FlowingLines";
 import "../styles/GetInvolved.css";
 
 const GetInvolvedStudents: React.FC = () => {
@@ -22,7 +21,6 @@ const GetInvolvedStudents: React.FC = () => {
                 background: 'linear-gradient(to bottom, transparent 0%, transparent 10%, #000000 20%, #0a0a0a 25%, #1a1a1a 35%, #2a2a2a 50%, #4a4a4a 70%, #8a8a8a 85%, #f0f0f0 100%)'
             }}
         >
-            <FlowingLines />
             <div className="z-10">
                 <h2 className="text-4xl font-bold mb-6 text-white" style={{
                     textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)'

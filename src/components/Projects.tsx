@@ -5,7 +5,7 @@ const Projects: React.FC = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen w-screen flex flex-col items-center p-8 relative"
+      className="min-h-screen w-screen flex flex-col items-center justify-center p-8 relative"
       style={{
         background: 'linear-gradient(to top, #000000 0%, #1a1a1a 20%, #4a4a4a 50%, #8a8a8a 80%, #f0f0f0 100%)'
       }}
