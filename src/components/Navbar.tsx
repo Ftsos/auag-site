@@ -3,9 +3,10 @@ import React from "react";
 const navItems = [
     { text: "Home", href: "#" },
     { text: "Get Involved", href: "#get-involved-alumni" },
-    { text: "Our Projects", href: "#our-projects" },
-    { text: "Upcoming Events", href: "#upcoming-events" },
-    { text: "Meet Our Team", href: "#meet-our-team" }
+    { text: "Participate", href: "#get-involved-students" },
+    { text: "Our Projects", href: "#projects" },
+    { text: "Upcoming Events", href: "#events" },
+    { text: "Meet Our Team", href: "#meet-team" }
 ];
 
 const Navbar: React.FC = () => (
