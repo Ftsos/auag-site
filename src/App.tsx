@@ -3,11 +3,7 @@ import { MainText } from './components/MainText';
 import { CompanyLogosSection } from './components/CompanyLogosSection';
 import './App.css';
 import Navbar from './components/Navbar';
-import GetInvolved from './components/GetInvolved';
-import GetInvolvedStudents from './components/GetInvolvedStudents';
-import Projects from './components/Projects';
-import Events from './components/Events';
-import MeetTeam from './components/MeetTeam';
+import GetInvolved from './components/GetInvolved'; 
 import Footer from './components/Footer';
 
 function App() {
@@ -19,10 +15,6 @@ function App() {
         <MainText />
         <CompanyLogosSection />
         <GetInvolved />
-        <GetInvolvedStudents />
-        <Projects />
-        <Events />
-        <MeetTeam />
         <Footer />
       </div>
     </div>

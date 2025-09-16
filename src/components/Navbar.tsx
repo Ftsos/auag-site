@@ -2,11 +2,7 @@ import React from "react";
 
 const navItems = [
     { text: "Home", href: "#" },
-    { text: "Get Involved", href: "#get-involved-alumni" },
-    { text: "Participate", href: "#get-involved-students" },
-    { text: "Our Projects", href: "#projects" },
-    { text: "Upcoming Events", href: "#events" },
-    { text: "Meet Our Team", href: "#meet-team" }
+    { text: "Get Involved", href: "#get-involved-alumni" }
 ];
 
 const Navbar: React.FC = () => (
