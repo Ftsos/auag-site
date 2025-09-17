@@ -10,7 +10,7 @@ const GetInvolved: React.FC = () => {
         const link = document.createElement('a');
 
         // Set its href attribute
-        link.href = 'https://docs.google.com/forms/d/e/1FAIpQLSehFK92OiAgVwFDqZ0xH8jhHCOL77Qfvev7n1FF7EHaKB6w0w/viewform?usp=dialog';
+        link.href = 'https://forms.gle/7fTKhaqMqkxuzMWTA';
         link.target = '_blank'; // Open in a new tab
         link.rel = 'noopener noreferrer'; // Security reasons
         link.style.display = 'none'; // Hide the link
