@@ -46,9 +46,18 @@ body {
 .App {
   min-height: 100vh;
   position: relative;
-  background: radial-gradient(circle at top, #DC2626 0%, #000000 25%);
+  background: 
+    radial-gradient(
+      ellipse 80% 10% at 50% 50%, 
+      rgba(220, 38, 38, 0.15), /* Decreased opacity to make it dimmer */
+      transparent 
+    ),
+    #000000;
+  
+  background-position: center 0.001rem;
+  background-size: 100% 20%; 
+  background-repeat: no-repeat;
 }
-
 .content-container {
   position: relative;
   z-index: 10;

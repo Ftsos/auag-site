@@ -1,8 +1,8 @@
 .trusted-by {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 0;
   background: transparent;
-  margin: 40px auto 100px auto;
+  margin: 0 auto 0 auto;
   max-width: 1000px;
   position: relative;
   z-index: 10;
@@ -10,7 +10,7 @@
 
 .trusted-by h2 {
   font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.2rem;
   font-weight: 600;
   color: #ffffff;
   font-family: 'Arial', sans-serif;
