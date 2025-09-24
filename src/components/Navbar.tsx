@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const navItems = [
-  { text: "Alumni", href: "#", subItems: [{ text: "Alumni Link 1", href: "#alumni-link1" }] },
-  { text: "Students", href: "#", subItems: [{ text: "Students Link 1", href: "#students-link1" }] },
-  { text: "About", href: "#about" },
+  { text: "Alumni", href: "#get-involved-alumni"},
+  { text: "Students", href: "#get-involved-students" },
+  { text: "About", href: "#footer" },
 ];
 
 const Navbar: React.FC = () => {

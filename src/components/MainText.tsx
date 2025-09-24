@@ -3,6 +3,10 @@ import '../styles/MainText.css';
 import Statistics from './Statistics';
 
 export const MainText: React.FC = () => {
+    const handleLearnMoreClick = () => {
+    window.location.href = '#footer'; 
+  };
+
   return (
     <motion.div
       // Tailwind classes for desktop layout and base styles
@@ -60,6 +64,7 @@ export const MainText: React.FC = () => {
 
         <motion.button
           // Tailwind classes for desktop padding and font size
+          onClick={handleLearnMoreClick}
           className="main-button bg-red-600 text-white py-3 px-8 rounded-full font-bold hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}

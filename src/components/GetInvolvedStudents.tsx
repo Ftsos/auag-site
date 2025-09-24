@@ -7,6 +7,19 @@ const GetInvolvedStudents: React.FC = () => {
 
     const handleMouseDown = () => {
         setButtonPressed(true);
+        const link = document.createElement('a');
+
+        // Set its href attribute
+        link.href = 'https://forms.gle/tmtKqpnqEkqHdib99';
+        link.target = '_blank'; // Open in a new tab
+        link.rel = 'noopener noreferrer'; // Security reasons
+        link.style.display = 'none'; // Hide the link
+
+        // Append it to the document body (optional, if you want it visible)
+        document.body.appendChild(link);
+
+        // Programmatically click the link
+        link.click();
     };
 
     const handleMouseUp = () => {
@@ -28,7 +41,8 @@ const GetInvolvedStudents: React.FC = () => {
                 <p className="max-w-3xl text-center mb-8 text-gray-200" style={{
                     textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
                 }}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore repellat, laudantium minima nemo quis placeat et quasi mollitia, alias veritatis impedit porro esse blanditiis autem expedita voluptas in dolores dolor.
+                    <b>Your network starts here.</b>
+                    By joining our club, you'll gain access to mentors, alumni, and peers who open doors to opportunities you can't find alone. Build connections, sharpen your skills, and step into a community that invests in your future. Don't just study for tomorrow, start shaping it today.                    
                     <br /><br />
                     <button 
                         className={`font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-110 ${buttonPressed ? "bg-gray-800 text-white" : "bg-blue-600 text-white"}`}
@@ -42,9 +56,7 @@ const GetInvolvedStudents: React.FC = () => {
                         Join Us
                     </button>
                     <br /><br />
-                    <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors duration-300" style={{
-                        textShadow: '0 0 10px rgba(96, 165, 250, 0.3)'
-                    }}>Learn More</a>
+
                 </p>
             </div>
         </section>

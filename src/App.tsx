@@ -20,9 +20,6 @@ function App() {
         <CompanyLogosSection />
         <GetInvolved />
         <GetInvolvedStudents />
-        <Projects />
-        <Events />
-        <MeetTeam />
         <Footer />
       </div>
     </div>
