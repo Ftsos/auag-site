@@ -1,36 +1,23 @@
-.main-text {
-  position: relative;
-  text-align: left;
-  z-index: 10;
-  margin: 20px auto 100px auto;
-  max-width: 300px;
-  padding: 10px;
+/* src/styles/MainText.css */
+
+
+/* Styles for small screens (sm: 640px and up) */
+@media (max-width: 640px) {
+  .main-title {
+    font-size: 2.5rem; /* ~56px */
+    line-height: 1.1;
+  }
+
+  .main-paragraph {
+    font-size: 0.9rem; /* Reduced font size for small screens */
+    line-height: 1.5;
+    padding: 0 4rem;
+  }
 }
 
-.title {
-  font-size: 6rem;
-  font-weight: 700;
-  color: #ffffff;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  letter-spacing: 2px;
-  line-height: 1.2;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-.title div {
-  margin-bottom: 10px;
-}
-
-.red-text {
-  color: #ff0000;
-  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-}
-
-.accent-line {
-  width: 100px;
-  height: 3px;
-  background: #fff;
-  margin: 0 auto;
-  border-radius: 2px;
+@media (max-width: 640px) {
+  .main-button {
+    font-size: 1.1rem; /* Slightly larger font */
+    padding: 0.85rem 1.5rem; /* Increased padding */
+  }
 }

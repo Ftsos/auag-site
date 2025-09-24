@@ -37,7 +37,7 @@ export const MainText: React.FC = () => {
         transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
       >
         <motion.h1
-          className="text-4xl font-bold mb-4"
+          className="main-title text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.6 }}
@@ -46,16 +46,16 @@ export const MainText: React.FC = () => {
         </motion.h1>
 
         <motion.p
-          className="text-lg mb-8 px-4"
+          className="main-paragraph text-lg mb-8 px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.8, duration: 0.6 }}
         >
           We are the platform that brings highly talented students and alums together to create outsized outcomes. We see every conversation as an opportunity to change the future. 
-          </motion.p>
+        </motion.p>
         
         <motion.button
-          className="bg-red-600 text-white py-3 px-8 rounded-full font-bold hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
+          className="main-button bg-red-600 text-white py-3 px-8 rounded-full font-bold hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2.1, duration: 0.6, type: "spring", stiffness: 100 }}
