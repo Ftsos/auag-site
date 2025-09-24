@@ -1,23 +1,83 @@
 /* src/styles/MainText.css */
 
+/*
+  These are the base styles that apply to all screen sizes,
+  especially for desktop where no media queries apply.
+*/
+.main-container {
+  /* Ensure the component takes up a significant portion of the screen height */
+  min-height: 85vh;
+  padding: 4rem 2rem;
+}
 
-/* Styles for small screens (sm: 640px and up) */
+.main-logo {
+  font-size: 5rem; /* The base size for desktop and larger screens */
+}
+
+.main-title {
+  font-size: 3rem; /* The base size for desktop and larger screens */
+}
+
+.main-paragraph {
+  font-size: 1.2rem;
+  padding: 0 1rem;
+}
+
+.main-button {
+  font-size: 1rem;
+  padding: 0.8rem 2rem;
+}
+
+/*
+  These styles will override the desktop styles for screens
+  smaller than 640px (e.g., small tablets and large phones)
+*/
 @media (max-width: 640px) {
+  .main-container {
+    /* Reduce padding to make the component more compact */
+    padding: 2rem 1rem;
+  }
+
+  .main-logo {
+    font-size: 4rem; /* Smaller font for medium-sized mobile screens */
+  }
+
   .main-title {
-    font-size: 2.5rem; /* ~56px */
-    line-height: 1.1;
+    font-size: 2.25rem; /* A good size for readability on smaller screens */
   }
 
   .main-paragraph {
-    font-size: 0.9rem; /* Reduced font size for small screens */
-    line-height: 1.5;
-    padding: 0 4rem;
+    font-size: 1rem;
+    padding: 0 0.5rem;
   }
 }
 
-@media (max-width: 640px) {
+/*
+  These styles will override the above for screens smaller than 480px
+  (e.g., the most compact phones with limited screen real estate)
+*/
+@media (max-width: 480px) {
+  .main-container {
+    padding: 1.5rem 0.5rem;
+    /* You could also adjust min-height here if needed, e.g., to 75vh */
+    /* min-height: 75vh; */
+  }
+
+  .main-logo {
+    font-size: 3rem; /* Very small font for the most compact screens */
+  }
+
+  .main-title {
+    font-size: 1.75rem; /* Ensures the title fits on one line */
+  }
+
+  .main-paragraph {
+    font-size: 0.9rem;
+    padding: 0; /* Remove padding to maximize space */
+  }
+
   .main-button {
-    font-size: 1.1rem; /* Slightly larger font */
-    padding: 0.85rem 1.5rem; /* Increased padding */
+    font-size: 0.9rem;
+    padding: 0.7rem 1.25rem;
   }
 }
