@@ -16,7 +16,7 @@ export const MainText: React.FC = () => {
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* AUAG Logo Section */}
-      <motion.div
+      {/*<motion.div
         // Tailwind classes for desktop font size
         className="main-logo text-7xl font-extrabold mb-8"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -25,15 +25,19 @@ export const MainText: React.FC = () => {
       >
         <span className="text-white">AU</span>
         <span className="text-red-600" style={{ textShadow: '0 0 10px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.5)' }}>AG</span>
-      </motion.div>
+      </motion.div>*/}
 
       {/* Bar Section */}
-      <motion.div
+      {/*<motion.div
         className="w-48 h-1 bg-red-600 mb-8"
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: "12rem", opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-      />
+      />*/}
+
+      <br />
+      <br />
+      <br />
 
       {/* Title, Text, and Button Section */}
       <motion.div
@@ -72,7 +76,7 @@ export const MainText: React.FC = () => {
         >
           Learn More
         </motion.button>
-
+        <br />
         <Statistics />
       </motion.div>
     </motion.div>
