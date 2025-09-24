@@ -3,7 +3,7 @@ import '../styles/Footer.css';
 
 const Footer: React.FC = () => {
     return (
-        <footer
+        <footer id="footer"
             className="w-full flex flex-col items-center justify-center p-8 relative overflow-hidden"
             style={{
                 height: '25vh', 
