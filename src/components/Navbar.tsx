@@ -1,10 +1,23 @@
 import React, { useState } from "react";
 
-const navItems = [
-  { text: "Alumni", href: "#get-involved-alumni"},
-  { text: "Students", href: "#get-involved-students" },
+interface SubItem {
+  text: string;
+  href: string;
+}
+
+interface NavItem {
+  text: string;
+  href?: string; // `href` is now optional for items with sub-items
+  subItems?: SubItem[];
+}
+
+
+const navItems: NavItem[] = [
+  { text: "Alumni", href: "#get-involved-alumni" },
+{ text: "Students", href: "#get-involved-students" },
   { text: "About", href: "#footer" },
 ];
+
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

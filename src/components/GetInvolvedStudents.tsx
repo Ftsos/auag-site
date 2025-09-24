@@ -42,6 +42,7 @@ const GetInvolvedStudents: React.FC = () => {
                     textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
                 }}>
                     <b>Your network starts here.</b>
+                    <br />
                     By joining our club, you'll gain access to mentors, alumni, and peers who open doors to opportunities you can't find alone. Build connections, sharpen your skills, and step into a community that invests in your future. Don't just study for tomorrow, start shaping it today.                    
                     <br /><br />
                     <button 
