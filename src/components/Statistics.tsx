@@ -11,7 +11,9 @@ const stats = [
 // This component now renders all stats by mapping over the array.
 const Statistics: React.FC = () => {
   return (
-    <div className="flex w-screen justify-around items-center mt-7 mr-4">
+    // Keep the flex-row layout for all screen sizes.
+    // Use responsive margin and spacing to handle different screen widths.
+    <div className="flex flex-row w-full justify-around items-center mt-7 mr-0 sm:mr-4">
       {stats.map((stat, index) => (
         <StatNumber key={index} target={stat.target} label={stat.label} hasPlus={stat.hasPlus} />
       ))}
@@ -65,11 +67,13 @@ const StatNumber: React.FC<StatNumberProps> = ({ target, label, duration = 2000,
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
     >
-      <div className="text-6xl font-normal mb-2">
+      {/* Responsive font size for the number */}
+      <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal mb-1 sm:mb-2">
         {Math.round(count)}
         {hasPlus && "+"}
       </div>
-      <div className="text-xl uppercase tracking-wide">
+      {/* Responsive font size for the label */}
+      <div className="text-sm sm:text-base md:text-lg lg:text-xl uppercase tracking-tight sm:tracking-wide text-center">
         {label}
       </div>
     </motion.div>
