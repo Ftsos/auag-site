@@ -48,7 +48,7 @@ export const MainText: React.FC = () => {
       >
         <motion.h1
           // Tailwind classes for desktop font size
-          className="main-title text-4xl font-bold mb-4"
+          className="main-title text-[50rem] font-bold mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5, duration: 0.6 }}
