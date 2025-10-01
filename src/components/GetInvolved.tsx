@@ -33,11 +33,11 @@ const GetInvolved: React.FC = () => {
         >
             <FlowingLines />
             <div className="z-10">
-                <h2 className="text-4xl font-bold mb-6 text-shadow-glow">Get Involved</h2>
+                <h2 className="text-4xl font-bold mb-6 text-shadow-glow">Alumni, Get Involved</h2>
                 <p className="max-w-3xl text-center mb-8">
-                    <b> Your story hasn't ended, it lives on in the students who follow.</b>
+                    <b> Your story hasn't ended. it lives on in the students who follow.</b>
                     <br />
-                    As an alum, you have the power to inspire, to guide, and to open doors that shape futures. Whether through mentorship, offering internships, supporting research, or funding bold new ideas, your involvement creates opportunities students could never reach alone. You can light the path for tomorrow's leaders, create impact that endures far beyond today.                    
+                    As an alum, you have the power to inspire, to guide, and to open doors that shape futures. Whether through mentorship, offering internships, supporting research, or funding bold new ideas, your involvement creates opportunities students could never reach alone. You can light the path for tomorrow's leaders and create impact that endures far beyond today.                    
                     <br /><br />
                     <button 
                         className={`font-bold py-2 px-4 rounded transition-all duration-300 transform hover:scale-110 ${buttonPressed ? 'bg-white text-red-600' : 'bg-red-600 text-white'}`}

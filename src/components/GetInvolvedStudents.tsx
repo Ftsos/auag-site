@@ -10,7 +10,7 @@ const GetInvolvedStudents: React.FC = () => {
         const link = document.createElement('a');
 
         // Set its href attribute
-        link.href = 'https://forms.gle/tmtKqpnqEkqHdib99';
+        link.href = 'https://auagmembership.paperform.co/';
         link.target = '_blank'; // Open in a new tab
         link.rel = 'noopener noreferrer'; // Security reasons
         link.style.display = 'none'; // Hide the link
@@ -37,7 +37,7 @@ const GetInvolvedStudents: React.FC = () => {
             <div className="z-10">
                 <h2 className="text-4xl font-bold mb-6 text-white" style={{
                     textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)'
-                }}>Participate</h2>
+                }}>Student, Participate</h2>
                 <p className="max-w-3xl text-center mb-8 text-gray-200" style={{
                     textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
                 }}>
