@@ -1,16 +1,36 @@
+/* Projects.css */
 
-#projects-section {
-    transition: background-color 0.5s ease;
-  }
-  
-#projects-section .text-gray-700 {
-line-height: 1.6;
+/* --- Heading Styling --- */
+.heading-projects {
+    /* Set the specific font weight and tracking for the "PROJECTS" title */
+    font-weight: 300; /* Light weight */
+    letter-spacing: 0.4em; /* Wide tracking */
+    margin-bottom: 60px; /* Space below the heading */
 }
 
-#projects-section .bg-white {
-border: 1px solid #e0e0e0;
+/* Replaces old border styles with a single custom one */
+.project-card {
+    /* Initial subtle border, complementing the shadow-lg */
+    border: 1px solid #ededed;
 }
 
-#projects-section .bg-gray-200 {
-border: 1px dashed #cccccc;
+.project-card:hover {
+    /* Optional: Add a subtle border color change on hover */
+    border-color: #d1d5db; /* A slightly darker gray on hover */
+}
+
+/* Ensure good readability for the description text */
+#projects .text-gray-600 {
+    line-height: 1.6;
+}
+
+/* Add a simple separator/underline to the main title */
+#projects h2.text-5xl:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 10px auto 0;
+    background-color: #3b82f6; /* A nice, contrasting blue (Tailwind blue-500) */
+    border-radius: 2px;
 }

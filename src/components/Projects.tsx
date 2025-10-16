@@ -1,50 +1,77 @@
 import React from 'react';
+import { FaLightbulb, FaUsers, FaBookOpen, FaHandsHelping } from 'react-icons/fa';
 import '../styles/Projects.css';
 
+interface FeatureItemProps {
+  icon: React.ReactNode;
+  title: string;
+  subtitle: string;
+}
+
+const FeatureItem: React.FC<FeatureItemProps> = ({ icon, title, subtitle }) => (
+  <div className="flex items-start mb-10 feature-item">
+    <div className="text-white text-4xl mr-8 mt-1 flex-shrink-0">
+      {icon}
+    </div>
+    <div>
+      <h3 className="text-white text-2xl font-bold mb-1 feature-title">
+        {title}
+      </h3>
+      <p className="text-gray-300 text-lg feature-subtitle">
+        {subtitle}
+      </p>
+    </div>
+  </div>
+);
+
 const Projects: React.FC = () => {
+  const featuresData = [
+    {
+      icon: <FaLightbulb />,
+      title: "AU Innovation & Entrepreneurship",
+      subtitle: "Events, Sessions & Mentor Groups"
+    },
+    {
+      icon: <FaUsers />,
+      title: "Leadership Network",
+      subtitle: "Co-op programs, key departments & partnerships"
+    },
+    {
+      icon: <FaBookOpen />,
+      title: "Experiential Opportunities",
+      subtitle: "Becoming World Changers today and supporting others to do the same"
+    },
+    {
+      icon: <FaHandsHelping />,
+      title: "Community Development",
+      subtitle: "Investors and mentors for Andrews startup founders."
+    },
+  ];
+
   return (
     <section
-      id="projects"
-      className="min-h-screen w-screen flex flex-col items-center justify-center p-8 relative"
+      id="projects-list-section"
+      className="min-h-screen w-screen flex flex-col items-center py-20 px-4"
       style={{
-        background: 'linear-gradient(to top, #000000 0%, #1a1a1a 20%, #4a4a4a 50%, #8a8a8a 80%, #f0f0f0 100%)'
+        // Radial gradient for the background
+        background: 'linear-gradient(to bottom, #000 0%, #5e0608 40%, #5e0608 60%, #000 100%)',
       }}
     >
-      <div className="z-10 text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4" style={{
-          color: '#333',
-          textShadow: '0 0 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05)'
-        }}>Our Projects</h2>
-        <p className="max-w-4xl text-gray-700">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, quidem. Dolor debitis, cum in iure, vero, quod iste ut illum facilis. Cumque, voluptatum. Quod, voluptate. Quos, voluptatibus. Consequatur, voluptatem!
-        </p>
+      <div className="z-10 text-center mb-16 max-w-4xl w-full">
+        <h2 className="text-6xl font-light text-white uppercase tracking-widest heading-projects">
+          PROJECTS
+        </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <div className="h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center text-gray-500">
-            Image Box 1
-          </div>
-          <p className="text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, ducimus.
-          </p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <div className="h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center text-gray-500">
-            Image Box 2
-          </div>
-          <p className="text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, voluptate.
-          </p>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <div className="h-48 bg-gray-200 rounded-md mb-4 flex items-center justify-center text-gray-500">
-            Image Box 3
-          </div>
-          <p className="text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, nemo.
-          </p>
-        </div>
+      <div className="w-full max-w-4xl text-left">
+        {featuresData.map((item, index) => (
+          <FeatureItem
+            key={index}
+            icon={item.icon}
+            title={item.title}
+            subtitle={item.subtitle}
+          />
+        ))}
       </div>
     </section>
   );
