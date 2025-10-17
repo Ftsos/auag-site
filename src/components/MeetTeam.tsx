@@ -37,7 +37,7 @@ const TeamMemberCard: React.FC<TeamMember> = ({ name, role, imageUrl }) => (
       alt={name}
       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
     />
-    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end">
+    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 flex flex-col justify-end mb-6">
       <h3 className="text-2xl font-bold text-white">{name}</h3>
       <p className="text-indigo-300 text-sm font-medium">{role}</p>
     </div>
