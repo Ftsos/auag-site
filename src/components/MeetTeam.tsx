@@ -54,9 +54,11 @@ const MeetTeam: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25)_0%,rgba(0,0,0,1)_80%)] pointer-events-none"></div>
 
       <div className="z-10 text-center relative max-w-6xl w-full">
-        <h2 className="text-5xl font-extrabold mb-4 text-white">Meet Our Team</h2>
+        <h2 className="text-6xl font-light text-white uppercase tracking-widest mb-4">
+          MEET THE TEAM
+        </h2>
         <p className="max-w-3xl text-gray-300 text-lg mx-auto mb-12">
-          Meet the dedicated individuals who make our vision a reality.
+            Placeholder
         </p>
 
         <div className="w-full max-w-3xl mx-auto">

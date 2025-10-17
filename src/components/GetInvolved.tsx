@@ -20,7 +20,7 @@ const GetInvolved: React.FC = () => {
         >
             <FlowingLines />
             <div className="z-10">
-                <h2 className="text-4xl font-bold mb-6 text-shadow-glow">Get Involved</h2>
+                <h2 className="text-6xl mb-6 text-shadow-glow tracking-widest">Get Involved</h2>
                 <p className="max-w-3xl text-center mb-8">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore repellat, laudantium minima nemo quis placeat et quasi mollitia, alias veritatis impedit porro esse blanditiis autem expedita voluptas in dolores dolor.
                     <br /><br />

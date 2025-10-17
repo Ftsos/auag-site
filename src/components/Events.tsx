@@ -21,7 +21,9 @@ const Events: React.FC = () => {
             </div>
 
             <div className="z-10 text-center relative max-w-4xl">
-                <h2 className="text-4xl font-bold mb-8 text-white">Upcoming Events</h2>
+                    <h2 className="text-6xl font-light text-white uppercase tracking-widest mb-4">
+                        UPCOMING EVENTS
+                    </h2>
                 <p className="mb-12 text-gray-400">
                     Join us at our next events and be part of the community. We're excited to see you there!
                 </p>
