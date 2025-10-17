@@ -50,8 +50,52 @@ const MeetTeam: React.FC = () => {
       id="meet-team"
       className="relative min-h-screen w-full flex flex-col items-center justify-center p-8 bg-black overflow-hidden"
     >
+
+    <div className="floating-points-bg absolute inset-0 pointer-events-none">
+        {Array.from({ length: 500 }).map((_, i) => {
+          const random = Math.random();
+          const spreadX = 800; // width radius
+          const spreadY = 500;  // height radius
+
+          // Use a distribution that favors edges (less drop toward sides)
+          // Mix uniform and radial bias
+          const angle = Math.random() * 2 * Math.PI;
+          const radiusBias = 0.3 + 0.7 * Math.pow(Math.random(), 0.6); // more even spread
+          const radius = radiusBias;
+
+          const x = Math.cos(angle) * spreadX * radius;
+          const y = Math.sin(angle) * spreadY * radius * (0.8 + Math.random() * 0.4);
+
+          // small natural variation in motion
+          const x2 = x + (Math.random() - 0.5) * 60;
+          const y2 = y + (Math.random() - 0.5) * 60;
+
+          const size = Math.random() * 2 + 1;
+          const delay = Math.random() * 10;
+
+          return (
+            <span
+              key={i}
+              className="pointT"
+              style={{
+                '--x': `${x}`,
+                '--y': `${y}`,
+                '--x2': `${x2}`,
+                '--y2': `${y2}`,
+                '--rand': `${random}`,
+                width: `${size}px`,
+                height: `${size}px`,
+                animationDelay: `${delay}s`,
+              } as React.CSSProperties}
+            />
+          );
+        })}
+
+
+
+    </div>
       {/* White radial gradient background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25)_0%,rgba(0,0,0,1)_80%)] pointer-events-none"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25)_0%,rgba(0,0,0,1)_40%)] pointer-events-none"></div>
 
       <div className="z-10 text-center relative max-w-6xl w-full">
         <h2 className="text-6xl font-light text-white uppercase tracking-widest mb-4">
