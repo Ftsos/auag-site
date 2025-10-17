@@ -48,3 +48,49 @@
         opacity: 0;
     }
 }
+
+.moving-points-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+.point {
+  position: absolute;
+  display: block;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: movePoint linear infinite;
+}
+
+/* Randomize starting positions and speeds */
+.point:nth-child(odd) {
+  width: 2px;
+  height: 2px;
+  opacity: 0.6;
+}
+
+/* Randomize each point’s motion */
+@keyframes movePoint {
+  from {
+    transform: translateY(0) translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100vh) translateX(calc(-50vw + 100vw * var(--x, 0.5)));
+    opacity: 0;
+  }
+}
+
+/* Generate randomized positions and animation durations */
+.point {
+  top: calc(100% * var(--y, 0.5));
+  left: calc(100% * var(--x, 0.5));
+  animation-duration: calc(8s + 8s * var(--speed, 0.5));
+}

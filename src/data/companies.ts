@@ -19,7 +19,7 @@ export const companies: Company[] = [
   { 
     id: 'jpmorgan-chase', 
     name: 'JPMorgan Chase', 
-    logo: '/JPMorgan-Chase-Logo-SVG-desktop.jpg' 
+    logo: '/JPMorgan-Chase-Logo-SVG-desktop.png' 
   },
   { 
     id: 'tesla', 
@@ -69,7 +69,7 @@ export const companies: Company[] = [
   { 
     id: 'lsw-architects', 
     name: 'LSW Architects', 
-    logo: '/LSW_Logo.jpg' 
+    logo: '/LSW_Logo.png' 
   },
   { 
     id: 'coca-cola', 

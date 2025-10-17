@@ -10,3 +10,55 @@
   /* This is a placeholder for a circular image */
   border: 3px solid #f0f0f0;
 }
+
+.floating-points-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  display: block;
+}
+
+/* Base style for each point */
+.pointT {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: white;
+  /*opacity: 0.6;
+  filter: blur(1px);*/
+  animation: floatPoint linear infinite;
+  animation-duration: calc(15s + var(--rand) * 10s);
+  transform: translate(-50%, -50%);
+}
+
+/* Core float motion */
+@keyframes floatPoint {
+  0% {
+    transform: translate(
+        calc(-50% + var(--x) * 1px),
+        calc(-50% + var(--y) * 1px)
+      )
+      scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(
+        calc(-50% + var(--x2) * 1px),
+        calc(-50% + var(--y2) * 1px)
+      )
+      scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+        calc(-50% + var(--x) * 1px),
+        calc(-50% + var(--y) * 1px)
+      )
+      scale(1);
+    opacity: 0.6;
+  }
+}
