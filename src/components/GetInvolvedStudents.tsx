@@ -24,7 +24,7 @@ const GetInvolvedStudents: React.FC = () => {
             <div className="z-10">
                 <h2 className="text-6xl mb-6 text-shadow-glow tracking-widest" style={{
                     textShadow: '0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(255, 255, 255, 0.1)'
-                }}>Participate</h2>
+                }}>PARTICIPATE</h2>
                 <p className="max-w-3xl text-center mb-8 text-gray-200" style={{
                     textShadow: '0 0 10px rgba(255, 255, 255, 0.2)'
                 }}>
