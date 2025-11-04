@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import App from "./App";
 import GivingTuesday from "./components/GivingTuesday";
 
@@ -10,11 +10,6 @@ export default function Router() {
     window.addEventListener("popstate", handlePop);
     return () => window.removeEventListener("popstate", handlePop);
   }, []);
-
-  const navigate = (to) => {
-    window.history.pushState({}, "", to);
-    setPath(to);
-  };
 
   if (path === "/") return <App />;
   if (path === "/giving") return <GivingTuesday />;
