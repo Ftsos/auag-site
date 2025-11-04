@@ -13,9 +13,10 @@ interface NavItem {
 
 
 const navItems: NavItem[] = [
-  { text: "Alumni", href: "#get-involved-alumni" },
-{ text: "Students", href: "#get-involved-students" },
+  { text: "Alumni", href: "/#get-involved-alumni" },
+{ text: "Students", href: "/#get-involved-students" },
   { text: "About", href: "#footer" },
+  {text: "Giving Tuesday", href: "/giving"}
 ];
 
 
@@ -30,7 +31,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center">
           {/* AUAG Logo */}
           <a
-            href="#"
+            href="/#"
             className="text-3xl font-extrabold"
             style={{
               textShadow:

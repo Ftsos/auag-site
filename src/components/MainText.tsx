@@ -15,6 +15,13 @@ export const MainText: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
+    <div className="bg-red-700 border-b-4 border-red-700 absolute top-0 left-0 w-full h-10 z-50 text-white flex items-center justify-center">
+      <p>
+        <a href="/giving" className="underline hover:text-gray-100">
+          Giving Tuesday is coming! Visit the Giving Tuesday page to learn more about how you can help make a difference.
+        </a>
+      </p>
+    </div>
       {/* AUAG Logo Section */}
       {/*<motion.div
         // Tailwind classes for desktop font size
