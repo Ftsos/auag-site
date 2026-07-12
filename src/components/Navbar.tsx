@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const navItems = [
   { text: "Alumni", href: "#", subItems: [{ text: "Alumni Link 1", href: "#alumni-link1" }] },
@@ -16,9 +17,9 @@ const Navbar: React.FC = () => {
       <nav className="w-screen py-4 px-8 flex justify-between items-center backdrop-blur-sm text-white relative z-10">
         <div className="flex items-center">
           {/* AUAG Logo */}
-          <a
-            href="#"
-            className="text-3xl font-extrabold"
+          <Link
+            to="/"
+            className="text-3xl font-extrabold no-underline"
             style={{
               textShadow:
                 "0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5)",
@@ -34,7 +35,7 @@ const Navbar: React.FC = () => {
             >
               AG
             </span>
-          </a>
+          </Link>
         </div>
 
         {/* Desktop menu */}
