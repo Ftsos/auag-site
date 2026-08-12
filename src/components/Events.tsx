@@ -1,61 +1,90 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { FaInstagram, FaEnvelope } from 'react-icons/fa6';
+import { links } from '../data/links';
 import '../styles/Events.css';
 
+/*
+ * Email capture: intentionally absent until a real endpoint exists.
+ * The old form posted to a placeholder Formspree URL and faked a success
+ * toast while discarding the address. When a real Formspree (or similar)
+ * endpoint is ready, re-add the form here and wire it to that URL.
+ */
+
 const Events: React.FC = () => {
-    return (
-        <section
-            id="events"
-            className="min-h-screen w-screen flex flex-col items-center justify-center p-8 relative overflow-hidden"
+  return (
+    <section id="events" className="events-section">
+      <div className="section-shell events-inner">
+        <header className="section-head">
+          <div className="section-head-row">
+            <h2 className="display-heading section-heading">Upcoming events</h2>
+            <span className="section-meta">What's next</span>
+          </div>
+        </header>
+
+        <motion.article
+          className="event-flagship on-dark"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
         >
-            {/* Moving points background */}
-            <div className="moving-points-bg absolute top-0 left-0 w-full h-full overflow-hidden">
-                {Array.from({ length: 150 }).map((_, i) => {
-                    const x = Math.random();
-                    const y = Math.random();
-                    const speed = Math.random();
-                    return (
-                    <span
-                        key={i}
-                        className="point"
-                        style={{ 
-                            '--x': x, 
-                            '--y': y, 
-                            '--speed': speed 
-                        } as React.CSSProperties}
-                    ></span>
-                    );
-                    })}
+          <div className="event-date-block" aria-hidden="true">
+            <span className="event-date-day">Sept 25</span>
+            <span className="event-date-year">2026</span>
+          </div>
 
-            </div>
+          <div className="event-details">
+            <span className="micro-label event-context">
+              Homecoming Weekend · Andrews University
+            </span>
+            <h3 className="event-title">Legacy: An AUAG Alumni Series</h3>
+            <p className="event-desc">
+              An afternoon with the alumni who've gone ahead — career stories
+              and a moderated panel spanning law, engineering, medicine, and
+              capital, followed by open networking with the people behind them.
+            </p>
+            <dl className="event-meta">
+              <div className="event-meta-item">
+                <dt className="micro-label">Date</dt>
+                <dd>Friday, September 25, 2026</dd>
+              </div>
+              <div className="event-meta-item">
+                <dt className="micro-label">Time</dt>
+                <dd>2:00 – 4:30 PM</dd>
+              </div>
+              <div className="event-meta-item">
+                <dt className="micro-label">Venue</dt>
+                <dd>Howard Performing Arts Center</dd>
+              </div>
+            </dl>
+          </div>
+        </motion.article>
 
-            <div className="z-10 text-center relative max-w-4xl">
-                <h2 className="text-6xl font-light text-white uppercase tracking-widest mb-4">
-                    UPCOMING EVENTS
-                </h2>
-                <p className="mb-12 text-gray-400">
-                    Join us at our next events and be part of the community. We're excited to see you there!
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-800 transition-transform duration-300 hover:scale-105">
-                        <h3 className="text-2xl font-semibold mb-2 text-white">Event Title One</h3>
-                        <p className="text-gray-500 mb-4">Location &bull; Date</p>
-                        <p className="text-gray-400">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
-                    </div>
-
-                    <div className="bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-800 transition-transform duration-300 hover:scale-105">
-                        <h3 className="text-2xl font-semibold mb-2 text-white">Event Title Two</h3>
-                        <p className="text-gray-500 mb-4">Location &bull; Date</p>
-                        <p className="text-gray-400">
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+        <div className="events-follow">
+          <p className="events-follow-copy">
+            More 2026 dates are being finalized. Follow along and you'll hear
+            about them first.
+          </p>
+          <div className="events-follow-ctas">
+            <a
+              className="btn-ghost"
+              href={links.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram aria-hidden="true" />
+              Follow @auactiongroup
+            </a>
+            <a className="btn-ghost" href={links.contactEmail}>
+              <FaEnvelope aria-hidden="true" />
+              Email us
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Events;

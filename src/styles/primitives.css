@@ -1,0 +1,233 @@
+/*
+ * Shared Frame primitives — one definition, used across every section.
+ * Replaces the per-file eyebrow/card/button CSS that used to be
+ * duplicated in MainText/CompanyLogosSection/Events/About/Story.
+ */
+
+/* Uppercase micro-label — the system's smallest voice. */
+.micro-label {
+  font-family: var(--font-accent);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* The one named kicker — reserved for the hero. Not section scaffolding. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-accent);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  flex-shrink: 0;
+  background: var(--color-auag-red);
+}
+
+/* Section head: full-width hairline with a red tick over it, heading below.
+   The section cadence — replaces per-section eyebrow labels. */
+.section-head {
+  position: relative;
+  width: 100%;
+  border-top: 1px solid var(--color-hairline);
+  padding-top: clamp(1.25rem, 3vh, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section-head::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 44px;
+  height: 2px;
+  background: var(--color-auag-red);
+}
+
+.section-head-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  width: 100%;
+}
+
+.section-heading {
+  font-size: var(--text-h2);
+}
+
+/* Right-aligned data note on the head row — only when it earns its place. */
+.section-meta {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+}
+
+.section-sub {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-ink-secondary);
+  max-width: 42em;
+  margin: 1rem 0 0;
+}
+
+.on-dark .section-head {
+  border-top-color: var(--color-on-dark-hairline);
+}
+
+.on-dark .section-meta {
+  color: var(--color-on-dark-muted);
+}
+
+.on-dark .section-sub {
+  color: var(--color-on-dark-muted);
+}
+
+/* Display headings */
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.04;
+  text-wrap: balance;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+/* White card on canvas */
+.card-surface {
+  background: var(--color-card);
+  border: 1px solid var(--color-hairline);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+}
+
+/* Section shell: max-width + fluid gutters */
+.section-shell {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Stat numerals */
+.stat-numeral {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-ghost,
+.btn-soon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.8125rem 1.375rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--color-auag-red);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(225, 29, 46, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--color-auag-red-deep);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-hairline);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-ink);
+  background: var(--color-card);
+}
+
+.btn-ghost:active {
+  transform: translateY(1px);
+}
+
+/* Non-link state for a CTA whose destination doesn't exist yet. */
+.btn-soon {
+  background: var(--color-divider);
+  color: var(--color-ink-muted);
+  cursor: default;
+}
+
+/* Black chrome scope — nav, footer, inverted bands, logo chips. */
+.on-dark {
+  background: var(--color-frame);
+  color: var(--color-on-dark);
+}
+
+.on-dark .micro-label,
+.on-dark .eyebrow {
+  color: var(--color-on-dark-muted);
+}
+
+.on-dark .display-heading {
+  color: var(--color-on-dark);
+}
+
+.on-dark .stat-numeral {
+  color: var(--color-on-dark);
+}
+
+.on-dark .btn-ghost {
+  color: var(--color-on-dark);
+  border-color: var(--color-on-dark-hairline);
+}
+
+.on-dark .btn-ghost:hover {
+  border-color: var(--color-on-dark);
+  background: var(--color-frame-elevated);
+}
+
+.on-dark .btn-soon {
+  background: var(--color-frame-elevated);
+  color: var(--color-on-dark-muted);
+}

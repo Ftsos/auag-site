@@ -1,15 +1,23 @@
+export type Industry =
+  | 'Technology'
+  | 'Finance'
+  | 'Healthcare'
+  | 'Aerospace'
+  | 'Professional Services'
+  | 'Consumer'
+  | 'Architecture & Design'
+  | 'Aviation';
+
 export interface Company {
   id: string;
   name: string;
-  logo?: string | null; // Allow null for companies without accessible logos
-}
-
-export interface CompanyLogoProps {
-  companies: Company[];
-  isActive: boolean;
-  index?: number; // Add index for staggered animation
-}
-
-export interface CompanyLogosSectionProps {
-  // No props needed for the new simple animation approach
+  logo: string;
+  industry: Industry;
+  /**
+   * How the PNG mark reads on the dark logo chips:
+   * 'light' — white/light artwork, rendered with a light grayscale/brightness
+   *   normalization so the wall stays monochrome;
+   * 'dark' — dark/colored artwork, rendered grayscale-inverted so it stays visible.
+   */
+  logoTheme: 'light' | 'dark';
 }

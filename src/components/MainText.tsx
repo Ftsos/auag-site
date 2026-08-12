@@ -1,75 +1,79 @@
 import { motion } from 'framer-motion';
 import '../styles/MainText.css';
 import Statistics from './Statistics';
+import { FlowingLines } from './FlowingLines';
+import { links } from '../data/links';
+
+const entrance = {
+  hidden: { opacity: 0, y: 22 },
+  visible: (order: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: 'easeOut' as const,
+      delay: 0.09 * order,
+    },
+  }),
+};
 
 export const MainText: React.FC = () => {
   return (
-    <motion.div
-      // Tailwind classes for desktop layout and base styles
-      className="flex flex-col items-center justify-center text-center text-white p-8"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      {/* AUAG Logo Section */}
+    <section className="hero" id="hero">
+      <FlowingLines />
+      <div className="hero-wash" aria-hidden="true" />
+
       <motion.div
-        // Tailwind classes for desktop font size
-        className="main-logo text-7xl font-extrabold mb-8"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 100 }}
+        className="section-shell hero-inner"
+        initial="hidden"
+        animate="visible"
       >
-        <span className="text-white">AU</span>
-        <span className="text-red-600" style={{ textShadow: '0 0 10px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.5)' }}>AG</span>
-      </motion.div>
-
-      {/* Bar Section */}
-      <motion.div
-        className="w-48 h-1 bg-red-600 mb-8"
-        initial={{ width: 0, opacity: 0 }}
-        animate={{ width: "12rem", opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-      />
-
-      {/* Title, Text, and Button Section */}
-      <motion.div
-        className="max-w-3xl flex flex-col items-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
-      >
-        <motion.h1
-          // Tailwind classes for desktop font size
-          className="main-title text-4xl font-bold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-        >
-          ACCELERATING OPPORTUNITY
-        </motion.h1>
-
-        <motion.p
-          // Tailwind classes for desktop font size and padding
-          className="main-paragraph text-lg mb-8 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
-        >
-          We are the platform that brings highly talented students and alums together to create outsized outcomes. We see every conversation as an opportunity to change the future.
+        <motion.p className="eyebrow" variants={entrance} custom={0}>
+          Andrews University Action Group
         </motion.p>
 
-        <motion.button
-          // Tailwind classes for desktop padding and font size
-          className="main-button bg-red-600 text-white py-3 px-8 rounded-full font-bold hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2.1, duration: 0.6, type: "spring", stiffness: 100 }}
-        >
-          Learn More
-        </motion.button>
+        <motion.h1 className="hero-logo" variants={entrance} custom={1}>
+          AU<span className="hero-logo-ag">AG</span>
+        </motion.h1>
 
-        <Statistics />
+        <motion.h2 className="hero-tagline" variants={entrance} custom={2}>
+          Accelerating opportunity<span className="hero-tagline-dot">.</span>
+        </motion.h2>
+
+        <motion.p className="hero-body" variants={entrance} custom={3}>
+          AUAG is the network that brings high-potential Andrews University
+          students and alumni together. We treat every conversation as a door
+          worth opening — for mentorship, for ventures, for the long career
+          ahead.
+        </motion.p>
+
+        <motion.div className="hero-cta-row" variants={entrance} custom={4}>
+          <a
+            className="btn-primary"
+            href={links.alumniJoin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join as alumni
+          </a>
+          {links.studentApply ? (
+            <a
+              className="btn-ghost"
+              href={links.studentApply}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Apply as student
+            </a>
+          ) : (
+            <span className="btn-soon">Student applications open soon</span>
+          )}
+        </motion.div>
+
+        <motion.div className="hero-stats" variants={entrance} custom={5}>
+          <Statistics />
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </section>
   );
 };

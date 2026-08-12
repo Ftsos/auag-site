@@ -1,77 +1,65 @@
-import React from 'react';
-import { FaLightbulb, FaUsers, FaBookOpen, FaHandsHelping } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import '../styles/Projects.css';
 
-interface FeatureItemProps {
-  icon: React.ReactNode;
+type Pillar = {
   title: string;
-  subtitle: string;
-}
+  body: string;
+};
 
-const FeatureItem: React.FC<FeatureItemProps> = ({ icon, title, subtitle }) => (
-  <div className="flex items-start mb-10 feature-item">
-    <div className="text-white text-4xl mr-8 mt-1 flex-shrink-0">
-      {icon}
-    </div>
-    <div>
-      <h3 className="text-white text-2xl font-bold mb-1 feature-title">
-        {title}
-      </h3>
-      <p className="text-gray-300 text-lg feature-subtitle">
-        {subtitle}
-      </p>
-    </div>
-  </div>
-);
+const pillars: Pillar[] = [
+  {
+    title: 'Leadership Network',
+    body: 'Alumni across industries mentoring the next generation. Long-term relationships and warm introductions, not one-off coffees or cold emails.',
+  },
+  {
+    title: 'Experiential Opportunities',
+    body: 'Real projects, real stakes. Internships, fellowships, and on-the-ground work with partners who want to see Andrews talent up close.',
+  },
+  {
+    title: 'AU Innovation & Entrepreneurship',
+    body: 'Founders and operators building what comes next. Structured pathways from classroom idea to first customer, backed by alumni who have been through it.',
+  },
+  {
+    title: 'Community Development',
+    body: 'A compounding network. Every cohort strengthens the ones that follow — and every alumnus gets pulled back in when a student needs them.',
+  },
+];
 
 const Projects: React.FC = () => {
-  const featuresData = [
-    {
-      icon: <FaLightbulb />,
-      title: "AU Innovation & Entrepreneurship",
-      subtitle: "Events, Sessions & Mentor Groups"
-    },
-    {
-      icon: <FaUsers />,
-      title: "Leadership Network",
-      subtitle: "Co-op programs, key departments & partnerships"
-    },
-    {
-      icon: <FaBookOpen />,
-      title: "Experiential Opportunities",
-      subtitle: "Becoming World Changers today and supporting others to do the same"
-    },
-    {
-      icon: <FaHandsHelping />,
-      title: "Community Development",
-      subtitle: "Investors and mentors for Andrews startup founders."
-    },
-  ];
-
   return (
-    <section
-      id="projects-list-section"
-      className="min-h-screen w-screen flex flex-col items-center py-20 px-4"
-      style={{
-        // Radial gradient for the background
-        background: 'linear-gradient(to bottom, #000 0%, #5e0608 40%, #5e0608 60%, #000 100%)',
-      }}
-    >
-      <div className="z-10 text-center mb-16 max-w-4xl w-full">
-        <h2 className="text-6xl font-light text-white uppercase tracking-widest heading-projects">
-          PROJECTS
-        </h2>
-      </div>
+    <section id="pillars" className="pillars-section">
+      <div className="section-shell">
+        <div className="section-head">
+          <div className="section-head-row">
+            <h2 className="display-heading section-heading">
+              From interest to execution.
+            </h2>
+            <span className="section-meta">What we do</span>
+          </div>
+        </div>
 
-      <div className="w-full max-w-4xl text-left">
-        {featuresData.map((item, index) => (
-          <FeatureItem
-            key={index}
-            icon={item.icon}
-            title={item.title}
-            subtitle={item.subtitle}
-          />
-        ))}
+        <div className="pillars-split">
+          <p className="pillars-intro">
+            Alumni already want to help. Our job is turning that interest into
+            doors students actually walk through — four pillars carry the work.
+          </p>
+
+          <div className="pillars-rows">
+            {pillars.map((pillar, i) => (
+              <motion.article
+                key={pillar.title}
+                className="pillar-row"
+                initial={{ opacity: 0, x: 18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.07 }}
+              >
+                <h3 className="pillar-title">{pillar.title}</h3>
+                <p className="pillar-body">{pillar.body}</p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

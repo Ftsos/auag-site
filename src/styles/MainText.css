@@ -1,83 +1,116 @@
-/* src/styles/MainText.css */
+/* Hero — single-screen, left-aligned, on the warm canvas. */
 
-/*
-  These are the base styles that apply to all screen sizes,
-  especially for desktop where no media queries apply.
-*/
-.main-container {
-  /* Ensure the component takes up a significant portion of the screen height */
-  min-height: 85vh;
-  padding: 4rem 2rem;
+.hero {
+  position: relative;
+  min-height: calc(100dvh - 4rem); /* nav bar is 4rem */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--color-canvas);
 }
 
-.main-logo {
-  font-size: 5rem; /* The base size for desktop and larger screens */
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 50% 42% at 82% 12%,
+    rgba(225, 29, 46, 0.05),
+    transparent 70%
+  );
 }
 
-.main-title {
-  font-size: 3rem; /* The base size for desktop and larger screens */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-block: clamp(3.5rem, 9vh, 6rem);
 }
 
-.main-paragraph {
-  font-size: 1.2rem;
-  padding: 0 1rem;
+.hero-logo {
+  font-family: var(--font-wordmark);
+  font-size: clamp(4.5rem, 13vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--color-ink);
+  margin: 1.25rem 0 0;
 }
 
-.main-button {
-  font-size: 1rem;
-  padding: 0.8rem 2rem;
+.hero-logo-ag {
+  color: var(--color-auag-red);
 }
 
-/*
-  These styles will override the desktop styles for screens
-  smaller than 640px (e.g., small tablets and large phones)
-*/
-@media (max-width: 640px) {
-  .main-container {
-    /* Reduce padding to make the component more compact */
-    padding: 2rem 1rem;
-  }
-
-  .main-logo {
-    font-size: 4rem; /* Smaller font for medium-sized mobile screens */
-  }
-
-  .main-title {
-    font-size: 2.25rem; /* A good size for readability on smaller screens */
-  }
-
-  .main-paragraph {
-    font-size: 1rem;
-    padding: 0 0.5rem;
-  }
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  margin: 1.5rem 0 0;
 }
 
-/*
-  These styles will override the above for screens smaller than 480px
-  (e.g., the most compact phones with limited screen real estate)
-*/
-@media (max-width: 480px) {
-  .main-container {
-    padding: 1.5rem 0.5rem;
-    /* You could also adjust min-height here if needed, e.g., to 75vh */
-    /* min-height: 75vh; */
-  }
+.hero-tagline-dot {
+  color: var(--color-auag-red);
+}
 
-  .main-logo {
-    font-size: 3rem; /* Very small font for the most compact screens */
-  }
+.hero-body {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-secondary);
+  max-width: 36em;
+  margin: 1.25rem 0 0;
+}
 
-  .main-title {
-    font-size: 1.75rem; /* Ensures the title fits on one line */
-  }
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
 
-  .main-paragraph {
-    font-size: 0.9rem;
-    padding: 0; /* Remove padding to maximize space */
-  }
+.hero-stats {
+  width: 100%;
+  margin-top: clamp(3rem, 8vh, 4.5rem);
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 1.5rem;
+}
 
-  .main-button {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.25rem;
-  }
+/* The proof line — numbers set into a sentence, not a counter grid. */
+.hero-proof-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.hero-proof-item {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.hero-proof-sep {
+  color: var(--color-ink-muted);
+  margin-inline: 0.9rem;
+}
+
+.hero-proof-numeral {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  color: var(--color-ink);
+}
+
+.hero-proof-label {
+  font-size: 0.9688rem;
+  color: var(--color-ink-secondary);
+  margin-left: 0.45rem;
 }

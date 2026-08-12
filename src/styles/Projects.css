@@ -1,36 +1,76 @@
-/* Projects.css */
-
-/* --- Heading Styling --- */
-.heading-projects {
-    /* Set the specific font weight and tracking for the "PROJECTS" title */
-    font-weight: 300; /* Light weight */
-    letter-spacing: 0.4em; /* Wide tracking */
-    margin-bottom: 60px; /* Space below the heading */
+.pillars-section {
+  padding-block: var(--spacing-section);
+  background: var(--color-canvas);
 }
 
-/* Replaces old border styles with a single custom one */
-.project-card {
-    /* Initial subtle border, complementing the shadow-lg */
-    border: 1px solid #ededed;
+.pillars-split {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 6vw, 5rem);
+  margin-top: clamp(2rem, 5vh, 3rem);
+  align-items: start;
 }
 
-.project-card:hover {
-    /* Optional: Add a subtle border color change on hover */
-    border-color: #d1d5db; /* A slightly darker gray on hover */
+.pillars-intro {
+  position: sticky;
+  top: 5.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-secondary);
+  max-width: 30em;
+  margin: 0;
+  text-wrap: pretty;
 }
 
-/* Ensure good readability for the description text */
-#projects .text-gray-600 {
-    line-height: 1.6;
+.pillars-rows {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Add a simple separator/underline to the main title */
-#projects h2.text-5xl:after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    margin: 10px auto 0;
-    background-color: #3b82f6; /* A nice, contrasting blue (Tailwind blue-500) */
-    border-radius: 2px;
+.pillar-row {
+  padding: 1.6rem 0.25rem;
+  border-bottom: 1px solid var(--color-hairline);
+  transition: padding-left 0.25s ease;
+}
+
+.pillar-row:first-child {
+  padding-top: 0.25rem;
+}
+
+.pillar-row:hover {
+  padding-left: 0.85rem;
+}
+
+.pillar-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.pillar-body {
+  font-size: 0.9688rem;
+  line-height: 1.65;
+  color: var(--color-ink-secondary);
+  margin: 0.55rem 0 0;
+  max-width: 46em;
+}
+
+@media (max-width: 820px) {
+  .pillars-split {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .pillars-intro {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar-row {
+    transition: none;
+  }
 }
