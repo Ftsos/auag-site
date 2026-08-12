@@ -1,14 +1,36 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import '../styles/MainText.css';
 import Statistics from './Statistics';
-import { FlowingLines } from './FlowingLines';
+import Photo from './Photo';
+import { photos } from '../data/photos';
 import { links } from '../data/links';
 import { fadeRise, staggerParent } from '../utils/motion';
 
 export const MainText: React.FC = () => {
+  const heroRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  // The photo drifts slower than the scroll — depth without scroll-jacking.
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
+
   return (
-    <section className="hero" id="hero">
-      <FlowingLines />
+    <section className="hero" id="hero" ref={heroRef}>
+      <motion.div
+        className="hero-photo"
+        style={prefersReducedMotion ? undefined : { y: photoY }}
+        aria-hidden="true"
+      >
+        <Photo photo={photos.hero} sizes="100vw" priority />
+      </motion.div>
       <div className="hero-wash" aria-hidden="true" />
 
       <motion.div
@@ -63,6 +85,11 @@ export const MainText: React.FC = () => {
           <Statistics />
         </motion.div>
       </motion.div>
+
+      <div className="hero-scroll-cue" aria-hidden="true">
+        <span className="micro-label">Scroll</span>
+        <span className="hero-scroll-line" />
+      </div>
     </section>
   );
 };

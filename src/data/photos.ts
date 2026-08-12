@@ -18,13 +18,13 @@ export type SitePhoto = {
 
 export const photos = {
   hero: {
-    id: 'hero-a',
-    base: '/photos/hero-a',
+    id: 'hero-b',
+    base: '/photos/hero-b',
     widths: [1600, 2400],
     width: 6000,
     height: 4000,
-    alt: 'AUAG student officers gathered in a sunlit campus atrium',
-    focus: '50% 32%',
+    alt: 'AUAG student officers standing together in a campus corridor',
+    focus: '50% 42%',
   },
   pillars: {
     id: 'table-session',

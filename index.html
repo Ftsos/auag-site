@@ -36,6 +36,16 @@
       href="https://fonts.googleapis.com/css2?family=Arimo:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Space+Grotesk:wght@400..700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Hero photo: public/ assets are unhashed, so a static preload is safe.
+         Keep in sync with photos.hero in src/data/photos.ts. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/photos/hero-b-1600.webp 1600w, /photos/hero-b-2400.webp 2400w"
+      imagesizes="100vw"
+    />
   </head>
   <body>
     <div id="root"></div>

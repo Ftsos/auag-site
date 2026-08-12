@@ -1,24 +1,58 @@
-/* Hero — single-screen, left-aligned, on the warm canvas. */
+/* Hero — single-screen, centered, photography ghosted under a warm wash. */
 
 .hero {
   position: relative;
   min-height: calc(100dvh - 4rem); /* nav bar is 4rem */
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   background: var(--color-canvas);
 }
 
+/* Oversized so the parallax drift (0 → 8%) never reveals an edge. */
+.hero-photo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  bottom: -2%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-photo picture,
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-photo img {
+  object-fit: cover;
+  opacity: 0.45;
+}
+
+/* Warm-white wash: a radial pool protects the centered text column while the
+   photo breathes at the edges, then everything dissolves into solid canvas
+   before the next section's hairline. */
 .hero-wash {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(
-    ellipse 50% 42% at 82% 12%,
-    rgba(225, 29, 46, 0.05),
-    transparent 70%
-  );
+  background:
+    radial-gradient(
+      ellipse 58% 52% at 50% 42%,
+      rgba(250, 249, 247, 0.92) 30%,
+      rgba(250, 249, 247, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(250, 249, 247, 0.6) 0%,
+      rgba(250, 249, 247, 0.42) 60%,
+      var(--color-canvas) 97%
+    );
 }
 
 .hero-inner {
@@ -26,13 +60,14 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   padding-block: clamp(3.5rem, 9vh, 6rem);
 }
 
 .hero-logo {
   font-family: var(--font-wordmark);
-  font-size: clamp(4.5rem, 13vw, 10rem);
+  font-size: clamp(4.75rem, 14vw, 11rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 0.95;
@@ -63,12 +98,13 @@
   line-height: 1.7;
   color: var(--color-ink-secondary);
   max-width: 36em;
-  margin: 1.25rem 0 0;
+  margin: 1.25rem auto 0;
 }
 
 .hero-cta-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: 2rem;
 }
@@ -84,6 +120,7 @@
 .hero-proof-line {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: baseline;
   gap: 0.6rem 0;
   margin: 0;
@@ -113,4 +150,53 @@
   font-size: 0.9688rem;
   color: var(--color-ink-secondary);
   margin-left: 0.45rem;
+}
+
+/* Scroll cue — quiet ink, never red. */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-ink-muted);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: var(--color-ink-muted);
+  overflow: hidden;
+  animation: hero-cue-drift 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform-origin: top;
+}
+
+@keyframes hero-cue-drift {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-line {
+    animation: none;
+    transform: none;
+  }
 }
