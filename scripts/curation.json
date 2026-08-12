@@ -1,0 +1,71 @@
+{
+  "sourceDir": "../AUAG Photos",
+  "photos": [
+    {
+      "src": "Copy of P1033585.JPG",
+      "slug": "hero-a",
+      "role": "hero",
+      "alt": "AUAG student officers gathered in a sunlit campus atrium"
+    },
+    {
+      "src": "Copy of P1033461.JPG",
+      "slug": "hero-b",
+      "role": "hero",
+      "alt": "AUAG student officers standing together in a campus corridor"
+    },
+    {
+      "src": "Copy of P1033598.JPG",
+      "slug": "hero-c",
+      "role": "hero",
+      "alt": "AUAG student officers seated together against the campus windows"
+    },
+    {
+      "src": "Copy of P1033566.JPG",
+      "slug": "table-session",
+      "role": "section",
+      "alt": "Officers working through a plan around a standing table"
+    },
+    {
+      "src": "Copy of P1033560.JPG",
+      "slug": "alumni-huddle",
+      "role": "section",
+      "alt": "A working session around a laptop"
+    },
+    {
+      "src": "Copy of P1033535.JPG",
+      "slug": "officers-line",
+      "role": "section",
+      "alt": "The AUAG officer team standing together"
+    },
+    {
+      "src": "Copy of P1033602.JPG",
+      "slug": "person-1",
+      "role": "headshot",
+      "alt": "AUAG officer portrait"
+    },
+    {
+      "src": "Copy of P1033613.JPG",
+      "slug": "person-2",
+      "role": "headshot",
+      "alt": "AUAG officer portrait"
+    },
+    {
+      "src": "Copy of P1033624.JPG",
+      "slug": "person-3",
+      "role": "headshot",
+      "alt": "AUAG officer portrait"
+    },
+    {
+      "src": "Copy of P1033631.JPG",
+      "slug": "person-4",
+      "role": "headshot",
+      "alt": "AUAG officer portrait"
+    },
+    {
+      "src": "Copy of P1033636.JPG",
+      "slug": "person-5",
+      "role": "headshot",
+      "alt": "AUAG officer portrait"
+    }
+  ]
+}
