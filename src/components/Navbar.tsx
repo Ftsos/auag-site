@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { links } from "../data/links";
 
 type NavSubItem = { text: string; href: string | null; external?: boolean };
@@ -104,7 +105,15 @@ const Navbar: React.FC<NavbarProps> = ({ onContactClick, onMenuOpenChange }) => 
   const [isMenuOpen, setIsMenuOpenState] = useState(false);
   const [openedItem, setOpenedItem] = useState<number | null>(null);
   const [openMobileIndex, setOpenMobileIndex] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const setIsMenuOpen = (open: boolean) => {
     setIsMenuOpenState(open);
@@ -122,7 +131,11 @@ const Navbar: React.FC<NavbarProps> = ({ onContactClick, onMenuOpenChange }) => 
 
   return (
     <>
-      <nav className="on-dark sticky top-0 z-50 flex h-16 w-full items-center justify-between px-6 md:px-10">
+      <nav
+        className={`on-dark sticky top-0 z-50 flex h-16 w-full items-center justify-between px-6 transition-shadow duration-300 md:px-10 ${
+          scrolled ? "shadow-[0_1px_0_0_var(--color-on-dark-hairline)]" : ""
+        }`}
+      >
         <Wordmark />
 
         {/* Desktop menu */}
@@ -157,21 +170,29 @@ const Navbar: React.FC<NavbarProps> = ({ onContactClick, onMenuOpenChange }) => 
                 {item.text}
               </NavLink>
 
-              {item.subItems && openedItem === index && (
-                <div className="absolute left-1/2 z-20 -translate-x-1/2 pt-3">
-                  <ul className="m-0 w-52 list-none overflow-hidden rounded-[10px] border border-on-dark-hairline bg-frame-elevated p-1.5">
-                    {item.subItems.map((subItem) => (
-                      <li key={subItem.text}>
-                        <SubItemContent
-                          subItem={subItem}
-                          className="block rounded-[7px] px-3 py-2.5 text-sm font-medium text-on-dark-muted no-underline transition-colors duration-150 hover:bg-white/5 hover:text-white"
-                          soonClassName="block cursor-default rounded-[7px] px-3 py-2.5 text-sm font-medium text-on-dark-muted"
-                        />
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <AnimatePresence>
+                {item.subItems && openedItem === index && (
+                  <motion.div
+                    className="absolute left-1/2 z-20 pt-3"
+                    initial={{ opacity: 0, y: 6, x: "-50%" }}
+                    animate={{ opacity: 1, y: 0, x: "-50%" }}
+                    exit={{ opacity: 0, y: 6, x: "-50%" }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                  >
+                    <ul className="m-0 w-52 list-none overflow-hidden rounded-[10px] border border-on-dark-hairline bg-frame-elevated p-1.5">
+                      {item.subItems.map((subItem) => (
+                        <li key={subItem.text}>
+                          <SubItemContent
+                            subItem={subItem}
+                            className="block rounded-[7px] px-3 py-2.5 text-sm font-medium text-on-dark-muted no-underline transition-colors duration-150 hover:bg-white/5 hover:text-white"
+                            soonClassName="block cursor-default rounded-[7px] px-3 py-2.5 text-sm font-medium text-on-dark-muted"
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </li>
           ))}
         </ul>

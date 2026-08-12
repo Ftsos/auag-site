@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FaArrowRight, FaArrowRightLong } from 'react-icons/fa6';
 import '../styles/About.css';
 import { founders, outcomes } from '../data/about';
 import { getInitials } from '../utils/initials';
+import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
 const TEASER_OUTCOME_COMPANIES = ['Tyton Holdings', 'Timothy Dockerty', 'Vantage AI'];
 
@@ -31,9 +33,19 @@ const About: React.FC = () => {
           </p>
         </header>
 
-        <div className="about-founders-grid">
+        <motion.div
+          className="about-founders-grid"
+          variants={staggerParent()}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           {founders.map((person) => (
-            <article key={person.name} className="about-founder-card card-surface">
+            <motion.article
+              key={person.name}
+              className="about-founder-card card-surface"
+              variants={fadeRise}
+            >
               {person.photo ? (
                 <img
                   className="about-founder-photo"
@@ -51,12 +63,19 @@ const About: React.FC = () => {
                 <h3 className="about-founder-name">{person.name}</h3>
                 {person.bio && <p className="about-founder-bio">{person.bio}</p>}
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {teaserOutcomes.length > 0 && (
-          <div className="about-proof-strip" aria-label="Officer career outcomes">
+          <motion.div
+            className="about-proof-strip"
+            aria-label="Officer career outcomes"
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
             <span className="micro-label">Where AUAG has led</span>
             <ul className="about-proof-list">
               {teaserOutcomes.map(({ person, outcome }) => (
@@ -73,7 +92,7 @@ const About: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         )}
 
         <div className="about-story-cta">

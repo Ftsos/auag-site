@@ -1,6 +1,8 @@
 import { FaArrowRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import { links } from '../data/links';
 import '../styles/TwoPaths.css';
+import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
 const TwoPaths: React.FC = () => {
   return (
@@ -13,8 +15,17 @@ const TwoPaths: React.FC = () => {
           </div>
         </div>
 
-        <div className="two-paths-panel">
-          <div className="path-side path-side--alumni on-dark">
+        <motion.div
+          className="two-paths-panel"
+          variants={staggerParent(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
+          <motion.div
+            className="path-side path-side--alumni on-dark"
+            variants={fadeRise}
+          >
             <span className="path-label">For alumni</span>
             <h3 className="path-heading">Lead. Mentor. Build.</h3>
             <p className="path-body">
@@ -41,9 +52,12 @@ const TwoPaths: React.FC = () => {
               Join as alumni
               <FaArrowRight className="path-cta-arrow" aria-hidden="true" />
             </a>
-          </div>
+          </motion.div>
 
-          <div className="path-side path-side--students">
+          <motion.div
+            className="path-side path-side--students"
+            variants={fadeRise}
+          >
             <span className="path-label">For students</span>
             <h3 className="path-heading">Build your future.</h3>
             <p className="path-body">
@@ -76,8 +90,8 @@ const TwoPaths: React.FC = () => {
                 Applications opening soon
               </span>
             )}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

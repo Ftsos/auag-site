@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import '../styles/Projects.css';
+import { slideIn, staggerParent, VIEWPORT } from '../utils/motion';
 
 type Pillar = {
   title: string;
@@ -44,21 +45,24 @@ const Projects: React.FC = () => {
             doors students actually walk through — four pillars carry the work.
           </p>
 
-          <div className="pillars-rows">
-            {pillars.map((pillar, i) => (
+          <motion.div
+            className="pillars-rows"
+            variants={staggerParent(0.07)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
+            {pillars.map((pillar) => (
               <motion.article
                 key={pillar.title}
                 className="pillar-row"
-                initial={{ opacity: 0, x: 18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.45, ease: 'easeOut', delay: i * 0.07 }}
+                variants={slideIn}
               >
                 <h3 className="pillar-title">{pillar.title}</h3>
                 <p className="pillar-body">{pillar.body}</p>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

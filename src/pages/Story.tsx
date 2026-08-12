@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FaArrowLeft, FaArrowRightLong } from 'react-icons/fa6';
 import MemberCard from '../components/MemberCard';
+import { fadeRise, VIEWPORT_TALL } from '../utils/motion';
 import { getInitials } from '../utils/initials';
 import { chapters, outcomes } from '../data/about';
 import type { Chapter, Person } from '../data/about';
@@ -89,9 +91,13 @@ const ChapterBlock: React.FC<{ chapter: Chapter; index: number }> = ({
   const kicker = `${String(index + 1).padStart(2, '0')} / ${chapter.title}`;
 
   return (
-    <section
+    <motion.section
       className={`story-chapter${isCurrent ? ' is-current' : ''}`}
       aria-labelledby={`chapter-${chapter.id}-heading`}
+      variants={fadeRise}
+      initial="hidden"
+      whileInView="visible"
+      viewport={VIEWPORT_TALL}
     >
       <header className="story-chapter-head">
         <span className="micro-label story-chapter-kicker">{kicker}</span>
@@ -141,7 +147,7 @@ const ChapterBlock: React.FC<{ chapter: Chapter; index: number }> = ({
           </div>
         </>
       )}
-    </section>
+    </motion.section>
   );
 };
 
@@ -153,7 +159,14 @@ const OutcomeTypeLabel: Record<string, string> = {
 };
 
 const OutcomesBoard: React.FC = () => (
-  <section className="story-outcomes" aria-labelledby="outcomes-heading">
+  <motion.section
+    className="story-outcomes"
+    aria-labelledby="outcomes-heading"
+    variants={fadeRise}
+    initial="hidden"
+    whileInView="visible"
+    viewport={VIEWPORT_TALL}
+  >
     <header className="story-outcomes-head">
       <span className="micro-label story-chapter-kicker">
         05 / Where they are now
@@ -212,7 +225,7 @@ const OutcomesBoard: React.FC = () => (
         );
       })}
     </ol>
-  </section>
+  </motion.section>
 );
 
 const Story: React.FC = () => {
@@ -225,7 +238,12 @@ const Story: React.FC = () => {
             Back to home
           </Link>
 
-          <header className="story-header">
+          <motion.header
+            className="story-header"
+            variants={fadeRise}
+            initial="hidden"
+            animate="visible"
+          >
             <h1 className="display-heading story-heading">
               Built by Andrews. <br />
               Where Andrews leads.
@@ -236,7 +254,7 @@ const Story: React.FC = () => {
               officers who built it. Here's how the story has run, chapter by
               chapter, with the placements those chapters produced.
             </p>
-          </header>
+          </motion.header>
 
           <div className="story-chapters">
             {chapters.map((chapter, idx) => (

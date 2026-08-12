@@ -3,19 +3,7 @@ import '../styles/MainText.css';
 import Statistics from './Statistics';
 import { FlowingLines } from './FlowingLines';
 import { links } from '../data/links';
-
-const entrance = {
-  hidden: { opacity: 0, y: 22 },
-  visible: (order: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: 'easeOut' as const,
-      delay: 0.09 * order,
-    },
-  }),
-};
+import { fadeRise, staggerParent } from '../utils/motion';
 
 export const MainText: React.FC = () => {
   return (
@@ -25,29 +13,30 @@ export const MainText: React.FC = () => {
 
       <motion.div
         className="section-shell hero-inner"
+        variants={staggerParent(0.09)}
         initial="hidden"
         animate="visible"
       >
-        <motion.p className="eyebrow" variants={entrance} custom={0}>
+        <motion.p className="eyebrow" variants={fadeRise}>
           Andrews University Action Group
         </motion.p>
 
-        <motion.h1 className="hero-logo" variants={entrance} custom={1}>
+        <motion.h1 className="hero-logo" variants={fadeRise}>
           AU<span className="hero-logo-ag">AG</span>
         </motion.h1>
 
-        <motion.h2 className="hero-tagline" variants={entrance} custom={2}>
+        <motion.h2 className="hero-tagline" variants={fadeRise}>
           Accelerating opportunity<span className="hero-tagline-dot">.</span>
         </motion.h2>
 
-        <motion.p className="hero-body" variants={entrance} custom={3}>
+        <motion.p className="hero-body" variants={fadeRise}>
           AUAG is the network that brings high-potential Andrews University
           students and alumni together. We treat every conversation as a door
           worth opening — for mentorship, for ventures, for the long career
           ahead.
         </motion.p>
 
-        <motion.div className="hero-cta-row" variants={entrance} custom={4}>
+        <motion.div className="hero-cta-row" variants={fadeRise}>
           <a
             className="btn-primary"
             href={links.alumniJoin}
@@ -70,7 +59,7 @@ export const MainText: React.FC = () => {
           )}
         </motion.div>
 
-        <motion.div className="hero-stats" variants={entrance} custom={5}>
+        <motion.div className="hero-stats" variants={fadeRise}>
           <Statistics />
         </motion.div>
       </motion.div>

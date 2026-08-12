@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -34,28 +35,35 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="App">
-      <ScrollToHash />
-      <Navbar
-        onContactClick={() => setContactOpen(true)}
-        onMenuOpenChange={setMenuOpen}
-      />
-      {/* Page content is inert while an overlay covers it, so keyboard and
-          screen-reader focus can't tab into hidden background content. */}
-      <div inert={contactOpen || menuOpen}>
-        {/* The Frame: warm-white canvas floating inside the black chrome. */}
-        <main className="site-canvas">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/story" element={<Story />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
+    // reducedMotion="user" makes every framer-motion animation respect the
+    // OS-level preference; CSS keyframes are guarded per-file.
+    <MotionConfig reducedMotion="user">
+      <div className="App">
+        <ScrollToHash />
+        <Navbar
+          onContactClick={() => setContactOpen(true)}
+          onMenuOpenChange={setMenuOpen}
+        />
+        {/* Page content is inert while an overlay covers it, so keyboard and
+            screen-reader focus can't tab into hidden background content. */}
+        <div inert={contactOpen || menuOpen}>
+          {/* The Frame: warm-white canvas floating inside the black chrome. */}
+          <main className="site-canvas">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/story" element={<Story />} />
+              <Route path="/network" element={<Network />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+        <ContactModal
+          open={contactOpen}
+          onClose={() => setContactOpen(false)}
+        />
       </div>
-      <ContactModal open={contactOpen} onClose={() => setContactOpen(false)} />
-    </div>
+    </MotionConfig>
   );
 }
 

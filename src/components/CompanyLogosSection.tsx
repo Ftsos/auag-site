@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { type Company } from '../types/companies';
 import { companies } from '../data/companies';
 import '../styles/CompanyLogosSection.css';
+import { fadeIn, VIEWPORT } from '../utils/motion';
 
 const halfIndex = Math.ceil(companies.length / 2);
 const rowA = companies.slice(0, halfIndex);
@@ -42,7 +44,13 @@ export const CompanyLogosSection: React.FC = () => {
       aria-label="Companies where alumni in the network work"
     >
       <div className="section-shell">
-        <div className="section-head">
+        <motion.div
+          className="section-head"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
           <div className="section-head-row">
             <h2 className="display-heading section-heading">
               Where the network shows up
@@ -55,7 +63,7 @@ export const CompanyLogosSection: React.FC = () => {
             A cross-section of the companies where Andrews alumni in our network
             work — and where we open doors for the next cohort.
           </p>
-        </div>
+        </motion.div>
       </div>
 
       <div className="proof-marquees">

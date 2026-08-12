@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useInView } from 'framer-motion';
+import { animate, useInView, useReducedMotion } from 'framer-motion';
 import { heroStats, type Stat } from '../data/stats';
 
 /**
@@ -30,26 +30,24 @@ const StatNumber: React.FC<Stat> = ({ value, label }) => {
 
   const ref = useRef<HTMLSpanElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
+  const prefersReducedMotion = useReducedMotion();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!inView || target === null) return;
 
-    const duration = 1200;
-    const step = target / (duration / 10);
-    const timer = window.setInterval(() => {
-      setCount((prev) => {
-        const next = prev + step;
-        if (next >= target) {
-          window.clearInterval(timer);
-          return target;
-        }
-        return next;
-      });
-    }, 10);
+    if (prefersReducedMotion) {
+      setCount(target);
+      return;
+    }
 
-    return () => window.clearInterval(timer);
-  }, [inView, target]);
+    const controls = animate(0, target, {
+      duration: 1.2,
+      ease: 'easeOut',
+      onUpdate: setCount,
+    });
+    return () => controls.stop();
+  }, [inView, target, prefersReducedMotion]);
 
   return (
     <span ref={ref} className="hero-proof-stat">

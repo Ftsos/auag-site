@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaInstagram, FaEnvelope } from 'react-icons/fa6';
 import { links } from '../data/links';
 import '../styles/Events.css';
+import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
 /*
  * Email capture: intentionally absent until a real endpoint exists.
@@ -24,17 +25,21 @@ const Events: React.FC = () => {
 
         <motion.article
           className="event-flagship on-dark"
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
+          variants={staggerParent(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
         >
-          <div className="event-date-block" aria-hidden="true">
+          <motion.div
+            className="event-date-block"
+            variants={fadeRise}
+            aria-hidden="true"
+          >
             <span className="event-date-day">Sept 25</span>
             <span className="event-date-year">2026</span>
-          </div>
+          </motion.div>
 
-          <div className="event-details">
+          <motion.div className="event-details" variants={fadeRise}>
             <span className="micro-label event-context">
               Homecoming Weekend · Andrews University
             </span>
@@ -58,7 +63,7 @@ const Events: React.FC = () => {
                 <dd>Howard Performing Arts Center</dd>
               </div>
             </dl>
-          </div>
+          </motion.div>
         </motion.article>
 
         <div className="events-follow">

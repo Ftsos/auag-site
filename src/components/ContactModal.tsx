@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FaXmark, FaArrowUpRightFromSquare } from 'react-icons/fa6';
 import { links } from '../data/links';
 import '../styles/ContactModal.css';
+import { EASE_OUT } from '../utils/motion';
 
 type Channel = {
   label: string;
@@ -67,59 +69,84 @@ const ContactModal: React.FC<ContactModalProps> = ({ open, onClose }) => {
     };
   }, [open, onClose]);
 
-  if (!open) return null;
-
   return (
-    <div
-      className="contact-backdrop"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="contact-modal-heading"
-      onClick={onClose}
-    >
-      <div
-        className="contact-panel"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          type="button"
-          ref={closeRef}
-          className="contact-close"
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="contact-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="contact-modal-heading"
           onClick={onClose}
-          aria-label="Close contact panel"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
         >
-          <FaXmark aria-hidden="true" />
-        </button>
+          <motion.div
+            className="contact-panel"
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, y: 14, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{
+              opacity: 0,
+              y: 10,
+              scale: 0.98,
+              transition: { duration: 0.2, ease: 'easeOut' },
+            }}
+            transition={{ duration: 0.35, ease: EASE_OUT }}
+          >
+            <button
+              type="button"
+              ref={closeRef}
+              className="contact-close"
+              onClick={onClose}
+              aria-label="Close contact panel"
+            >
+              <FaXmark aria-hidden="true" />
+            </button>
 
-        <div className="contact-head">
-          <h2 id="contact-modal-heading" className="contact-heading">
-            How can we help?
-          </h2>
-          <p className="contact-sub">
-            Pick the lane that fits your question. Every address lands with the
-            right person at AUAG — we'll reply within a couple of working days.
-          </p>
-        </div>
+            <div className="contact-head">
+              <h2 id="contact-modal-heading" className="contact-heading">
+                How can we help?
+              </h2>
+              <p className="contact-sub">
+                Pick the lane that fits your question. Every address lands with
+                the right person at AUAG — we'll reply within a couple of
+                working days.
+              </p>
+            </div>
 
-        <ul className="contact-channels">
-          {channels.map((channel) => (
-            <li key={channel.email}>
-              <a className="contact-channel" href={`mailto:${channel.email}`}>
-                <div className="contact-channel-top">
-                  <span className="contact-channel-label">{channel.label}</span>
-                  <FaArrowUpRightFromSquare
-                    className="contact-channel-arrow"
-                    aria-hidden="true"
-                  />
-                </div>
-                <span className="contact-channel-email">{channel.email}</span>
-                <span className="contact-channel-blurb">{channel.blurb}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+            <ul className="contact-channels">
+              {channels.map((channel) => (
+                <li key={channel.email}>
+                  <a
+                    className="contact-channel"
+                    href={`mailto:${channel.email}`}
+                  >
+                    <div className="contact-channel-top">
+                      <span className="contact-channel-label">
+                        {channel.label}
+                      </span>
+                      <FaArrowUpRightFromSquare
+                        className="contact-channel-arrow"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    <span className="contact-channel-email">
+                      {channel.email}
+                    </span>
+                    <span className="contact-channel-blurb">
+                      {channel.blurb}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

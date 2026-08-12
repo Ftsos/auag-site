@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FaArrowLeft } from 'react-icons/fa6';
 import { companies } from '../data/companies';
 import type { Company, Industry } from '../types/companies';
 import { networkStats } from '../data/stats';
 import { links } from '../data/links';
 import '../styles/Network.css';
+import { fadeRise, VIEWPORT, VIEWPORT_TALL } from '../utils/motion';
 
 /* Group companies by industry, largest group first. Static data, computed once. */
 const groups: Array<{ industry: Industry; members: Company[] }> = (() => {
@@ -34,7 +36,12 @@ const Network: React.FC = () => {
             Back to home
           </Link>
 
-          <header className="network-header">
+          <motion.header
+            className="network-header"
+            variants={fadeRise}
+            initial="hidden"
+            animate="visible"
+          >
             <h1 className="display-heading network-heading">
               The network, company by company.
             </h1>
@@ -43,23 +50,34 @@ const Network: React.FC = () => {
               today — the rooms our students can get into because someone from
               Andrews is already there.
             </p>
-          </header>
+          </motion.header>
 
-          <dl className="network-stats" aria-label="Network numbers">
+          <motion.dl
+            className="network-stats"
+            aria-label="Network numbers"
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
             {networkStats.map((stat) => (
               <div className="network-stat" key={stat.label}>
                 <dd className="stat-numeral">{stat.value}</dd>
                 <dt className="micro-label">{stat.label}</dt>
               </div>
             ))}
-          </dl>
+          </motion.dl>
 
           <div className="network-groups">
             {groups.map(({ industry, members }) => (
-              <section
+              <motion.section
                 className="network-group"
                 key={industry}
                 aria-label={industry}
+                variants={fadeRise}
+                initial="hidden"
+                whileInView="visible"
+                viewport={VIEWPORT_TALL}
               >
                 <div className="network-group-head">
                   <h2 className="micro-label network-group-title">
@@ -88,11 +106,17 @@ const Network: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-              </section>
+              </motion.section>
             ))}
           </div>
 
-          <div className="network-cta card-surface">
+          <motion.div
+            className="network-cta card-surface"
+            variants={fadeRise}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
             <div>
               <h2 className="network-cta-heading">
                 Your company belongs on this wall.
@@ -124,7 +148,7 @@ const Network: React.FC = () => {
                 <span className="btn-soon">Student applications open soon</span>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </main>
     </div>
