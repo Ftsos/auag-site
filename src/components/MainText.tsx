@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import {
   motion,
   useReducedMotion,
@@ -39,6 +40,19 @@ export const MainText: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
+        {/* Flagship-event teaser — facts match Events.tsx (HPAC contract). */}
+        <motion.div variants={fadeRise}>
+          <Link to="/#events" className="hero-event-chip">
+            <span className="hero-event-date">Sept 25</span>
+            <span className="hero-event-name">
+              Legacy: An AUAG Alumni Series
+            </span>
+            <span className="hero-event-arrow" aria-hidden="true">
+              →
+            </span>
+          </Link>
+        </motion.div>
+
         <motion.p className="eyebrow" variants={fadeRise}>
           Andrews University Action Group
         </motion.p>

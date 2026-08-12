@@ -110,11 +110,11 @@
 
 /* Dark chips — the light logo PNGs need a dark ground. */
 .network-chip {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
   min-height: 104px;
   padding: 1rem;
   border-radius: 12px;
@@ -151,11 +151,20 @@
   opacity: 1;
 }
 
+/* Absolutely positioned so the (usually invisible) label never pushes the
+   logo off the chip's optical center. */
 .network-chip-name {
+  position: absolute;
+  bottom: 0.55rem;
+  left: 0.75rem;
+  right: 0.75rem;
   font-size: 0.7188rem;
   font-weight: 500;
   color: var(--color-on-dark-muted);
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   opacity: 0;
   transition: opacity 0.2s ease;
 }

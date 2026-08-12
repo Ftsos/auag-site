@@ -32,40 +32,41 @@
       "alt": "A working session around a laptop"
     },
     {
-      "src": "Copy of P1033535.JPG",
+      "src": "Copy of P1033530.JPG",
       "slug": "officers-line",
       "role": "section",
-      "alt": "The AUAG officer team standing together"
+      "alt": "The AUAG officer team standing together",
+      "crop": { "left": 0, "top": 0, "width": 0.86, "height": 1 }
     },
     {
       "src": "Copy of P1033602.JPG",
-      "slug": "person-1",
+      "slug": "kato-golooba-mutebi",
       "role": "headshot",
-      "alt": "AUAG officer portrait"
+      "alt": "Kato Golooba-Mutebi"
     },
     {
       "src": "Copy of P1033613.JPG",
-      "slug": "person-2",
+      "slug": "edward-cervantes",
       "role": "headshot",
-      "alt": "AUAG officer portrait"
+      "alt": "Edward Cervantes"
     },
     {
       "src": "Copy of P1033624.JPG",
-      "slug": "person-3",
+      "slug": "andrew-dombrowski",
       "role": "headshot",
-      "alt": "AUAG officer portrait"
+      "alt": "Andrew Dombrowski"
     },
     {
       "src": "Copy of P1033631.JPG",
-      "slug": "person-4",
+      "slug": "jaden-pailing",
       "role": "headshot",
-      "alt": "AUAG officer portrait"
+      "alt": "Jaden Pailing"
     },
     {
       "src": "Copy of P1033636.JPG",
-      "slug": "person-5",
+      "slug": "jenny-rothermel",
       "role": "headshot",
-      "alt": "AUAG officer portrait"
+      "alt": "Jenny Rothermel"
     }
   ]
 }

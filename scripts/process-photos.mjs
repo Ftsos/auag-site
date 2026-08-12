@@ -7,7 +7,8 @@
  * Curation lives in scripts/curation.json. Roles:
  *   hero     → public/photos/<slug>-{1600,2400}.{webp,jpg}, full frame
  *   section  → public/photos/<slug>-{800,1600}.{webp,jpg}, full frame
- *   headshot → public/team/pending/<slug>.jpg (640×800 attention crop) + -320
+ *   headshot → public/team/<slug>.jpg (640×800 attention crop); slug must be
+ *              the person's kebab-case first-last name, confirmed by a human
  *
  * .rotate() is mandatory: 71 of the 178 shoot files store portrait frames
  * sideways with only an EXIF orientation flag. TREATMENT bakes the site's
@@ -32,7 +33,7 @@ const sourceDir = path.resolve(
   process.argv[2] ?? curation.sourceDir,
 );
 const photosDir = path.join(repoRoot, 'public/photos');
-const teamDir = path.join(repoRoot, 'public/team/pending');
+const teamDir = path.join(repoRoot, 'public/team');
 await mkdir(photosDir, { recursive: true });
 await mkdir(teamDir, { recursive: true });
 
@@ -47,27 +48,36 @@ const manifest = [];
 
 for (const photo of curation.photos) {
   const srcPath = path.join(sourceDir, photo.src);
-  const base = sharp(srcPath).rotate(); // EXIF auto-orient FIRST
-  const meta = await base.metadata();
+  let base = sharp(srcPath).rotate(); // EXIF auto-orient FIRST
   // .rotate() swaps dimensions for EXIF-rotated frames; metadata() reports
-  // the post-orientation size when autoOrient is in the pipeline.
-  const { width: srcW, height: srcH } = await base
+  // the pre-orientation size, so measure from a rendered buffer.
+  let { width: srcW, height: srcH } = await base
     .clone()
     .toBuffer()
     .then((b) => sharp(b).metadata());
 
+  // Optional source crop (fractions of the oriented frame) — for recentering
+  // a subject that object-position can't reach (e.g. wide crops of a
+  // left-weighted group).
+  if (photo.crop) {
+    const region = {
+      left: Math.round(srcW * (photo.crop.left ?? 0)),
+      top: Math.round(srcH * (photo.crop.top ?? 0)),
+      width: Math.round(srcW * (photo.crop.width ?? 1)),
+      height: Math.round(srcH * (photo.crop.height ?? 1)),
+    };
+    base = base.extract(region);
+    srcW = region.width;
+    srcH = region.height;
+  }
+
   if (photo.role === 'headshot') {
-    for (const [w, h, suffix] of [
-      [640, 800, ''],
-      [320, 400, '-320'],
-    ]) {
-      const out = path.join(teamDir, `${photo.slug}${suffix}.jpg`);
-      const info = await treated(base.clone())
-        .resize(w, h, { fit: 'cover', position: 'attention' })
-        .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
-        .toFile(out);
-      console.log(`${photo.slug}${suffix}.jpg  ${w}×${h}  ${kb(info.size)}`);
-    }
+    const out = path.join(teamDir, `${photo.slug}.jpg`);
+    const info = await treated(base.clone())
+      .resize(640, 800, { fit: 'cover', position: 'attention' })
+      .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
+      .toFile(out);
+    console.log(`${photo.slug}.jpg  640×800  ${kb(info.size)}`);
     continue;
   }
 
@@ -95,8 +105,8 @@ for (const photo of curation.photos) {
     id: photo.slug,
     base: `/photos/${photo.slug}`,
     widths,
-    width: srcW ?? meta.width,
-    height: srcH ?? meta.height,
+    width: srcW,
+    height: srcH,
     alt: photo.alt,
   });
 }

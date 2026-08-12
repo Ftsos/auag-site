@@ -30,7 +30,7 @@
 
 .hero-photo img {
   object-fit: cover;
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 .hero-photo::after {
@@ -53,13 +53,13 @@
   background:
     radial-gradient(
       ellipse 58% 52% at 50% 42%,
-      rgba(250, 249, 247, 0.92) 30%,
+      rgba(250, 249, 247, 0.9) 30%,
       rgba(250, 249, 247, 0) 100%
     ),
     linear-gradient(
       180deg,
-      rgba(250, 249, 247, 0.6) 0%,
-      rgba(250, 249, 247, 0.42) 60%,
+      rgba(250, 249, 247, 0.52) 0%,
+      rgba(250, 249, 247, 0.34) 60%,
       var(--color-canvas) 97%
     );
 }
@@ -72,6 +72,62 @@
   align-items: center;
   text-align: center;
   padding-block: clamp(3.5rem, 9vh, 6rem);
+}
+
+/* Flagship-event teaser pill — quiet card surface, red only on the date. */
+.hero-event-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 0.95rem;
+  margin-bottom: 1.5rem;
+  border-radius: 999px;
+  background: var(--color-card);
+  border: 1px solid var(--color-hairline);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+  font-size: 0.8438rem;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.hero-event-chip:hover {
+  border-color: var(--color-ink-muted);
+  transform: translateY(-1px);
+}
+
+.hero-event-chip:active {
+  transform: translateY(0);
+}
+
+.hero-event-date {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-auag-red);
+  white-space: nowrap;
+}
+
+.hero-event-name {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.hero-event-arrow {
+  color: var(--color-ink-muted);
+  transition: transform 0.2s ease;
+}
+
+.hero-event-chip:hover .hero-event-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-event-chip,
+  .hero-event-arrow {
+    transition: none;
+  }
 }
 
 .hero-logo {

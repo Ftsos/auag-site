@@ -46,9 +46,9 @@ export const photos = {
     id: 'officers-line',
     base: '/photos/officers-line',
     widths: [800, 1600],
-    width: 6000,
+    width: 5160,
     height: 4000,
     alt: 'The AUAG officer team standing together',
-    focus: '50% 28%',
+    focus: '50% 34%',
   },
 } satisfies Record<string, SitePhoto>;

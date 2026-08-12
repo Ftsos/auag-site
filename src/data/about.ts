@@ -62,6 +62,7 @@ export const chapters: Chapter[] = [
       {
         name: 'Kato Golooba-Mutebi',
         role: 'Founder',
+        photo: '/team/kato-golooba-mutebi.jpg',
         bio: 'Started AUAG in 2024 to turn the Andrews alumni network into an active engine for student opportunity, not a contact list that lives in a brochure.',
       },
       {
@@ -96,6 +97,7 @@ export const chapters: Chapter[] = [
       {
         name: 'Kato Golooba-Mutebi',
         role: 'President',
+        photo: '/team/kato-golooba-mutebi.jpg',
         departed: true,
       },
       {
@@ -116,10 +118,12 @@ export const chapters: Chapter[] = [
       {
         name: 'Jaden Pailing',
         role: 'Community Development',
+        photo: '/team/jaden-pailing.jpg',
       },
       {
         name: 'Edward Cervantes',
         role: 'Treasurer',
+        photo: '/team/edward-cervantes.jpg',
       },
       {
         name: 'Sara Rubio',
@@ -137,6 +141,7 @@ export const chapters: Chapter[] = [
       {
         name: 'Andrew Dombrowski',
         role: 'President',
+        photo: '/team/andrew-dombrowski.jpg',
         departed: true,
         outcomes: [
           {
@@ -150,6 +155,7 @@ export const chapters: Chapter[] = [
       {
         name: 'Edward Cervantes',
         role: 'Treasurer',
+        photo: '/team/edward-cervantes.jpg',
         departed: true,
         outcomes: [
           {
@@ -190,10 +196,12 @@ export const chapters: Chapter[] = [
       {
         name: 'Jenny Rothermel',
         role: 'Vice President',
+        photo: '/team/jenny-rothermel.jpg',
       },
       {
         name: 'Jaden Pailing',
         role: 'Community Development',
+        photo: '/team/jaden-pailing.jpg',
         outcomes: [
           {
             role: 'Accounting Intern',
