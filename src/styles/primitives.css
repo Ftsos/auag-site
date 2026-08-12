@@ -136,6 +136,18 @@
   object-fit: cover;
 }
 
+/* Whisper of film grain over photo surfaces only — breaks digital flatness
+   without touching the single-accent discipline. */
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url('/photos/grain.png') repeat;
+  opacity: 0.07;
+  mix-blend-mode: multiply;
+}
+
 /* Section shell: max-width + fluid gutters */
 .section-shell {
   width: 100%;

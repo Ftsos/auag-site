@@ -33,6 +33,15 @@
   opacity: 0.45;
 }
 
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/photos/grain.png') repeat;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+}
+
 /* Warm-white wash: a radial pool protects the centered text column while the
    photo breathes at the edges, then everything dissolves into solid canvas
    before the next section's hairline. */
