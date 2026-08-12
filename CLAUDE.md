@@ -93,9 +93,10 @@ No repo-level screenshot tooling is installed. Use the Playwright MCP tools:
 - **Tailwind CSS v4** via `@tailwindcss/vite`. Add theme tokens to `@theme { … }` in `src/index.css`.
 - **Flowbite React** for complex interactive primitives (wired via `@plugin` in `src/index.css`). For simple cases, prefer plain Tailwind + custom components. **Do not introduce shadcn, MUI, Chakra, or another component library** — Flowbite React is the house choice.
 - **react-icons** for icons (already a dep). Do not add Lucide unless explicitly requested.
-- **Framer Motion** for entrance and scroll-linked animations. For ambient background motion, stick with CSS `@keyframes` (the pattern in `FlowingLines.css` and the marquee).
+- **Framer Motion** for entrance and scroll-linked animations — **always import variants from `src/utils/motion.ts`** (`fadeRise`, `fadeIn`, `slideIn`, `photoReveal`, `staggerParent`, `VIEWPORT`/`VIEWPORT_TALL`, `EASE_OUT`); never define inline animation configs. `App.tsx` wraps everything in `<MotionConfig reducedMotion="user">`. For ambient background motion, stick with CSS `@keyframes` (the pattern in the hero scroll cue and the marquee).
 - **External URLs always come from `src/data/links.ts`.** A null `studentApply` renders CTAs as a styled "applications opening soon" state — never point students at the alumni form.
 - Placeholder images: `https://placehold.co/WIDTHxHEIGHT`.
+- **Photography**: processed shoot assets live in `public/photos/` (ink-B&W, webp+jpg srcset pairs) and are referenced only through the manifest `src/data/photos.ts`, rendered with `src/components/Photo.tsx` (responsive `<picture>`, `priority` prop for the hero) inside the `.photo-frame` primitive (hairline border + grain overlay). To add/re-treat photos, edit `scripts/curation.json` and run `node scripts/process-photos.mjs "../AUAG Photos"` (sharp devDependency; EXIF auto-orient is mandatory — many shoot files are stored sideways). Keep the hero preload in `index.html` in sync with `photos.hero`. Staged, not-yet-identified headshots live in `public/team/pending/` — never wire one to a person without human confirmation.
 - Mobile-first responsive — Tailwind utilities + per-component CSS media queries in `src/styles/`.
 - **Single fixed light theme** — warm-white canvas with black structural chrome. No dark-mode toggle, no `prefers-color-scheme` theming.
 
@@ -125,7 +126,7 @@ Tokens in `src/index.css`; verified in the components:
 
 ## Anti-Generic Guardrails
 - **Structure**: Respect the section cadence of `pages/Home.tsx` — match its rhythm; don't cram new sections or break the beat. No scroll-jacking (fixed-height scroll shells are banned; the old 200vh/400vh hero+pillars were removed deliberately).
-- **Animations**: Only `transform` and `opacity`. Never `transition-all`. Framer Motion `whileInView` for staggered entrance reveals; CSS `@keyframes` for ambient motion (hero hairline drift, marquee). Everything respects `prefers-reduced-motion`.
+- **Animations**: Only `transform` and `opacity`. Never `transition-all`. Framer Motion `whileInView` for staggered entrance reveals (shared variants from `src/utils/motion.ts`); CSS `@keyframes` for ambient motion (hero scroll cue, marquee). The hero photo parallax is the only scroll-linked transform — subtle drift, no scroll-jacking. Everything respects `prefers-reduced-motion`.
 - **Interactive states**: Every clickable element needs `hover`, `focus-visible`, and `active` states. Global focus ring is the red outline in `index.css`.
 - **Spacing**: Use the rhythm tokens (`--spacing-section`, `--spacing-gutter`) and the Tailwind scale. No arbitrary one-off values unless there's a documented reason.
 - **Imagery**: Real Andrews University / alumni / community photography whenever available. Avoid generic corporate stock ("business people shaking hands").
