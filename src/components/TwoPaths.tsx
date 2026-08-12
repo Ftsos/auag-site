@@ -2,6 +2,8 @@ import { FaArrowRight } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { links } from '../data/links';
 import '../styles/TwoPaths.css';
+import Photo from './Photo';
+import { photos } from '../data/photos';
 import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
 const TwoPaths: React.FC = () => {
@@ -26,6 +28,12 @@ const TwoPaths: React.FC = () => {
             className="path-side path-side--alumni on-dark"
             variants={fadeRise}
           >
+            <div className="path-photo" aria-hidden="true">
+              <Photo
+                photo={photos.twoPathsAlumni}
+                sizes="(max-width: 820px) 100vw, 60vw"
+              />
+            </div>
             <span className="path-label">For alumni</span>
             <h3 className="path-heading">Lead. Mentor. Build.</h3>
             <p className="path-body">

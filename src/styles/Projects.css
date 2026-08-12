@@ -11,15 +11,24 @@
   align-items: start;
 }
 
-.pillars-intro {
+.pillars-aside {
   position: sticky;
   top: 5.5rem;
+}
+
+.pillars-intro {
   font-size: 1.0625rem;
   line-height: 1.7;
   color: var(--color-ink-secondary);
   max-width: 30em;
   margin: 0;
   text-wrap: pretty;
+}
+
+.pillars-photo {
+  margin: 1.75rem 0 0;
+  aspect-ratio: 4 / 5;
+  max-width: 26rem;
 }
 
 .pillars-rows {
@@ -64,8 +73,14 @@
     gap: 1.5rem;
   }
 
-  .pillars-intro {
+  .pillars-aside {
     position: static;
+  }
+
+  /* On one column the photo reads better as a wide band than a tall tile. */
+  .pillars-photo {
+    aspect-ratio: 3 / 2;
+    max-width: none;
   }
 }
 

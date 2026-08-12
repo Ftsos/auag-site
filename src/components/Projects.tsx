@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import '../styles/Projects.css';
-import { slideIn, staggerParent, VIEWPORT } from '../utils/motion';
+import Photo from './Photo';
+import { photos } from '../data/photos';
+import { photoReveal, slideIn, staggerParent, VIEWPORT } from '../utils/motion';
 
 type Pillar = {
   title: string;
@@ -40,10 +42,25 @@ const Projects: React.FC = () => {
         </div>
 
         <div className="pillars-split">
-          <p className="pillars-intro">
-            Alumni already want to help. Our job is turning that interest into
-            doors students actually walk through — four pillars carry the work.
-          </p>
+          <div className="pillars-aside">
+            <p className="pillars-intro">
+              Alumni already want to help. Our job is turning that interest
+              into doors students actually walk through — four pillars carry
+              the work.
+            </p>
+            <motion.figure
+              className="pillars-photo photo-frame"
+              variants={photoReveal}
+              initial="hidden"
+              whileInView="visible"
+              viewport={VIEWPORT}
+            >
+              <Photo
+                photo={photos.pillars}
+                sizes="(max-width: 820px) 100vw, 34vw"
+              />
+            </motion.figure>
+          </div>
 
           <motion.div
             className="pillars-rows"

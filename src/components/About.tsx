@@ -5,7 +5,9 @@ import { FaArrowRight, FaArrowRightLong } from 'react-icons/fa6';
 import '../styles/About.css';
 import { founders, outcomes } from '../data/about';
 import { getInitials } from '../utils/initials';
-import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
+import Photo from './Photo';
+import { photos } from '../data/photos';
+import { fadeRise, photoReveal, staggerParent, VIEWPORT } from '../utils/motion';
 
 const TEASER_OUTCOME_COMPANIES = ['Tyton Holdings', 'Timothy Dockerty', 'Vantage AI'];
 
@@ -32,6 +34,19 @@ const About: React.FC = () => {
             internships, and ventures launched out of the work itself.
           </p>
         </header>
+
+        <motion.figure
+          className="about-band photo-frame"
+          variants={photoReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
+          <Photo
+            photo={photos.aboutBand}
+            sizes="(max-width: 1200px) 100vw, 1104px"
+          />
+        </motion.figure>
 
         <motion.div
           className="about-founders-grid"

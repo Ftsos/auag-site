@@ -25,6 +25,46 @@
   background: var(--color-card);
 }
 
+/* The alumni side carries a ghosted photo under a dark wash — the panel is
+   already the page's dark moment, so this adds depth, not a new band. */
+.path-side--alumni {
+  position: relative;
+}
+
+.path-side--alumni > :not(.path-photo) {
+  position: relative;
+  z-index: 1;
+}
+
+.path-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.path-photo picture,
+.path-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.path-photo img {
+  object-fit: cover;
+  opacity: 0.16;
+}
+
+.path-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 11, 0.35) 0%,
+    rgba(12, 11, 11, 0.88) 100%
+  );
+}
+
 .path-label {
   font-family: var(--font-accent);
   font-size: var(--text-micro);

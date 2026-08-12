@@ -7,6 +7,18 @@
   margin-bottom: clamp(2.25rem, 5vh, 3.5rem);
 }
 
+/* The officer team, one wide editorial beat before the cards. */
+.about-band {
+  aspect-ratio: 21 / 9;
+  margin: 0 0 clamp(2rem, 4vh, 2.75rem);
+}
+
+@media (max-width: 768px) {
+  .about-band {
+    aspect-ratio: 16 / 10;
+  }
+}
+
 .about-founders-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -28,11 +40,13 @@
   transform: translateY(-2px);
 }
 
+/* Portraits are 4:5 editorial rectangles; the monogram fallback keeps the
+   same footprint so cards align with or without a photo. */
 .about-founder-photo,
 .about-founder-monogram {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: clamp(96px, 12vw, 132px);
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
   flex-shrink: 0;
 }
 
@@ -47,7 +61,7 @@
   background: var(--color-frame);
   color: var(--color-on-dark);
   font-family: var(--font-accent);
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
