@@ -3,17 +3,15 @@
  * Components must import from here — never hardcode URLs in JSX.
  */
 export const links = {
-  /** Alumni membership sign-up (Paperform). */
-  alumniJoin: 'https://auagmembership.paperform.co/',
+  /** Alumni registration — AUAG's own intake form (served by auag-os). */
+  alumniJoin: 'https://join.auactiongroup.com/alumni',
 
   /**
-   * Student application form.
-   * TODO(Enzo): paste the real student form URL here. While this is null,
-   * every "Apply as student" CTA renders an "applications opening soon"
-   * state instead of a link. (The old site wrongly sent students to the
-   * Alumni Interest Form.)
+   * Student registration — AUAG's own intake form (served by auag-os).
+   * If this is ever null again, every student CTA falls back to a styled
+   * "opening soon" state. Never point students at the alumni form.
    */
-  studentApply: null as string | null,
+  studentApply: 'https://join.auactiongroup.com/students' as string | null,
 
   /** Andrews University Giving Tuesday vault, AUAG designation. */
   givingTuesday:

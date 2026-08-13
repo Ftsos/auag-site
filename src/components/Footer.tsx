@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Apply as student
+                    Register as student
                   </a>
                 ) : (
                   <span className="footer-link is-soon">

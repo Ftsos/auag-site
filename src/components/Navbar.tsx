@@ -19,7 +19,7 @@ const navItems: NavItem[] = [
     text: "Students",
     href: "/#join",
     subItems: [
-      { text: "Apply as student", href: links.studentApply, external: true },
+      { text: "Register as student", href: links.studentApply, external: true },
     ],
   },
   { text: "Network", href: "/network" },

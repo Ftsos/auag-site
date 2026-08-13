@@ -90,7 +90,7 @@ const TwoPaths: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Apply as student
+                Register as student
                 <FaArrowRight className="path-cta-arrow" aria-hidden="true" />
               </a>
             ) : (
