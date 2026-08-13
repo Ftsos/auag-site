@@ -9,7 +9,7 @@ import type { Variants } from 'framer-motion';
 /** Expo-out curve — fast start, long settle. */
 export const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-export const DUR = { fast: 0.45, base: 0.6, slow: 0.9 } as const;
+export const DUR = { fast: 0.45, base: 0.6, slow: 0.9, cinematic: 1.5 } as const;
 
 /** Canonical reveal depth for sections. */
 export const VIEWPORT = { once: true, amount: 0.3 } as const;
@@ -38,6 +38,17 @@ export const slideIn: Variants = {
     opacity: 1,
     x: 0,
     transition: { duration: DUR.fast, ease: EASE_OUT },
+  },
+};
+
+/** The hero photograph's opening breath — photoReveal stretched to the
+ *  cinematic duration so the image leads and the type follows. */
+export const heroPhotoReveal: Variants = {
+  hidden: { opacity: 0, scale: 1.06 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: DUR.cinematic, ease: EASE_OUT },
   },
 };
 

@@ -11,7 +11,7 @@ import Statistics from './Statistics';
 import Photo from './Photo';
 import { photos } from '../data/photos';
 import { links } from '../data/links';
-import { fadeRise, staggerParent } from '../utils/motion';
+import { fadeRise, heroPhotoReveal, staggerParent } from '../utils/motion';
 
 export const MainText: React.FC = () => {
   const heroRef = useRef<HTMLElement | null>(null);
@@ -28,6 +28,9 @@ export const MainText: React.FC = () => {
       <motion.div
         className="hero-photo"
         style={prefersReducedMotion ? undefined : { y: photoY }}
+        variants={heroPhotoReveal}
+        initial="hidden"
+        animate="visible"
         aria-hidden="true"
       >
         <Photo photo={photos.hero} sizes="100vw" priority />
@@ -36,7 +39,7 @@ export const MainText: React.FC = () => {
 
       <motion.div
         className="section-shell hero-inner"
-        variants={staggerParent(0.09)}
+        variants={staggerParent(0.1, 0.15)}
         initial="hidden"
         animate="visible"
       >
@@ -88,7 +91,7 @@ export const MainText: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Apply as student
+              Register as student
             </a>
           ) : (
             <span className="btn-soon">Student applications open soon</span>
