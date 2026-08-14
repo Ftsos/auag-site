@@ -1,0 +1,136 @@
+/* Blog Post Page Styles — Premium Redesign */
+
+.blog-post-page {
+  background: var(--color-canvas);
+}
+
+.blog-post-shell {
+  padding-block: clamp(2.5rem, 6vh, 4rem) var(--spacing-section);
+}
+
+.blog-post-container {
+  max-width: 44rem;
+  margin: 0 auto;
+}
+
+.blog-post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-accent);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.blog-post-back:hover {
+  color: var(--color-ink);
+}
+
+.blog-post-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: clamp(2rem, 5vh, 3rem);
+  margin-bottom: clamp(2rem, 4vh, 3rem);
+  border-bottom: 1px solid var(--color-hairline);
+  padding-bottom: 1.5rem;
+}
+
+.blog-post-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.1;
+  color: var(--color-ink);
+  margin: 0.75rem 0 0.5rem;
+  text-wrap: balance;
+}
+
+.blog-post-meta {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.blog-post-status {
+  font-family: var(--font-accent);
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+  text-align: center;
+  padding-block: 4rem;
+}
+
+.blog-post-empty {
+  text-align: center;
+  padding-block: 4rem;
+}
+
+.blog-post-body {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-secondary);
+}
+
+.blog-post-body h1,
+.blog-post-body h2,
+.blog-post-body h3,
+.blog-post-body h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  font-weight: 700;
+  letter-spacing: var(--tracking-display);
+  margin-top: 2.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.blog-post-body h1 { font-size: 1.75rem; }
+.blog-post-body h2 { font-size: 1.5rem; }
+.blog-post-body h3 { font-size: 1.25rem; }
+
+.blog-post-body p {
+  margin: 0 0 1.5rem;
+}
+
+.blog-post-body ul,
+.blog-post-body ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.blog-post-body li {
+  margin-bottom: 0.5rem;
+}
+
+.blog-post-body a {
+  color: var(--color-auag-red);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  transition: color 0.15s ease;
+}
+
+.blog-post-body a:hover {
+  color: var(--color-red-deep);
+}
+
+.blog-post-body strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.blog-post-body blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--color-auag-red);
+  color: var(--color-ink-muted);
+  font-style: italic;
+}

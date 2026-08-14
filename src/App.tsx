@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Story from './pages/Story';
 import Network from './pages/Network';
 import NotFound from './pages/NotFound';
+import BlogPost from './pages/BlogPost';
 
 const ScrollToHash: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -53,6 +54,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/story" element={<Story />} />
               <Route path="/network" element={<Network />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
