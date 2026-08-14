@@ -39,6 +39,12 @@
       "crop": { "left": 0, "top": 0, "width": 0.86, "height": 1 }
     },
     {
+      "src": "team-studio-2026.png",
+      "slug": "team-studio",
+      "role": "section",
+      "alt": "The ten AUAG officers photographed together in the studio"
+    },
+    {
       "src": "Copy of P1033602.JPG",
       "slug": "kato-golooba-mutebi",
       "role": "headshot",
