@@ -1,71 +1,126 @@
-.trusted-by {
-  text-align: center;
-  padding: 0;
-  background: transparent;
-  margin: 0 auto 0 auto;
-  max-width: 1000px;
-  position: relative;
-  z-index: 10;
+/* The one big black moment on the home canvas — logos live directly on the
+   chrome, no chips. */
+
+.proof-section {
+  padding-block: var(--spacing-section-sm) var(--spacing-section-sm);
+  overflow: hidden;
 }
 
-.trusted-by h2 {
-  font-size: 1.2rem;
-  margin-bottom: 0.2rem;
-  font-weight: 600;
-  color: #ffffff;
-  font-family: 'Arial', sans-serif;
+.proof-marquees {
+  margin-top: clamp(2.25rem, 5vh, 3.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4.5vh, 2.75rem);
 }
 
-.logo-slider {
+/* Marquee */
+
+.marquee-track-shell {
   width: 100%;
-  position: relative;
-  height: 200px;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 5rem);
+  width: max-content;
+  will-change: transform;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  padding-right: clamp(3rem, 6vw, 5rem);
+}
+
+.marquee-track--left {
+  animation-name: marquee-left;
+  animation-duration: 52s;
+}
+
+.marquee-track--right {
+  animation-name: marquee-right;
+  animation-duration: 64s;
+}
+
+.marquee-track-shell:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.logo-row {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  height: 100px;
-  align-items: center;
-}
-
-.logo-item {
-  max-height: 60px;
-  max-width: 120px;
+.marquee-logo {
+  height: 34px;
+  width: auto;
+  max-width: 128px;
   object-fit: contain;
-  filter: brightness(1.1) contrast(1.1);
-  cursor: grab;
-  position: relative;
-  z-index: 1;
+  opacity: 0.7;
+  transition: opacity 0.25s ease;
 }
 
-.logo-item:active {
-  cursor: grabbing;
+/* Light/white artwork reads on the chrome as-is. */
+.marquee-logo.is-light {
+  filter: grayscale(1) brightness(1.2);
 }
 
-.logo-placeholder {
-  width: 120px;
-  height: 60px;
-  background: transparent;
+/* Dark/colored artwork is grayscale-inverted so it stays visible. */
+.marquee-logo.is-dark {
+  filter: grayscale(1) invert(1) brightness(1.15);
 }
 
-/* Responsive display - show fewer companies on smaller screens */
-@media (max-width: 1200px) {
-  .logo-item.logo-5 { display: none; }
+.marquee-item:hover .marquee-logo {
+  opacity: 1;
 }
 
-@media (max-width: 1000px) {
-  .logo-item.logo-4 { display: none; }
+.proof-cta-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: clamp(2rem, 4.5vh, 2.75rem);
 }
 
-@media (max-width: 800px) {
-  .logo-item.logo-3 { display: none; }
-}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 
-@media (max-width: 600px) {
-  .logo-item.logo-2 { display: none; }
+  .marquee-track-shell {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
 }

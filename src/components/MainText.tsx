@@ -1,75 +1,112 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from 'framer-motion';
 import '../styles/MainText.css';
 import Statistics from './Statistics';
+import Photo from './Photo';
+import { photos } from '../data/photos';
+import { links } from '../data/links';
+import { fadeRise, heroPhotoReveal, staggerParent } from '../utils/motion';
 
 export const MainText: React.FC = () => {
+  const heroRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  // The photo drifts slower than the scroll — depth without scroll-jacking.
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
+
   return (
-    <motion.div
-      // Tailwind classes for desktop layout and base styles
-      className="flex flex-col items-center justify-center text-center text-white p-8"
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-    >
-      {/* AUAG Logo Section */}
+    <section className="hero" id="hero" ref={heroRef}>
       <motion.div
-        // Tailwind classes for desktop font size
-        className="main-logo text-7xl font-extrabold mb-8"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 100 }}
+        className="hero-photo"
+        style={prefersReducedMotion ? undefined : { y: photoY }}
+        variants={heroPhotoReveal}
+        initial="hidden"
+        animate="visible"
+        aria-hidden="true"
       >
-        <span className="text-white">AU</span>
-        <span className="text-red-600" style={{ textShadow: '0 0 10px rgba(220, 38, 38, 0.8), 0 0 20px rgba(220, 38, 38, 0.5)' }}>AG</span>
+        <Photo photo={photos.hero} sizes="100vw" priority />
       </motion.div>
+      <div className="hero-wash" aria-hidden="true" />
 
-      {/* Bar Section */}
       <motion.div
-        className="w-48 h-1 bg-red-600 mb-8"
-        initial={{ width: 0, opacity: 0 }}
-        animate={{ width: "12rem", opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-      />
-
-      {/* Title, Text, and Button Section */}
-      <motion.div
-        className="max-w-3xl flex flex-col items-center"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+        className="section-shell hero-inner"
+        variants={staggerParent(0.1, 0.15)}
+        initial="hidden"
+        animate="visible"
       >
-        <motion.h1
-          // Tailwind classes for desktop font size
-          className="main-title text-4xl font-bold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-        >
-          ACCELERATING OPPORTUNITY
-        </motion.h1>
+        {/* Flagship-event teaser — facts match Events.tsx (HPAC contract). */}
+        <motion.div variants={fadeRise}>
+          <Link to="/#events" className="hero-event-chip">
+            <span className="hero-event-date">Sept 25</span>
+            <span className="hero-event-name">
+              Legacy: An AUAG Alumni Series
+            </span>
+            <span className="hero-event-arrow" aria-hidden="true">
+              →
+            </span>
+          </Link>
+        </motion.div>
 
-        <motion.p
-          // Tailwind classes for desktop font size and padding
-          className="main-paragraph text-lg mb-8 px-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8, duration: 0.6 }}
-        >
-          We are the platform that brings highly talented students and alums together to create outsized outcomes. We see every conversation as an opportunity to change the future.
+        <motion.p className="eyebrow" variants={fadeRise}>
+          Andrews University Action Group
         </motion.p>
 
-        <motion.button
-          // Tailwind classes for desktop padding and font size
-          className="main-button bg-red-600 text-white py-3 px-8 rounded-full font-bold hover:bg-red-700 transition duration-300 shadow-[0_0_15px_rgba(220,38,38,0.7)]"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 2.1, duration: 0.6, type: "spring", stiffness: 100 }}
-        >
-          Learn More
-        </motion.button>
+        <motion.h1 className="hero-logo" variants={fadeRise}>
+          AU<span className="hero-logo-ag">AG</span>
+        </motion.h1>
 
-        <Statistics />
+        <motion.h2 className="hero-tagline" variants={fadeRise}>
+          Accelerating opportunity<span className="hero-tagline-dot">.</span>
+        </motion.h2>
+
+        <motion.p className="hero-body" variants={fadeRise}>
+          AUAG is the network that brings high-potential Andrews University
+          students and alumni together. We treat every conversation as a door
+          worth opening — for mentorship, for ventures, for the long career
+          ahead.
+        </motion.p>
+
+        <motion.div className="hero-cta-row" variants={fadeRise}>
+          <a
+            className="btn-primary"
+            href={links.alumniJoin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join as alumni
+          </a>
+          {links.studentApply ? (
+            <a
+              className="btn-ghost"
+              href={links.studentApply}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Register as student
+            </a>
+          ) : (
+            <span className="btn-soon">Student applications open soon</span>
+          )}
+        </motion.div>
+
+        <motion.div className="hero-stats" variants={fadeRise}>
+          <Statistics />
+        </motion.div>
       </motion.div>
-    </motion.div>
+
+      <div className="hero-scroll-cue" aria-hidden="true">
+        <span className="micro-label">Scroll</span>
+        <span className="hero-scroll-line" />
+      </div>
+    </section>
   );
 };

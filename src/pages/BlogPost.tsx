@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
-import Navbar from '../components/Navbar';
+import { FaArrowLeft } from 'react-icons/fa6';
 import { fetchPostBySlug, formatPostMeta } from '../api/strapi';
 import type { CmsPost } from '../types/post';
-import '../App.css';
 import '../styles/BlogPost.css';
 
 function BlogPost() {
@@ -53,12 +52,12 @@ function BlogPost() {
   }, [slug]);
 
   return (
-    <div className="App blog-post-page">
-      <Navbar />
-      <main className="blog-post-shell">
+    <div className="blog-post-page">
+      <main className="blog-post-shell section-shell">
         <div className="blog-post-container">
           <Link to="/#events" className="blog-post-back">
-            ← Back to events
+            <FaArrowLeft aria-hidden="true" />
+            <span>Back to events</span>
           </Link>
 
           {loading && <p className="blog-post-status">Loading post…</p>}
@@ -73,8 +72,8 @@ function BlogPost() {
           {!loading && post && (
             <article className="blog-post-article">
               <header className="blog-post-header">
+                <span className="blog-post-meta">{formatPostMeta(post)}</span>
                 <h1 className="blog-post-title">{post.title}</h1>
-                <p className="blog-post-meta">{formatPostMeta(post)}</p>
               </header>
 
               <div className="blog-post-body">

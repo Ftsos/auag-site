@@ -1,0 +1,177 @@
+.two-paths {
+  padding-block: var(--spacing-section);
+  background: var(--color-canvas);
+}
+
+/* One panel, two worlds: the alumni pitch on chrome, the student pitch on
+   card white. Deliberately asymmetric. */
+.two-paths-panel {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  margin-top: clamp(2rem, 5vh, 3rem);
+  border-radius: 18px;
+  overflow: clip;
+  border: 1px solid var(--color-hairline);
+}
+
+.path-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(2rem, 4.5vw, 3.25rem);
+}
+
+.path-side--students {
+  background: var(--color-card);
+}
+
+/* The alumni side carries a ghosted photo under a dark wash — the panel is
+   already the page's dark moment, so this adds depth, not a new band. */
+.path-side--alumni {
+  position: relative;
+}
+
+.path-side--alumni > :not(.path-photo) {
+  position: relative;
+  z-index: 1;
+}
+
+.path-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.path-photo picture,
+.path-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.path-photo img {
+  object-fit: cover;
+  opacity: 0.16;
+}
+
+.path-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(12, 11, 11, 0.35) 0%,
+    rgba(12, 11, 11, 0.88) 100%
+  );
+}
+
+.path-label {
+  font-family: var(--font-accent);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.path-side--alumni .path-label {
+  color: var(--color-on-dark-muted);
+}
+
+.path-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 3.2vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 1rem 0 0;
+}
+
+.path-side--alumni .path-heading {
+  color: var(--color-on-dark);
+}
+
+.path-body {
+  font-size: 0.9688rem;
+  line-height: 1.7;
+  color: var(--color-ink-secondary);
+  margin: 0.85rem 0 0;
+  max-width: 34em;
+}
+
+.path-side--alumni .path-body {
+  color: var(--color-on-dark-muted);
+}
+
+.path-meta {
+  display: flex;
+  gap: 2.5rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-divider);
+  width: 100%;
+}
+
+.path-side--alumni .path-meta {
+  border-top-color: var(--color-on-dark-hairline);
+}
+
+.path-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.path-meta-item dt {
+  font-family: var(--font-accent);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.path-side--alumni .path-meta-item dt {
+  color: var(--color-on-dark-muted);
+}
+
+.path-meta-item dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.path-side--alumni .path-meta-item dd {
+  color: var(--color-on-dark);
+}
+
+.path-meta {
+  margin-bottom: 1.75rem;
+}
+
+/* Bottom-aligned across both sides regardless of copy length. */
+.path-cta {
+  margin-top: auto;
+}
+
+.path-cta-arrow {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.path-cta:hover .path-cta-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 820px) {
+  .two-paths-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path-cta-arrow {
+    transition: none;
+  }
+}

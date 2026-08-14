@@ -1,20 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap");
 @import "tailwindcss";
+@import "./styles/primitives.css";
 @plugin "flowbite-react/plugin/tailwindcss";
 @source "../.flowbite-react/class-list.json";
+
+/*
+ * Frame-inspired light theme (shared visual family with auag-os).
+ * Warm-white canvas, black structural chrome, red reserved for
+ * CTAs / emphasis / urgent. Single fixed theme — no toggle.
+ * Fonts are loaded from index.html (preconnect + stylesheet link).
+ */
 @theme {
-  --font-arimo: "Arimo", sans-serif; 
+  /* Display = Arimo, matching the AUAG logo artwork (headings + wordmark). */
+  --font-display: "Arimo", "Arial", sans-serif;
+  --font-wordmark: "Arimo", "Arial", sans-serif;
+  /* Accent = Space Grotesk, kept for stat numerals, micro-labels, and small
+     tabular/date accents only — never headings or body. */
+  --font-accent: "Space Grotesk", "Arial", sans-serif;
+  --font-body: "Instrument Sans", "Arial", sans-serif;
+
+  /* Surfaces */
+  --color-canvas: #faf9f7;
+  --color-card: #ffffff;
+  --color-frame: #0c0b0b;
+  --color-frame-elevated: #161514;
+
+  /* Ink */
+  --color-ink: #111111;
+  --color-ink-secondary: #5c5751;
+  --color-ink-muted: #9b968f;
+
+  /* Accent — CTAs, emphasis, urgent. Never decoration. */
+  --color-auag-red: #e11d2e;
+  --color-auag-red-deep: #b91424;
+
+  /* Lines */
+  --color-hairline: #e9e6e1;
+  --color-divider: #f2f0ec;
+
+  /* On-dark counterparts (inside .on-dark chrome) */
+  --color-on-dark: #faf9f7;
+  --color-on-dark-muted: rgba(250, 249, 247, 0.62);
+  --color-on-dark-hairline: rgba(255, 255, 255, 0.14);
+
+  /* Fluid type scale */
+  --text-display: clamp(2.75rem, 7vw, 6rem);
+  --text-h1: clamp(2.25rem, 5vw, 4rem);
+  --text-h2: clamp(2rem, 4.5vw, 3.25rem);
+  --text-numeral: clamp(2.25rem, 4.5vw, 3.5rem);
+  --text-micro: 0.65625rem; /* 10.5px */
+
+  --tracking-display: -0.03em;
+  --tracking-micro: 0.11em;
+
+  /* Rhythm */
+  --spacing-section: clamp(5rem, 13vh, 8.5rem);
+  --spacing-section-sm: clamp(2.75rem, 7vh, 4.5rem);
+  --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  /* The Frame — black chrome around the floating canvas */
+  --frame-gutter: clamp(6px, 1vw, 10px);
+  --frame-radius: 20px;
 }
 
 :root {
-  /*font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;*/
-  font-family: 'Arimo', "arial", sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: light;
+  color: var(--color-ink);
+  background-color: var(--color-frame);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,22 +77,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
+@media (prefers-reduced-motion: no-preference) {
+  html {
     scroll-behavior: smooth;
-
+  }
 }
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}*/
 
 body {
-  background: #000000;
-  color: #ffffff;
+  background: var(--color-frame);
+  color: var(--color-ink);
   overflow-x: hidden;
   overflow-y: auto;
   line-height: 1.6;
@@ -45,61 +93,14 @@ body {
   margin: 0;
   padding: 0;
 }
-.App {
-  min-height: 100vh;
-  min-width: 100%;
-  overflow-x: hidden;
-  position: relative;
-  background: 
-    radial-gradient(
-      ellipse 80% 10% at 50% 50%, 
-      rgba(220, 38, 38, 0.15), /* Decreased opacity to make it dimmer */
-      transparent 
-    ),
-    #000000;
-  
-  background-position: center 0.001rem;
-  background-size: 100% 20%; 
-  background-repeat: no-repeat;
-}
-.content-container {
-  position: relative;
-  z-index: 10;
+
+*:focus-visible {
+  outline: 2px solid var(--color-auag-red);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-/*button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}*/
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+::selection {
+  background: var(--color-auag-red);
+  color: #ffffff;
 }

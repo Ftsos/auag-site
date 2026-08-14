@@ -1,96 +1,154 @@
-#upcoming-events-section {
-    background-color: #000;
+.events-section {
+  padding-block: var(--spacing-section) var(--spacing-section);
+  background: var(--color-canvas);
 }
 
-.growing-squares-bg {
-    z-index: 0;
-    pointer-events: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 2rem; /* Spacing between squares */
+.events-inner {
+  display: flex;
+  flex-direction: column;
 }
 
-.square {
-    width: 15vw;
-    height: 15vw;
-    background-color: rgba(42, 42, 42, 0.5); /* A dark gray from your palette */
-    opacity: 0;
-    animation: grow-and-fade 10s infinite;
+/* The flagship card — the one black feature moment inside the canvas. */
+.event-flagship {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.75rem, 5vw, 3.5rem);
+  align-items: start;
+  border-radius: 18px;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 5vh, 3rem);
 }
 
-/* Delay for each square to create the staggered effect */
-.square:nth-child(2) { animation-delay: 2s; }
-.square:nth-child(3) { animation-delay: 4s; }
-.square:nth-child(4) { animation-delay: 6s; }
-.square:nth-child(5) { animation-delay: 8s; }
-.square:nth-child(6) { animation-delay: 10s; }
-.square:nth-child(7) { animation-delay: 12s; }
-.square:nth-child(8) { animation-delay: 14s; }
-.square:nth-child(9) { animation-delay: 16s; }
-
-
-@keyframes grow-and-fade {
-    0% {
-        transform: scale(0.1);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.5);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(0.1);
-        opacity: 0;
-    }
+.event-date-block {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.95;
 }
 
-.moving-points-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: transparent;
+.event-date-day {
+  font-family: var(--font-accent);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-auag-red);
+  white-space: nowrap;
 }
 
-.point {
-  position: absolute;
-  display: block;
-  width: 3px;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  animation: movePoint linear infinite;
+.event-date-year {
+  font-family: var(--font-accent);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--color-on-dark-muted);
+  margin-top: 0.35rem;
 }
 
-/* Randomize starting positions and speeds */
-.point:nth-child(odd) {
-  width: 2px;
-  height: 2px;
-  opacity: 0.6;
+.event-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-on-dark);
+  margin: 0.85rem 0 0;
+  text-wrap: balance;
 }
 
-/* Randomize each point’s motion */
-@keyframes movePoint {
-  from {
-    transform: translateY(0) translateX(0);
-    opacity: 1;
+.event-desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-on-dark-muted);
+  max-width: 44em;
+  margin: 0.85rem 0 0;
+}
+
+.event-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2.5rem;
+  margin: 1.5rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-on-dark-hairline);
+}
+
+.event-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.event-meta-item dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-on-dark);
+}
+
+.events-follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-top: clamp(2rem, 4.5vh, 3rem);
+}
+
+.events-follow-copy {
+  font-size: 0.9688rem;
+  line-height: 1.6;
+  color: var(--color-ink-secondary);
+  max-width: 34em;
+  margin: 0;
+}
+
+.events-follow-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  .event-flagship {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
-  to {
-    transform: translateY(-100vh) translateX(calc(-50vw + 100vw * var(--x, 0.5)));
-    opacity: 0;
-  }
 }
 
-/* Generate randomized positions and animation durations */
-.point {
-  top: calc(100% * var(--y, 0.5));
-  left: calc(100% * var(--x, 0.5));
-  animation-duration: calc(8s + 8s * var(--speed, 0.5));
+/* Dynamic events grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.event-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-ink-muted);
+}
+
+.event-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0.5rem 0 0.5rem;
+}
+
+.event-card-meta {
+  color: var(--color-ink-muted);
+}
+
+.event-card-excerpt {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-ink-secondary);
+  margin: 0;
 }

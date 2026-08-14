@@ -1,83 +1,365 @@
-/* src/styles/MainText.css */
+/* Hero — single-screen, centered, photography ghosted under a warm wash. */
 
-/*
-  These are the base styles that apply to all screen sizes,
-  especially for desktop where no media queries apply.
-*/
-.main-container {
-  /* Ensure the component takes up a significant portion of the screen height */
-  min-height: 85vh;
-  padding: 4rem 2rem;
+.hero {
+  position: relative;
+  min-height: calc(100dvh - 4rem); /* nav bar is 4rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-canvas);
 }
 
-.main-logo {
-  font-size: 5rem; /* The base size for desktop and larger screens */
+/* Oversized so the parallax drift (0 → 8%) never reveals an edge. */
+.hero-photo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -10%;
+  bottom: -2%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.main-title {
-  font-size: 3rem; /* The base size for desktop and larger screens */
+.hero-photo picture,
+.hero-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.main-paragraph {
-  font-size: 1.2rem;
-  padding: 0 1rem;
+.hero-photo img {
+  object-fit: cover;
+  opacity: 0.74;
 }
 
-.main-button {
-  font-size: 1rem;
-  padding: 0.8rem 2rem;
+.hero-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/photos/grain.png') repeat;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
 }
 
-/*
-  These styles will override the desktop styles for screens
-  smaller than 640px (e.g., small tablets and large phones)
-*/
+/* Warm-white wash: a radial pool protects the centered text column while the
+   photograph reads as an actual photograph at the edges, then everything
+   dissolves into solid canvas before the next section's hairline. The extra
+   stops keep the falloff smooth — no visible halo edge around the type. */
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse 62% 56% at 50% 40%,
+      rgba(250, 249, 247, 0.97) 0%,
+      rgba(250, 249, 247, 0.92) 34%,
+      rgba(250, 249, 247, 0.62) 62%,
+      rgba(250, 249, 247, 0.18) 84%,
+      rgba(250, 249, 247, 0) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(250, 249, 247, 0.55) 0%,
+      rgba(250, 249, 247, 0.3) 42%,
+      rgba(250, 249, 247, 0.42) 70%,
+      rgba(250, 249, 247, 0.92) 90%,
+      var(--color-canvas) 98%
+    );
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Extra bottom padding keeps the scroll cue in its own quiet zone. */
+  padding-block: clamp(2.75rem, 7vh, 4.75rem) clamp(4.5rem, 10vh, 6rem);
+}
+
+/* Flagship-event teaser pill — quiet card surface, red only on the date. */
+.hero-event-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.5rem 1.05rem;
+  margin-bottom: 2.25rem;
+  border-radius: 999px;
+  background: var(--color-card);
+  border: 1px solid var(--color-hairline);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.03);
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.hero-event-chip:hover {
+  border-color: var(--color-ink-muted);
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.05);
+  transform: translateY(-1px);
+}
+
+.hero-event-chip:active {
+  transform: translateY(0);
+}
+
+.hero-event-date {
+  font-family: var(--font-accent);
+  font-size: 0.71875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-auag-red);
+  white-space: nowrap;
+  padding-right: 0.85rem;
+  border-right: 1px solid var(--color-divider);
+}
+
+.hero-event-name {
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.hero-event-arrow {
+  color: var(--color-ink-muted);
+  transition: transform 0.2s ease;
+}
+
+.hero-event-chip:hover .hero-event-arrow {
+  transform: translateX(3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-event-chip,
+  .hero-event-arrow {
+    transition: none;
+  }
+}
+
+.hero-logo {
+  font-family: var(--font-wordmark);
+  font-size: clamp(4.75rem, 14vw, 11rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: var(--color-ink);
+  margin: 1.25rem 0 0;
+}
+
+.hero-logo-ag {
+  color: var(--color-auag-red);
+}
+
+/* Engraved, not shouted: the wordmark is the hero's one loud voice, so the
+   tagline sets like a plaque line — mid-size tracked caps in the display face.
+   The left padding re-centers optically (tracking adds a trailing space). */
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.9375rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--color-ink);
+  margin: 2.25rem 0 0;
+}
+
+/* Pull the period back against the Y — tracking would otherwise orphan it. */
+.hero-tagline-dot {
+  color: var(--color-auag-red);
+  margin-left: -0.12em;
+}
+
+.hero-body {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--color-ink-secondary);
+  max-width: 33em;
+  margin: 1.75rem auto 0;
+  text-wrap: pretty;
+}
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.875rem;
+  margin-top: 2.5rem;
+}
+
+/* Over the photograph the transparent ghost loses its edge — give it the
+   chip's solid card surface so both CTAs read as finished objects. */
+.hero-cta-row .btn-ghost {
+  background: var(--color-card);
+}
+
+.hero-cta-row .btn-ghost:hover {
+  border-color: var(--color-ink);
+}
+
+.hero-stats {
+  width: 100%;
+  margin-top: clamp(2.75rem, 7vh, 4rem);
+  border-top: 1px solid var(--color-hairline);
+  padding-top: 1.75rem;
+}
+
+/* The proof line — numbers set into a sentence, not a counter grid. */
+.hero-proof-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.6rem 0;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.hero-proof-item {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.hero-proof-sep {
+  color: var(--color-ink-muted);
+  margin-inline: 1.1rem;
+}
+
+.hero-proof-numeral {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  color: var(--color-ink);
+}
+
+.hero-proof-label {
+  font-size: 0.9688rem;
+  color: var(--color-ink-secondary);
+  margin-left: 0.45rem;
+}
+
+/* Scroll cue — quiet ink, never red. */
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-ink-muted);
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 32px;
+  background: var(--color-ink-muted);
+  overflow: hidden;
+  animation: hero-cue-drift 2.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform-origin: top;
+}
+
+@keyframes hero-cue-drift {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-line {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Below ~880px the proof sentence can no longer hold one line, and a
+   wrapped line opening with an interpunct reads as a stray mark — so the
+   numbers set as a quiet centered column instead. */
+@media (max-width: 880px) {
+  .hero-proof-line {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .hero-proof-sep {
+    display: none;
+  }
+}
+
+/* On narrow screens the text column spans most of the photo, so the wash
+   pool widens and deepens to keep the body copy sitting on calm ground. */
 @media (max-width: 640px) {
-  .main-container {
-    /* Reduce padding to make the component more compact */
-    padding: 2rem 1rem;
+  .hero-wash {
+    background:
+      radial-gradient(
+        ellipse 130% 52% at 50% 42%,
+        rgba(250, 249, 247, 0.97) 0%,
+        rgba(250, 249, 247, 0.92) 38%,
+        rgba(250, 249, 247, 0.66) 66%,
+        rgba(250, 249, 247, 0.2) 86%,
+        rgba(250, 249, 247, 0) 100%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(250, 249, 247, 0.62) 0%,
+        rgba(250, 249, 247, 0.4) 42%,
+        rgba(250, 249, 247, 0.52) 70%,
+        rgba(250, 249, 247, 0.94) 90%,
+        var(--color-canvas) 98%
+      );
   }
 
-  .main-logo {
-    font-size: 4rem; /* Smaller font for medium-sized mobile screens */
+  .hero-event-chip {
+    font-size: 0.78125rem;
+    gap: 0.7rem;
+    padding: 0.45rem 0.9rem;
   }
 
-  .main-title {
-    font-size: 2.25rem; /* A good size for readability on smaller screens */
+  .hero-event-date {
+    padding-right: 0.7rem;
   }
 
-  .main-paragraph {
+  .hero-body {
     font-size: 1rem;
-    padding: 0 0.5rem;
-  }
-}
-
-/*
-  These styles will override the above for screens smaller than 480px
-  (e.g., the most compact phones with limited screen real estate)
-*/
-@media (max-width: 480px) {
-  .main-container {
-    padding: 1.5rem 0.5rem;
-    /* You could also adjust min-height here if needed, e.g., to 75vh */
-    /* min-height: 75vh; */
   }
 
-  .main-logo {
-    font-size: 3rem; /* Very small font for the most compact screens */
+  /* Keep both CTAs on one line — the column is ~338px at 390px viewports,
+     so the pair needs real slack, not an exact fit. */
+  .hero-cta-row {
+    gap: 0.625rem;
   }
 
-  .main-title {
-    font-size: 1.75rem; /* Ensures the title fits on one line */
-  }
 
-  .main-paragraph {
-    font-size: 0.9rem;
-    padding: 0; /* Remove padding to maximize space */
-  }
-
-  .main-button {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.25rem;
+  .hero-cta-row .btn-primary,
+  .hero-cta-row .btn-ghost,
+  .hero-cta-row .btn-soon {
+    padding-inline: 1.0625rem;
   }
 }

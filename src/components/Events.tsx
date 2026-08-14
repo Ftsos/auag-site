@@ -1,108 +1,202 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FaInstagram, FaEnvelope } from 'react-icons/fa6';
+import { links } from '../data/links';
 import { fetchRecentPosts, formatPostMeta } from '../api/strapi';
 import type { CmsPost } from '../types/post';
 import '../styles/Events.css';
-import '../styles/BlogPost.css';
+import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
-const Events = () => {
+const MotionLink = motion(Link);
+
+function parsePostDate(dateStr: string | null) {
+  if (!dateStr) return { day: 'TBA', year: '' };
+  try {
+    const d = new Date(`${dateStr}T00:00:00`);
+    const month = d.toLocaleDateString('en-US', { month: 'short' });
+    const day = d.toLocaleDateString('en-US', { day: 'numeric' });
+    return {
+      day: `${month} ${day}`,
+      year: String(d.getFullYear())
+    };
+  } catch {
+    return { day: 'TBA', year: '' };
+  }
+}
+
+const Events: React.FC = () => {
   const [posts, setPosts] = useState<CmsPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-
     async function loadPosts() {
-      setLoading(true);
-      setError(null);
-
       try {
         const result = await fetchRecentPosts();
         if (!cancelled) {
           setPosts(result);
         }
-      } catch {
-        if (!cancelled) {
-          setError('Unable to load events right now.');
-        }
-      } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
+      } catch (err) {
+        console.error('Failed to fetch events from Strapi:', err);
       }
     }
-
     loadPosts();
-
     return () => {
       cancelled = true;
     };
   }, []);
 
+  const hasDynamicEvents = posts.length > 0;
+  const primaryPost = hasDynamicEvents ? posts[0] : null;
+  const remainingPosts = hasDynamicEvents ? posts.slice(1) : [];
+
+  const primaryDate = primaryPost ? parsePostDate(primaryPost.date) : { day: 'Sept 25', year: '2026' };
+
   return (
-    <section
-      id="events"
-      className="min-h-screen w-screen flex flex-col items-center justify-center p-8 relative overflow-hidden"
-    >
-      <div className="moving-points-bg absolute top-0 left-0 w-full h-full overflow-hidden">
-        {Array.from({ length: 150 }).map((_, i) => {
-          const x = Math.random();
-          const y = Math.random();
-          const speed = Math.random();
-          return (
-            <span
-              key={i}
-              className="point"
-              style={{
-                '--x': x,
-                '--y': y,
-                '--speed': speed,
-              } as CSSProperties}
-            />
-          );
-        })}
-      </div>
+    <section id="events" className="events-section">
+      <div className="section-shell events-inner">
+        <header className="section-head">
+          <div className="section-head-row">
+            <h2 className="display-heading section-heading">Upcoming events</h2>
+            <span className="section-meta">What's next</span>
+          </div>
+        </header>
 
-      <div className="z-10 text-center relative max-w-4xl">
-        <h2 className="text-6xl font-light text-white uppercase tracking-widest mb-4">
-          UPCOMING EVENTS
-        </h2>
-        <p className="mb-12 text-gray-400">
-          Join us at our next events and be part of the community. We&apos;re excited to see you there!
-        </p>
+        {primaryPost ? (
+          /* Dynamic Flagship Event Card from Strapi */
+          <MotionLink
+            to={`/blog/${primaryPost.slug}`}
+            className="event-flagship on-dark"
+            variants={staggerParent(0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+            style={{ textDecoration: 'none' }}
+          >
+            <motion.div
+              className="event-date-block"
+              variants={fadeRise}
+              aria-hidden="true"
+            >
+              <span className="event-date-day">{primaryDate.day}</span>
+              <span className="event-date-year">{primaryDate.year}</span>
+            </motion.div>
 
-        {loading && <p className="events-status">Loading events…</p>}
+            <motion.div className="event-details" variants={fadeRise}>
+              <span className="micro-label event-context">
+                {primaryPost.location || 'Andrews University'}
+              </span>
+              <h3 className="event-title">{primaryPost.title}</h3>
+              <p className="event-desc">
+                {primaryPost.excerpt?.trim() || primaryPost.body?.slice(0, 180) + '...' || 'Read more about this event.'}
+              </p>
+              <dl className="event-meta">
+                <div className="event-meta-item">
+                  <dt className="micro-label">Date</dt>
+                  <dd>{primaryPost.date ? new Date(`${primaryPost.date}T00:00:00`).toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }) : 'Date TBA'}</dd>
+                </div>
+                {primaryPost.location && (
+                  <div className="event-meta-item">
+                    <dt className="micro-label">Venue</dt>
+                    <dd>{primaryPost.location}</dd>
+                  </div>
+                )}
+              </dl>
+            </motion.div>
+          </MotionLink>
+        ) : (
+          /* Hardcoded Flagship Event Fallback */
+          <motion.article
+            className="event-flagship on-dark"
+            variants={staggerParent(0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={VIEWPORT}
+          >
+            <motion.div
+              className="event-date-block"
+              variants={fadeRise}
+              aria-hidden="true"
+            >
+              <span className="event-date-day">Sept 25</span>
+              <span className="event-date-year">2026</span>
+            </motion.div>
 
-        {!loading && error && (
-          <div className="events-empty">
-            <p>{error}</p>
+            <motion.div className="event-details" variants={fadeRise}>
+              <span className="micro-label event-context">
+                Homecoming Weekend · Andrews University
+              </span>
+              <h3 className="event-title">Legacy: An AUAG Alumni Series</h3>
+              <p className="event-desc">
+                An afternoon with the alumni who've gone ahead — career stories
+                and a moderated panel spanning law, engineering, medicine, and
+                capital, followed by open networking with the people behind them.
+              </p>
+              <dl className="event-meta">
+                <div className="event-meta-item">
+                  <dt className="micro-label">Date</dt>
+                  <dd>Friday, September 25, 2026</dd>
+                </div>
+                <div className="event-meta-item">
+                  <dt className="micro-label">Time</dt>
+                  <dd>2:00 – 4:30 PM</dd>
+                </div>
+                <div className="event-meta-item">
+                  <dt className="micro-label">Venue</dt>
+                  <dd>Howard Performing Arts Center</dd>
+                </div>
+              </dl>
+            </motion.div>
+          </motion.article>
+        )}
+
+        {/* Dynamic Additional Events Grid */}
+        {remainingPosts.length > 0 && (
+          <div className="events-grid">
+            {remainingPosts.map((post) => (
+              <Link
+                key={post.documentId}
+                to={`/blog/${post.slug}`}
+                className="event-card card-surface"
+              >
+                <span className="micro-label event-card-meta">
+                  {formatPostMeta(post)}
+                </span>
+                <h4 className="event-card-title">{post.title}</h4>
+                <p className="event-card-excerpt">
+                  {post.excerpt?.trim() || 'Read more about this event.'}
+                </p>
+              </Link>
+            ))}
           </div>
         )}
 
-        {!loading && !error && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {posts.length === 0 ? (
-              <div className="events-empty">
-                <p>No events published yet. Check back soon.</p>
-              </div>
-            ) : (
-              posts.map((post) => (
-                <Link
-                  key={post.documentId}
-                  to={`/blog/${post.slug}`}
-                  className="event-card bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-800"
-                >
-                  <h3 className="text-2xl font-semibold mb-2 text-white">{post.title}</h3>
-                  <p className="text-gray-500 mb-4">{formatPostMeta(post)}</p>
-                  <p className="text-gray-400">
-                    {post.excerpt?.trim() || 'Read more about this event.'}
-                  </p>
-                </Link>
-              ))
-            )}
+        <div className="events-follow">
+          <p className="events-follow-copy">
+            More 2026 dates are being finalized. Follow along and you'll hear
+            about them first.
+          </p>
+          <div className="events-follow-ctas">
+            <a
+              className="btn-ghost"
+              href={links.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram aria-hidden="true" />
+              Follow @auactiongroup
+            </a>
+            <a className="btn-ghost" href={links.contactEmail}>
+              <FaEnvelope aria-hidden="true" />
+              Email us
+            </a>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

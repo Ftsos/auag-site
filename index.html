@@ -2,9 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/auag-logo.png" />
+    <link rel="icon" type="image/png" href="/auag-logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AUAG Site</title>
+    <meta name="theme-color" content="#0c0b0b" />
+
+    <title>Andrews University Action Group — Accelerating Opportunity</title>
+    <meta
+      name="description"
+      content="AUAG connects high-potential Andrews University students with alumni who open doors — mentorship, ventures, internships, and the long career ahead."
+    />
+    <link rel="canonical" href="https://auactiongroup.com/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Andrews University Action Group" />
+    <meta property="og:title" content="Andrews University Action Group" />
+    <meta
+      property="og:description"
+      content="The network that brings Andrews University students and alumni together. Accelerating opportunity."
+    />
+    <meta property="og:url" content="https://auactiongroup.com/" />
+    <meta property="og:image" content="https://auactiongroup.com/auag-logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Andrews University Action Group" />
+    <meta
+      name="twitter:description"
+      content="The network that brings Andrews University students and alumni together. Accelerating opportunity."
+    />
+    <meta name="twitter:image" content="https://auactiongroup.com/auag-logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo:wght@400..700&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Space+Grotesk:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Hero photo: public/ assets are unhashed, so a static preload is safe.
+         Keep in sync with photos.hero in src/data/photos.ts. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/photos/hero-b-1600.webp 1600w, /photos/hero-b-2400.webp 2400w"
+      imagesizes="100vw"
+    />
   </head>
   <body>
     <div id="root"></div>

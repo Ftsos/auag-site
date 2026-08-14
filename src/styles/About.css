@@ -1,0 +1,133 @@
+.about-section {
+  padding-block: var(--spacing-section);
+  background: var(--color-canvas);
+}
+
+.about-header {
+  margin-bottom: clamp(2.25rem, 5vh, 3.5rem);
+}
+
+/* The officer team, one wide editorial beat before the cards. */
+.about-band {
+  aspect-ratio: 21 / 9;
+  margin: 0 0 clamp(2rem, 4vh, 2.75rem);
+}
+
+@media (max-width: 768px) {
+  .about-band {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.about-founders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-founder-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.75rem;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.about-founder-card:hover {
+  border-color: var(--color-ink-muted);
+  transform: translateY(-2px);
+}
+
+/* Portraits are 4:5 editorial rectangles; the monogram fallback keeps the
+   same footprint so cards align with or without a photo. */
+.about-founder-photo,
+.about-founder-monogram {
+  width: clamp(96px, 12vw, 132px);
+  aspect-ratio: 4 / 5;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.about-founder-photo {
+  object-fit: cover;
+}
+
+.about-founder-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-frame);
+  color: var(--color-on-dark);
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.about-founder-name {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 0.4rem 0 0;
+}
+
+.about-founder-bio {
+  font-size: 0.9063rem;
+  line-height: 1.65;
+  color: var(--color-ink-secondary);
+  margin: 0.5rem 0 0;
+}
+
+.about-proof-strip {
+  margin-top: clamp(2rem, 4vh, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.about-proof-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.about-proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.95rem;
+  border-radius: 20px;
+  background: var(--color-card);
+  border: 1px solid var(--color-hairline);
+  font-size: 0.875rem;
+}
+
+.about-proof-name {
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.about-proof-arrow {
+  font-size: 0.7rem;
+  color: var(--color-auag-red);
+}
+
+.about-proof-company {
+  color: var(--color-ink-secondary);
+}
+
+.about-story-cta {
+  margin-top: clamp(2rem, 4vh, 2.75rem);
+}
+
+@media (max-width: 768px) {
+  .about-founders-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,80 +1,81 @@
-import { type CompanyLogosSectionProps } from '../types/companies';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { type Company } from '../types/companies';
 import { companies } from '../data/companies';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/CompanyLogosSection.css';
+import { fadeIn, VIEWPORT } from '../utils/motion';
 
-export const CompanyLogosSection: React.FC<CompanyLogosSectionProps> = () => {
-  const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
-  
-  // Create groups of 5 logos
-  const logoGroups = [];
-  for (let i = 0; i < companies.length; i += 5) {
-    logoGroups.push(companies.slice(i, i + 5));
-  }
+const halfIndex = Math.ceil(companies.length / 2);
+const rowA = companies.slice(0, halfIndex);
+const rowB = companies.slice(halfIndex);
+const industryCount = new Set(companies.map((c) => c.industry)).size;
 
-  // Cycle through logo groups every 6 seconds
-  useEffect(() => {
-    console.log('Starting logo animation cycle, total groups:', logoGroups.length);
-    const timer = setInterval(() => {
-      setCurrentGroupIndex((prev) => {
-        const next = (prev + 1) % logoGroups.length;
-        console.log('Switching to logo group:', next);
-        return next;
-      });
-    }, 6000);
-    
-    return () => clearInterval(timer);
-  }, [logoGroups.length]);
+type MarqueeRowProps = {
+  logos: Company[];
+  direction: 'left' | 'right';
+  rowId: string;
+};
 
-  const currentLogos = logoGroups[currentGroupIndex] || [];
+const MarqueeRow: React.FC<MarqueeRowProps> = ({ logos, direction, rowId }) => (
+  <div className="marquee-track-shell">
+    <div className={`marquee-track marquee-track--${direction}`}>
+      {[...logos, ...logos].map((company, i) => (
+        <div
+          key={`${rowId}-${company.id}-${i}`}
+          className="marquee-item"
+          title={company.name}
+          aria-hidden={i >= logos.length}
+        >
+          <img
+            src={company.logo}
+            alt={i < logos.length ? company.name : ''}
+            className={`marquee-logo is-${company.logoTheme}`}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
-  console.log('Rendering CompanyLogosSection, current group:', currentGroupIndex, 'logos:', currentLogos.length);
-
+export const CompanyLogosSection: React.FC = () => {
   return (
-    <section className="trusted-by">
-      <h2>Representatives at companies like</h2>
-      
-      <div className="logo-slider">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentGroupIndex}
-            className="logo-row"
-          >
-            {currentLogos.map((company, index) => (
-              <motion.img 
-                key={`${currentGroupIndex}-${company.id}`}
-                src={company.logo || ''} 
-                alt={company.name}
-                className={`logo-item logo-${index + 1}`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: -40 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{
-                  delay: index * 0.2,
-                  duration: 0.5,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-            
-            {/* Fill remaining slots if less than 5 logos */}
-            {Array.from({ length: Math.max(0, 5 - currentLogos.length) }).map((_, index) => (
-              <motion.div 
-                key={`empty-${index}`} 
-                className="logo-placeholder"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{
-                  delay: (currentLogos.length + index) * 0.2,
-                  duration: 0.5,
-                  ease: "easeOut"
-                }}
-              />
-            ))}
-          </motion.div>
-        </AnimatePresence>
+    <section
+      className="proof-section on-dark"
+      aria-label="Companies where alumni in the network work"
+    >
+      <div className="section-shell">
+        <motion.div
+          className="section-head"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={VIEWPORT}
+        >
+          <div className="section-head-row">
+            <h2 className="display-heading section-heading">
+              Where the network shows up
+            </h2>
+            <span className="section-meta">
+              {companies.length} companies · {industryCount} industries
+            </span>
+          </div>
+          <p className="section-sub">
+            A cross-section of the companies where Andrews alumni in our network
+            work — and where we open doors for the next cohort.
+          </p>
+        </motion.div>
+      </div>
+
+      <div className="proof-marquees">
+        <MarqueeRow logos={rowA} direction="left" rowId="row-a" />
+        <MarqueeRow logos={rowB} direction="right" rowId="row-b" />
+      </div>
+
+      <div className="section-shell proof-cta-row">
+        <Link to="/network" className="btn-ghost">
+          Explore the network
+          <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );

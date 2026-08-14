@@ -1,106 +1,40 @@
 # AUAG Site
 
-A modern, responsive website built with React, TypeScript, and Vite, featuring animated backgrounds and dynamic company logo displays.
+Public marketing site for the **Andrews University Action Group** (AUAG) —
+[auactiongroup.com](https://auactiongroup.com). Vite + React 19 + TypeScript +
+Tailwind v4, routed with react-router-dom v7.
 
-## 🏗️ Project Structure
+## Develop
 
-```
-src/
-├── components/           # React components
-│   ├── FlowingLines.tsx     # Animated background lines
-│   ├── MainText.tsx         # "Join the AUAG" text section
-│   ├── CompanyLogo.tsx      # Individual company logo with animation
-│   └── UniversitiesSection.tsx # Companies section
-├── hooks/               # Custom React hooks
-│   └── useCompanyAnimation.ts # Company animation logic
-├── types/               # TypeScript type definitions
-│   └── companies.ts         # Company and component interfaces
-├── data/                # Data files
-│   └── companies.ts         # Company data and sequences
-├── styles/              # Component-specific CSS files
-│   ├── FlowingLines.css     # Background animation styles
-│   ├── MainText.css         # Main text section styles
-│   ├── CompanyLogo.css      # Logo component styles
-│   └── UniversitiesSection.css # Companies section styles
-├── App.tsx              # Main application component
-├── main.tsx             # Application entry point
-└── index.css            # Global styles
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run lint
+npm run build      # tsc -b && vite build
+npm run preview
 ```
 
-## 🚀 Features
+## Pages
 
-- **Animated Background**: Flowing, wavy lines with smooth animations
-- **Responsive Design**: Adapts to different screen sizes
-- **Dynamic Company Logos**: Animated company names that cycle through lists
-- **Modern UI**: Clean, professional design with black, red, and white theme
-- **TypeScript**: Full type safety and better development experience
-- **Component-Based**: Modular, reusable React components
+- `/` — hero, four pillars, company marquee, alumni/student paths, story teaser,
+  events (Legacy: An AUAG Alumni Series), footer
+- `/network` — the alumni-company wall, grouped by industry, with canonical stats
+- `/story` — the chapter-by-chapter AUAG timeline and officer outcomes
+- anything else — branded 404
 
-## 🛠️ Technology Stack
+## Where things live
 
-- **React 19** - Modern React with latest features
-- **TypeScript** - Type-safe JavaScript
-- **Vite** - Fast build tool and development server
-- **CSS3** - Modern styling with animations and responsive design
+- **Design system**: tokens in `src/index.css` (`@theme`), shared primitives in
+  `src/styles/primitives.css`, per-component CSS in `src/styles/`. Full brand
+  contract: `CLAUDE.md` / `AGENTS.md` (kept identical after the title line).
+- **Content data**: `src/data/` — `links.ts` (all external URLs, including the
+  signup forms), `stats.ts` (canonical network numbers), `companies.ts` (logo
+  wall), `about.ts` (team/timeline).
+- **Officer photos**: drop `first-last.jpg` files into `public/team/` and set
+  `photo` on the person in `src/data/about.ts`.
 
-## 📱 Responsive Breakpoints
+## Deploy
 
-- **Large screens (1200px+)**: Shows all 5 company logos
-- **Medium screens (900px-1200px)**: Shows 4 company logos
-- **Small screens (600px-900px)**: Shows 3 company logos
-- **Mobile screens (400px-600px)**: Shows 2 company logos
-- **Very small screens (<400px)**: Shows 1 company logo
-
-## 🎨 Design Features
-
-- **Theme Colors**: Black (#000000), Red (#ff0000), White (#ffffff)
-- **Typography**: Arial font family with proper hierarchy
-- **Animations**: Smooth zoom effects and flowing background lines
-- **Glow Effects**: Subtle shadows and luminous text effects
-
-## 🚀 Getting Started
-
-1. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-2. **Start development server**:
-   ```bash
-   npm run dev
-   ```
-
-3. **Build for production**:
-   ```bash
-   npm run build
-   ```
-
-4. **Preview production build**:
-   ```bash
-   npm run preview
-   ```
-
-## 🔧 Development Guidelines
-
-- **Component Structure**: Each component has its own file and CSS
-- **Type Safety**: All props and data are properly typed
-- **Custom Hooks**: Animation logic is separated into reusable hooks
-- **Data Management**: Company data is centralized and easily maintainable
-- **Responsive Design**: Mobile-first approach with proper breakpoints
-
-## 📁 File Organization
-
-- **Components**: Reusable UI components with clear responsibilities
-- **Hooks**: Custom React hooks for business logic
-- **Types**: TypeScript interfaces and type definitions
-- **Data**: Static data and utility functions
-- **Styles**: Component-specific CSS files for better maintainability
-
-## 🎯 Future Enhancements
-
-- Add more interactive elements
-- Implement company logo images
-- Add contact forms or additional sections
-- Enhance animations with Framer Motion
-- Add dark/light theme toggle
-- Implement internationalization (i18n)
+Built for a static host. `vercel.json` carries the SPA rewrite (all routes →
+`index.html`) so deep links like `/story` survive a refresh on Vercel. On any
+other host, configure the equivalent single-page-app fallback.

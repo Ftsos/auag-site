@@ -1,17 +1,71 @@
-﻿import { Route, Routes } from 'react-router-dom';
-import ScrollToHash from './components/ScrollToHash';
+import { useState, useEffect } from 'react';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
+import './App.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import ContactModal from './components/ContactModal';
 import Home from './pages/Home';
+import Story from './pages/Story';
+import Network from './pages/Network';
+import NotFound from './pages/NotFound';
 import BlogPost from './pages/BlogPost';
 
+const ScrollToHash: React.FC = () => {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        requestAnimationFrame(() => {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname, hash]);
+
+  return null;
+};
+
 function App() {
+  const [contactOpen, setContactOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <>
-      <ScrollToHash />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
-      </Routes>
-    </>
+    // reducedMotion="user" makes every framer-motion animation respect the
+    // OS-level preference; CSS keyframes are guarded per-file.
+    <MotionConfig reducedMotion="user">
+      <div className="App">
+        <ScrollToHash />
+        <Navbar
+          onContactClick={() => setContactOpen(true)}
+          onMenuOpenChange={setMenuOpen}
+        />
+        {/* Page content is inert while an overlay covers it, so keyboard and
+            screen-reader focus can't tab into hidden background content. */}
+        <div inert={contactOpen || menuOpen}>
+          {/* The Frame: warm-white canvas floating inside the black chrome. */}
+          <main className="site-canvas">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/story" element={<Story />} />
+              <Route path="/network" element={<Network />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+        <ContactModal
+          open={contactOpen}
+          onClose={() => setContactOpen(false)}
+        />
+      </div>
+    </MotionConfig>
   );
 }
 

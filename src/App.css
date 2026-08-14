@@ -1,11 +1,32 @@
-
 #root {
   margin: 0;
   padding: 0;
-  text-align: center;
+  text-align: left;
 }
 
-body{
+body {
   margin: 0;
   padding: 0;
+}
+
+.App {
+  min-height: 100vh;
+  min-width: 100%;
+  position: relative;
+  background: var(--color-frame);
+}
+
+/* The floating canvas — the Frame's centerpiece. The nav is the top chrome,
+   the footer sits on the bottom chrome. */
+.site-canvas {
+  position: relative;
+  margin: 0 var(--frame-gutter);
+  border-radius: var(--frame-radius);
+  overflow: clip;
+  background: var(--color-canvas);
+}
+
+.content-container {
+  position: relative;
+  z-index: 10;
 }
