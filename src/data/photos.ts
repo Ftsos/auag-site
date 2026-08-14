@@ -43,12 +43,12 @@ export const photos = {
     alt: '', // decorative behind the alumni panel copy
   },
   aboutBand: {
-    id: 'officers-line',
-    base: '/photos/officers-line',
+    id: 'team-studio',
+    base: '/photos/team-studio',
     widths: [800, 1600],
-    width: 5160,
-    height: 4000,
-    alt: 'The AUAG officer team standing together',
+    width: 1537,
+    height: 1023,
+    alt: 'The ten AUAG officers photographed together in the studio',
     focus: '50% 34%',
   },
 } satisfies Record<string, SitePhoto>;
