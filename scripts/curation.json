@@ -73,6 +73,21 @@
       "slug": "jenny-rothermel",
       "role": "headshot",
       "alt": "Jenny Rothermel"
+    },
+    {
+      "src": "denisse-mortera-chavira-source.jpg",
+      "slug": "denisse-mortera-chavira",
+      "role": "headshot",
+      "alt": "Denisse Mortera Chavira",
+      "crop": { "left": 0.06, "top": 0.22, "width": 0.94, "height": 0.78 },
+      "backdrop": 220
+    },
+    {
+      "src": "brooke-source.png",
+      "slug": "brooke",
+      "role": "headshot",
+      "alt": "Brooke",
+      "crop": { "left": 0.164, "top": 0.059, "width": 0.751, "height": 0.941 }
     }
   ]
 }

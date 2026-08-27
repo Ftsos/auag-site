@@ -44,6 +44,29 @@ function treated(img) {
   return TREATMENT === 'mono' ? img.grayscale().linear(1.06, -8) : img;
 }
 
+/*
+ * Caps highlights at `level` (0–255) via a darken composite, so a headshot
+ * shot on a blown-out white backdrop lands in the same tonal family as the
+ * studio set (whose backdrops sit ~165–220). A flat ceiling rather than a
+ * masked fill: no threshold to tune, and no bright patches left behind where
+ * the backdrop falls off. Costs a little sparkle in teeth/specular highlights.
+ */
+async function capHighlights(img, level) {
+  const buf = await img.toBuffer();
+  const { width, height } = await sharp(buf).metadata();
+  const ceiling = await sharp({
+    create: {
+      width,
+      height,
+      channels: 3,
+      background: { r: level, g: level, b: level },
+    },
+  })
+    .png()
+    .toBuffer();
+  return sharp(buf).composite([{ input: ceiling, blend: 'darken' }]);
+}
+
 const manifest = [];
 
 for (const photo of curation.photos) {
@@ -73,8 +96,12 @@ for (const photo of curation.photos) {
 
   if (photo.role === 'headshot') {
     const out = path.join(teamDir, `${photo.slug}.jpg`);
-    const info = await treated(base.clone())
-      .resize(640, 800, { fit: 'cover', position: 'attention' })
+    let img = treated(base.clone()).resize(640, 800, {
+      fit: 'cover',
+      position: 'attention',
+    });
+    if (photo.backdrop) img = await capHighlights(img, photo.backdrop);
+    const info = await img
       .jpeg({ quality: JPEG_QUALITY, mozjpeg: true })
       .toFile(out);
     console.log(`${photo.slug}.jpg  640×800  ${kb(info.size)}`);
