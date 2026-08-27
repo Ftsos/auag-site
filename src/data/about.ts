@@ -44,10 +44,16 @@ export type Chapter = {
   officers: Person[];
 };
 
-const facultyAdvisor: Person = {
+const facultySponsor: Person = {
   name: 'Dr. Matías Soto',
-  role: 'Faculty Advisor — the through-line',
+  role: 'Faculty Sponsor',
   bio: "Dr. Soto's faculty work pre-dated AUAG and has anchored every chapter of it since. The constant across founders, presidents, and cohorts.",
+};
+
+/** Same person, editorial label for the foundation chapter's featured card. */
+const foundationSponsor: Person = {
+  ...facultySponsor,
+  role: 'Faculty Sponsor — the through-line',
 };
 
 export const chapters: Chapter[] = [
@@ -57,7 +63,7 @@ export const chapters: Chapter[] = [
     title: 'Foundation',
     narrative:
       'Before AUAG had a name, Dr. Matías Soto was already laying the faculty and advisory groundwork that made it possible. In 2024, Kato Golooba-Mutebi founded AUAG with Brooke as co-founder — a small group with a sharp thesis: turn the Andrews alumni network into something that actually moves students forward.',
-    advisor: facultyAdvisor,
+    advisor: foundationSponsor,
     officers: [
       {
         name: 'Kato Golooba-Mutebi',
@@ -69,6 +75,7 @@ export const chapters: Chapter[] = [
         // TODO(Enzo): surname
         name: 'Brooke',
         role: 'Co-founder',
+        photo: '/team/brooke.jpg',
         bio: 'Built the operational spine of AUAG alongside Kato — partnerships, programming, and the first round of student officers.',
       },
     ],
@@ -104,6 +111,7 @@ export const chapters: Chapter[] = [
         // TODO(Enzo): surname
         name: 'Brooke',
         role: 'Co-founder',
+        photo: '/team/brooke.jpg',
         departed: true,
         outcomes: [
           {
@@ -173,7 +181,7 @@ export const chapters: Chapter[] = [
     yearLabel: 'Spring 2026 →',
     title: 'Now',
     narrative:
-      'When Andrew stepped down in February 2026 to take on his real estate role, Enzo Bacchiocchi took the presidency and is continuing into the next academic year. The current team is the fullest AUAG has fielded — five officers carrying the network into its biggest year yet.',
+      'When Andrew stepped down in February 2026 to take on his real estate role, Enzo Bacchiocchi took the presidency and is continuing into the next academic year. The current team is the fullest AUAG has fielded — five student officers carrying the network into its biggest year yet, with the founder and the faculty sponsor still at the table.',
     officers: [
       {
         name: 'Enzo Bacchiocchi',
@@ -195,12 +203,17 @@ export const chapters: Chapter[] = [
       },
       {
         name: 'Jenny Rothermel',
-        role: 'Vice President',
+        role: 'Vice President, Marketing & Communications',
         photo: '/team/jenny-rothermel.jpg',
       },
       {
+        name: 'Denisse Mortera Chavira',
+        role: 'Director of Development',
+        photo: '/team/denisse-mortera-chavira.jpg',
+      },
+      {
         name: 'Jaden Pailing',
-        role: 'Community Development',
+        role: 'Treasurer & Director of Operations',
         photo: '/team/jaden-pailing.jpg',
         outcomes: [
           {
@@ -213,12 +226,14 @@ export const chapters: Chapter[] = [
       },
       {
         name: 'Fabricio Rivera',
-        role: 'Head of Development',
+        role: 'Director of Technology',
       },
       {
-        name: 'Denisse Rivera',
-        role: 'Community Relations',
+        name: 'Kato Golooba-Mutebi',
+        role: 'Founder',
+        photo: '/team/kato-golooba-mutebi.jpg',
       },
+      facultySponsor,
     ],
   },
 ];
