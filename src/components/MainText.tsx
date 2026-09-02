@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import { Link } from 'react-router-dom';
 import {
   motion,
   useReducedMotion,
@@ -43,17 +42,31 @@ export const MainText: React.FC = () => {
         initial="hidden"
         animate="visible"
       >
-        {/* Flagship-event teaser — facts match Events.tsx (HPAC contract). */}
+        {/*
+          Flagship-event teaser — the first thing above the fold, so it carries
+          the RSVP rather than deferring to the section below. Points straight
+          at the form (same destination as the printed QR); the RSVP page
+          restates date, time and venue, so no detail is lost by skipping
+          #events. Facts match Events.tsx.
+        */}
         <motion.div variants={fadeRise}>
-          <Link to="/#events" className="hero-event-chip">
+          <a
+            href={links.legacyRsvp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-event-chip"
+          >
             <span className="hero-event-date">Sept 25</span>
             <span className="hero-event-name">
               Legacy: An AUAG Alumni Series
             </span>
-            <span className="hero-event-arrow" aria-hidden="true">
-              →
+            <span className="hero-event-cta">
+              RSVP
+              <span className="hero-event-arrow" aria-hidden="true">
+                →
+              </span>
             </span>
-          </Link>
+          </a>
         </motion.div>
 
         <motion.p className="eyebrow" variants={fadeRise}>

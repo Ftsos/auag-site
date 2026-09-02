@@ -144,13 +144,26 @@ const Events: React.FC = () => {
                 </div>
                 <div className="event-meta-item">
                   <dt className="micro-label">Time</dt>
-                  <dd>2:00 – 4:30 PM</dd>
+                  <dd>2:30 – 5:00 PM</dd>
                 </div>
                 <div className="event-meta-item">
                   <dt className="micro-label">Venue</dt>
                   <dd>Howard Performing Arts Center</dd>
                 </div>
               </dl>
+              <motion.div className="event-cta-row" variants={fadeRise}>
+                <a
+                  className="btn-primary"
+                  href={links.legacyRsvp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  RSVP — it's free
+                </a>
+                <span className="event-cta-note">
+                  Open to everyone. Takes under a minute.
+                </span>
+              </motion.div>
             </motion.div>
           </motion.article>
         )}
