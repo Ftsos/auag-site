@@ -81,7 +81,24 @@ No repo-level screenshot tooling is installed. Use the Playwright MCP tools:
 3. **Experiential Opportunities** — real-world projects, internships, and immersive experiences.
 4. **Community Development** — strengthening the Andrews community across cohorts and industries.
 
-**Featured event** (facts from the signed HPAC contract — never from decks): **"Legacy: An AUAG Alumni Series"** — Friday, September 25, 2026, 2:00–4:30 PM, Howard Performing Arts Center (Homecoming Weekend). Never conflate with the umbrella series brand "A Legacy of Leadership".
+**Featured event**: **"Legacy: An AUAG Alumni Series"** — Friday, September 25, 2026,
+**2:30–5:00 PM**, Howard Performing Arts Center Lobby (Homecoming Weekend). Never conflate
+with the umbrella series brand "A Legacy of Leadership".
+
+> ⚠️ **The time diverges from the signed HPAC contract**, which records 2:00–4:30 PM — as
+> does the locked `event_facts` row in auag-os and the Homecoming program the Alumni Office
+> printed. The public time was set to 2:30–5:00 by Enzo (2026-09-01) and now appears on this
+> site, on the RSVP page, in the `.ics` download and in all three RSVP emails. Jeana Wallin
+> still needs telling before programs print. If the two are ever reconciled, the public
+> surfaces to update are `Events.tsx` here and `auag-os/lib/rsvp/event.ts`.
+
+**RSVP**: `links.legacyRsvp` → `rsvp.auactiongroup.com` (served by auag-os, same destination
+as the printed poster's QR). Surfaced twice: the hero chip in `MainText.tsx` — the only
+above-the-fold CTA, so it must keep carrying it — and the flagship card in `Events.tsx`.
+Note the flagship card has two branches: the **hardcoded fallback** (carries the RSVP button)
+and the **Strapi-driven card** that replaces it when the CMS returns a post (does not — its
+whole surface is a `<Link>` to the post, so a nested anchor would be invalid HTML). The hero
+chip is therefore the guaranteed RSVP entry point regardless of CMS state.
 
 **Canonical numbers** live in `src/data/stats.ts` (sourced from the Alumni Interest Form data in `AUAG-claude/AUAG-CONTEXT.md`). Do not edit or invent statistics.
 
@@ -111,10 +128,11 @@ Tokens in `src/index.css`; verified in the components:
 - **Canvas**: `#faf9f7` warm white — the dominant page surface. Cards: `#ffffff` with `#e9e6e1` hairline borders and `#f2f0ec` in-card dividers.
 - **Black chrome**: `#0c0b0b` (`--color-frame`) used *structurally only* — nav bar, footer, the inverted Events band, and the company logo chips. Elevated dark surface: `#161514`.
 - **Ink**: `#111111` primary, `#5c5751` secondary/body, `#9b968f` muted/labels.
-- **Accent (reserved)**: red `#e11d2e` (`--color-auag-red`), hover `#b91424`. Canonical uses: primary CTAs, the tagline period, eyebrow ticks, active-nav dot, the event date, `::selection`, focus rings. **Never decoration or backgrounds.**
+- **Accent (reserved)**: red `#8f0a0d` (`--color-auag-red`) — the logo red, so the mark and the UI agree — hover `#72080a`. Canonical uses: primary CTAs, the tagline period, eyebrow ticks, active-nav dot, the event date, `::selection`, focus rings. **Never decoration or backgrounds.**
+- **Red on black chrome**: the deep red falls under 3:1 against `--color-frame`, so anything red sitting on the chrome (nav/footer wordmark AG, the active-nav dot, the nav CTA, the event date, a section tick inside `.on-dark`) steps up one shade to `--color-auag-red-on-dark` `#c4262b`. That token is for the chrome only — never on the canvas.
 - **On-dark text**: `#faf9f7` / `rgba(250,249,247,.62)` muted / `rgba(255,255,255,.14)` hairlines — via the `.on-dark` scope.
 - **Single-accent discipline**: Red is the *only* chromatic accent. No teals, purples, blues, or multi-color gradients.
-- **Shadows**: whisper only — cards `0 1px 2px rgb(0 0 0 / .03)`; the red primary button carries `0 2px 8px rgba(225,29,46,.25)`. No heavy gray drop shadows, no glow effects.
+- **Shadows**: whisper only — cards `0 1px 2px rgb(0 0 0 / .03)`; the red primary button carries `0 2px 8px rgba(143,10,13,.28)`. No heavy gray drop shadows, no glow effects.
 
 ### Typography
 - **Display (`--font-display`)**: **Arimo** (400–700) — the AUAG wordmark and ALL headings (tagline, section titles, card titles, event title), matching the logo artwork. Big display type keeps tight negative tracking (`--tracking-display: -0.03em`). `--font-wordmark` is an alias of the same face for the "AUAG" mark specifically.

@@ -110,6 +110,40 @@
   transform: translateY(0);
 }
 
+/*
+ * The chip's action half. Red picks up the date on the left so the eye reads
+ * "Sept 25 … RSVP" as one gesture, and the arrow nudges on hover — the chip is
+ * the only above-the-fold CTA, so it has to look pressable without shouting.
+ */
+.hero-event-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid var(--color-divider);
+  font-family: var(--font-accent);
+  font-size: 0.71875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-auag-red);
+  white-space: nowrap;
+}
+
+.hero-event-chip:hover .hero-event-arrow {
+  transform: translateX(2px);
+}
+
+.hero-event-arrow {
+  transition: transform 0.25s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-event-chip:hover .hero-event-arrow {
+    transform: none;
+  }
+}
+
 .hero-event-date {
   font-family: var(--font-accent);
   font-size: 0.71875rem;
