@@ -81,7 +81,9 @@ No repo-level screenshot tooling is installed. Use the Playwright MCP tools:
 3. **Experiential Opportunities** — real-world projects, internships, and immersive experiences.
 4. **Community Development** — strengthening the Andrews community across cohorts and industries.
 
-**Featured event** (facts from the signed HPAC contract — never from decks): **"Legacy: An AUAG Alumni Series"** — Friday, September 25, 2026, 2:00–4:30 PM, Howard Performing Arts Center (Homecoming Weekend). Never conflate with the umbrella series brand "A Legacy of Leadership".
+**Featured event**: **"Legacy: An AUAG Alumni Series"** — Friday, September 25, 2026, 2:30–5:00 PM, Howard Performing Arts Center (Homecoming Weekend). Never conflate with the umbrella series brand "A Legacy of Leadership".
+
+**Event links**: `links.legacyEvent` → YouTube recording (`https://www.youtube.com/watch?v=lQ8JFB2IuWc`). Surfaced in the hero chip (`MainText.tsx`) and the flagship card (`Events.tsx`).
 
 **Canonical numbers** live in `src/data/stats.ts` (sourced from the Alumni Interest Form data in `AUAG-claude/AUAG-CONTEXT.md`). Do not edit or invent statistics.
 

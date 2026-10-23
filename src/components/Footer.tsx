@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaInstagram } from 'react-icons/fa6';
+import { FaInstagram, FaYoutube } from 'react-icons/fa6';
 import { links } from '../data/links';
 import '../styles/Footer.css';
 
@@ -9,7 +9,7 @@ const exploreLinks = [
   { label: 'The network', to: '/network' },
   { label: 'About AUAG', to: '/#about' },
   { label: 'Join the network', to: '/#join' },
-  { label: 'Upcoming events', to: '/#events' },
+  { label: 'Events', to: '/#events' },
   { label: 'Our story', to: '/story' },
 ];
 
@@ -38,6 +38,15 @@ const Footer: React.FC = () => {
                 aria-label="Instagram"
               >
                 <FaInstagram aria-hidden="true" />
+              </a>
+              <a
+                className="footer-social"
+                href={links.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <FaYoutube aria-hidden="true" />
               </a>
             </div>
           </div>

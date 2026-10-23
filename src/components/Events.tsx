@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaEnvelope } from 'react-icons/fa6';
+import { FaInstagram, FaYoutube, FaEnvelope } from 'react-icons/fa6';
 import { links } from '../data/links';
 import { fetchRecentPosts, formatPostMeta } from '../api/strapi';
 import type { CmsPost } from '../types/post';
@@ -57,8 +57,8 @@ const Events: React.FC = () => {
       <div className="section-shell events-inner">
         <header className="section-head">
           <div className="section-head-row">
-            <h2 className="display-heading section-heading">Upcoming events</h2>
-            <span className="section-meta">What's next</span>
+            <h2 className="display-heading section-heading">Past events</h2>
+            <span className="section-meta">Recent series</span>
           </div>
         </header>
 
@@ -154,14 +154,14 @@ const Events: React.FC = () => {
               <motion.div className="event-cta-row" variants={fadeRise}>
                 <a
                   className="btn-primary"
-                  href={links.legacyRsvp}
+                  href={links.legacyEvent}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  RSVP — it's free
+                  See event
                 </a>
                 <span className="event-cta-note">
-                  Open to everyone. Takes under a minute.
+                  Watch the recording on YouTube.
                 </span>
               </motion.div>
             </motion.div>
@@ -191,10 +191,19 @@ const Events: React.FC = () => {
 
         <div className="events-follow">
           <p className="events-follow-copy">
-            More 2026 dates are being finalized. Follow along and you'll hear
+            More events are being planned. Follow along and you'll hear
             about them first.
           </p>
           <div className="events-follow-ctas">
+            <a
+              className="btn-ghost"
+              href={links.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube aria-hidden="true" />
+              YouTube
+            </a>
             <a
               className="btn-ghost"
               href={links.instagram}
