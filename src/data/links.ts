@@ -14,6 +14,11 @@ export const links = {
   studentApply: 'https://join.auactiongroup.com/students' as string | null,
 
   /**
+   * Legacy event recording / recap link (YouTube).
+   */
+  legacyEvent: 'https://www.youtube.com/watch?v=lQ8JFB2IuWc',
+
+  /**
    * Legacy event RSVP — AUAG's own form (served by auag-os). Same destination
    * as the QR code on the printed poster, so the two never diverge.
    *
@@ -31,6 +36,7 @@ export const links = {
     'https://vault.andrews.edu/vault/app/pages/advancement/login/development?desg=INNOP&only=y',
 
   instagram: 'https://www.instagram.com/auactiongroup/',
+  youtube: 'https://www.youtube.com/@AndrewUniversityActionGroup',
   andrews: 'https://www.andrews.edu',
   contactEmail: 'mailto:contact@auactiongroup.com',
 };

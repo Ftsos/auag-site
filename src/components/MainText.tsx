@@ -43,25 +43,22 @@ export const MainText: React.FC = () => {
         animate="visible"
       >
         {/*
-          Flagship-event teaser — the first thing above the fold, so it carries
-          the RSVP rather than deferring to the section below. Points straight
-          at the form (same destination as the printed QR); the RSVP page
-          restates date, time and venue, so no detail is lost by skipping
-          #events. Facts match Events.tsx.
+          Flagship-event teaser — the first thing above the fold, pointing
+          straight to the event video / recording on YouTube. Facts match Events.tsx.
         */}
         <motion.div variants={fadeRise}>
           <a
-            href={links.legacyRsvp}
+            href={links.legacyEvent}
             target="_blank"
             rel="noopener noreferrer"
             className="hero-event-chip"
           >
-            <span className="hero-event-date">Sept 25</span>
+            <span className="hero-event-date">Past event</span>
             <span className="hero-event-name">
               Legacy: An AUAG Alumni Series
             </span>
             <span className="hero-event-cta">
-              RSVP
+              See event
               <span className="hero-event-arrow" aria-hidden="true">
                 →
               </span>

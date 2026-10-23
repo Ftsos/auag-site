@@ -92,13 +92,9 @@ with the umbrella series brand "A Legacy of Leadership".
 > still needs telling before programs print. If the two are ever reconciled, the public
 > surfaces to update are `Events.tsx` here and `auag-os/lib/rsvp/event.ts`.
 
-**RSVP**: `links.legacyRsvp` → `rsvp.auactiongroup.com` (served by auag-os, same destination
-as the printed poster's QR). Surfaced twice: the hero chip in `MainText.tsx` — the only
-above-the-fold CTA, so it must keep carrying it — and the flagship card in `Events.tsx`.
-Note the flagship card has two branches: the **hardcoded fallback** (carries the RSVP button)
-and the **Strapi-driven card** that replaces it when the CMS returns a post (does not — its
-whole surface is a `<Link>` to the post, so a nested anchor would be invalid HTML). The hero
-chip is therefore the guaranteed RSVP entry point regardless of CMS state.
+**Event links**: `links.legacyEvent` → YouTube recording (`https://www.youtube.com/watch?v=lQ8JFB2IuWc`).
+Surfaced twice: the hero chip in `MainText.tsx` ("Past event · Legacy: An AUAG Alumni Series · See event →")
+and the flagship card in `Events.tsx` ("See event" CTA button).
 
 **Canonical numbers** live in `src/data/stats.ts` (sourced from the Alumni Interest Form data in `AUAG-claude/AUAG-CONTEXT.md`). Do not edit or invent statistics.
 
