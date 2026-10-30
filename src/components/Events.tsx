@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaInstagram, FaYoutube, FaEnvelope } from 'react-icons/fa6';
 import { links } from '../data/links';
-import { fetchRecentPosts, formatPostMeta } from '../api/strapi';
-import type { CmsPost } from '../types/post';
+import { fetchRecentPosts, formatPostMeta } from '../api/posts';
+import type { Post } from '../types/post';
 import '../styles/Events.css';
 import { fadeRise, staggerParent, VIEWPORT } from '../utils/motion';
 
@@ -26,7 +26,7 @@ function parsePostDate(dateStr: string | null) {
 }
 
 const Events: React.FC = () => {
-  const [posts, setPosts] = useState<CmsPost[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -37,7 +37,7 @@ const Events: React.FC = () => {
           setPosts(result);
         }
       } catch (err) {
-        console.error('Failed to fetch events from Strapi:', err);
+        console.error('Failed to load events:', err);
       }
     }
     loadPosts();
@@ -173,7 +173,7 @@ const Events: React.FC = () => {
           <div className="events-grid">
             {remainingPosts.map((post) => (
               <Link
-                key={post.documentId}
+                key={post.slug}
                 to={`/blog/${post.slug}`}
                 className="event-card card-surface"
               >
