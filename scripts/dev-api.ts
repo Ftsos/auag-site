@@ -2,7 +2,7 @@ import { createServer } from 'node:http';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import type { ApiRequest, ApiResponse } from '../server/http.ts';
+import type { ApiRequest, ApiResponse } from '../server/http';
 
 /**
  * Local stand-in for Vercel Functions.
@@ -22,8 +22,8 @@ const PORT = Number(process.env.DEV_API_PORT ?? 8787);
 type Handler = (req: ApiRequest, res: ApiResponse) => Promise<void>;
 
 const ROUTES: Record<string, () => Promise<{ default: Handler }>> = {
-  '/api/auth': () => import('../api/auth.ts'),
-  '/api/posts': () => import('../api/posts.ts'),
+  '/api/auth': () => import('../api/auth'),
+  '/api/posts': () => import('../api/posts'),
 };
 
 function loadEnv(): void {

@@ -1,4 +1,4 @@
-import { HttpError } from './http.ts';
+import { HttpError } from './http';
 
 /**
  * GitHub as the content store.

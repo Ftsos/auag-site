@@ -1,6 +1,6 @@
 import { createHmac, scryptSync, timingSafeEqual } from 'node:crypto';
-import type { ApiRequest, ApiResponse } from './http.ts';
-import { HttpError, readCookie } from './http.ts';
+import type { ApiRequest, ApiResponse } from './http';
+import { HttpError, readCookie } from './http';
 
 /**
  * Single-password admin auth.

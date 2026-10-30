@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:api": "node scripts/dev-api.ts",
+    "dev:api": "node --import ./scripts/loader.mjs scripts/dev-api.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",

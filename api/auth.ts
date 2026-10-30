@@ -1,4 +1,4 @@
-import { withErrors, readBody } from '../server/http.ts';
+import { withErrors, readBody } from '../server/http';
 import {
   assertNotThrottled,
   checkPassword,
@@ -9,7 +9,7 @@ import {
   isAuthenticated,
   registerFailure,
   setSessionCookie,
-} from '../server/auth.ts';
+} from '../server/auth';
 
 export default withErrors(async (req, res) => {
   if (req.method === 'GET') {

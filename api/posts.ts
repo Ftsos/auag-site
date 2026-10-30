@@ -1,6 +1,6 @@
-import { HttpError, readBody, withErrors } from '../server/http.ts';
-import type { ApiRequest } from '../server/http.ts';
-import { isAuthenticated } from '../server/auth.ts';
+import { HttpError, readBody, withErrors } from '../server/http';
+import type { ApiRequest } from '../server/http';
+import { isAuthenticated } from '../server/auth';
 import {
   commitChanges,
   listDirectory,
@@ -8,9 +8,9 @@ import {
   readFileBase64,
   type DirectoryEntry,
   type FileChange,
-} from '../server/github.ts';
-import { parseFrontmatter, stringifyFrontmatter } from '../src/utils/frontmatter.ts';
-import type { PostInput, StoredPost } from '../src/types/post.ts';
+} from '../server/github';
+import { parseFrontmatter, stringifyFrontmatter } from '../src/utils/frontmatter';
+import type { PostInput, StoredPost } from '../src/types/post';
 
 /**
  * Admin CRUD for posts. Every write is a git commit; the deploy that follows
