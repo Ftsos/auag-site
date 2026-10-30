@@ -13,31 +13,43 @@
 ```
 auag-site/
 ├── src/
-│   ├── pages/              # Home.tsx (section composition), Story.tsx, Network.tsx, NotFound.tsx
+│   ├── pages/              # Home.tsx (section composition), Story.tsx, Network.tsx,
+│   │                       # BlogPost.tsx (single post), Admin.tsx (/admin, lazy chunk), NotFound.tsx
 │   ├── components/         # Navbar, MainText, FlowingLines, CompanyLogosSection,
 │   │                       # About, MemberCard, ContactModal, TwoPaths, Projects,
-│   │                       # Events, Statistics, Footer
+│   │                       # Events, Statistics, Footer, MarkdownEditor
 │   ├── styles/             # primitives.css (shared: eyebrow/micro-label/card-surface/buttons/
 │   │                       # .on-dark) + per-component CSS (MainText.css, Events.css, …)
+│   ├── content/            # posts/<slug>.md (published, compiled at build time) +
+│   │                       # drafts/<slug>.md (never bundled)
+│   ├── api/                # posts.ts (build-time reader), admin.ts (client for /api)
 │   ├── data/               # links.ts (ALL external URLs — never hardcode in JSX);
 │   │                       # stats.ts (canonical network numbers — primary-sourced);
 │   │                       # companies.ts (logo entries + industry + logoTheme);
 │   │                       # about.ts (chapters[] timeline — drives About + Story)
-│   ├── types/              # companies.ts — TypeScript interfaces
-│   ├── utils/              # initials.ts — headshot-fallback initials
-│   ├── App.tsx             # Router: "/", "/story", "/network", "*" (404) + ScrollToHash
+│   ├── types/              # companies.ts, post.ts — TypeScript interfaces
+│   ├── utils/              # initials.ts (headshot fallback), frontmatter.ts (post parser),
+│   │                       # image.ts (client-side cover downscale), motion.ts
+│   ├── App.tsx             # Router: "/", "/story", "/network", "/blog/:slug", "/admin", "*" + ScrollToHash
 │   ├── App.css             # App-level shell styles
 │   ├── index.css           # Tailwind v4 entry + @theme tokens + primitives import + Flowbite plugin
 │   └── main.tsx            # <BrowserRouter> wrapper
+├── api/                    # Vercel Functions: auth.ts, posts.ts (admin CRUD → git commits)
+├── server/                 # server-only helpers for api/ (Vercel: keep utilities OUTSIDE api/)
+│                           # auth.ts (sessions/password), github.ts (Git Data API), http.ts
 ├── public/                 # auag-logo.png + company marks (flat), team/ (officer headshots),
-│                           # robots.txt, sitemap.xml
+│                           # posts/<slug>/ (admin-uploaded covers), robots.txt, sitemap.xml
+├── scripts/                # process-photos.mjs, dev-api.ts, hash-password.ts
 ├── index.html              # Meta/OG tags + Google Fonts (Space Grotesk + Instrument Sans)
-├── vercel.json             # SPA rewrite (all routes → index.html)
+├── vercel.json             # SPA rewrite (all routes → index.html, /api excluded)
 ├── vite.config.ts
 └── package.json
 ```
 
-**Routing**: `react-router-dom` v7. `main.tsx` wraps `<BrowserRouter>`; `App.tsx` renders `/` → `pages/Home.tsx`, `/story` → `pages/Story.tsx`, `/network` → `pages/Network.tsx`, and `*` → `pages/NotFound.tsx`, with a `ScrollToHash` helper for `#section` anchor scrolling. Internal anchor links must be written as `/#id` (never bare `#id`) so they work from every route. `App.tsx` also owns the global `Navbar` and the `ContactModal`. Note `Statistics` is not a standalone section — it renders inside `MainText` (the hero).
+**Routing**: `react-router-dom` v7. `main.tsx` wraps `<BrowserRouter>`; `App.tsx` renders `/` → `pages/Home.tsx`, `/story` → `pages/Story.tsx`, `/network` → `pages/Network.tsx`, `/blog/:slug` → `pages/BlogPost.tsx`, `/admin` → `pages/Admin.tsx` (lazy-loaded so visitors never download it), and `*` → `pages/NotFound.tsx`, with a `ScrollToHash` helper for `#section` anchor scrolling. Internal anchor links must be written as `/#id` (never bare `#id`) so they work from every route. `App.tsx` also owns the global `Navbar` and the `ContactModal`. Note `Statistics` is not a standalone section — it renders inside `MainText` (the hero).
+
+**Content pipeline**: there is no CMS server and no database. Posts are markdown files with frontmatter in `src/content/posts/`, compiled in via `import.meta.glob` in `src/api/posts.ts` — no runtime fetch, no loading state, no cold start. Drafts live in `src/content/drafts/` and are deliberately **not** globbed, so an unpublished post never ships in the bundle. Editing happens at `/admin`: the page posts to `api/posts.ts`, which commits markdown + cover image as one atomic commit through the GitHub Git Data API, and Vercel rebuilds. Never add a runtime content API call to the public site, and never edit `src/content/drafts/` expecting it to appear on the site.
+
 
 Tailwind v4 does **not** use a separate `tailwind.config.*` — theme tokens live in `@theme { … }` inside `src/index.css`. Reuse the semantic tokens there instead of re-hardcoding hex: surfaces `--color-canvas` / `-card` / `-frame` / `-frame-elevated`; ink `--color-ink` / `-ink-secondary` / `-ink-muted`; accent `--color-auag-red` / `-red-deep`; lines `--color-hairline` / `-divider`; on-dark `--color-on-dark` / `-on-dark-muted` / `-on-dark-hairline`; type scale `--text-display` / `-h1` / `-h2` / `-numeral` / `-micro`; rhythm `--spacing-section` / `-section-sm` / `-gutter`; frame `--frame-gutter` / `--frame-radius`. Shared primitives live in `src/styles/primitives.css`: `.section-head`, `.micro-label`, `.eyebrow` (hero only), `.display-heading`, `.card-surface`, `.section-shell`, `.stat-numeral`, `.btn-primary` / `.btn-ghost` / `.btn-soon`, and the `.on-dark` scope — use them instead of re-deriving section styling.
 
@@ -54,7 +66,9 @@ Tailwind v4 does **not** use a separate `tailwind.config.*` — theme tokens liv
 - Runs on `http://localhost:5173` (Vite default).
 - Start the server in the background before taking any screenshots.
 - If the server is already running, do not start a second instance.
-- Other scripts: `npm run build` (`tsc -b && vite build`), `npm run lint`, `npm run preview`.
+- **Admin API**: `npm run dev:api` runs the Vercel-function stand-in on `:8787` (Vite proxies `/api` there). Only needed for `/admin`; the public pages read compiled markdown and need no API. It reads `.env` — see `.env.example`.
+- Other scripts: `npm run build` (`tsc -b && vite build`), `npm run lint`, `npm run preview`, `npm run hash-password "<password>"` (generates `ADMIN_PASSWORD_HASH`).
+- **This is a Windows checkout used from WSL**: `node_modules` may only contain win32 binaries, in which case `npm run build` fails with `MODULE_NOT_FOUND` for `@rollup/rollup-*` or the esbuild binary. Running `npm install` (no lockfile change) fixes it; it is not a code problem.
 
 ## Screenshot Workflow (Playwright MCP)
 No repo-level screenshot tooling is installed. Use the Playwright MCP tools:

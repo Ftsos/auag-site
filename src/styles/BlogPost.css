@@ -69,6 +69,11 @@
   padding-block: 4rem;
 }
 
+.blog-post-cover {
+  margin-bottom: clamp(2rem, 4vh, 2.75rem);
+  aspect-ratio: 16 / 9;
+}
+
 .blog-post-empty {
   text-align: center;
   padding-block: 4rem;
@@ -119,7 +124,7 @@
 }
 
 .blog-post-body a:hover {
-  color: var(--color-red-deep);
+  color: var(--color-auag-red-deep);
 }
 
 .blog-post-body strong {
