@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { lazy, Suspense, useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { MotionConfig } from 'framer-motion';
 import './App.css';
@@ -10,6 +10,9 @@ import Story from './pages/Story';
 import Network from './pages/Network';
 import NotFound from './pages/NotFound';
 import BlogPost from './pages/BlogPost';
+
+// Admin is a lazy chunk: officers load it, visitors never download it.
+const Admin = lazy(() => import('./pages/Admin'));
 
 const ScrollToHash: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -55,6 +58,23 @@ function App() {
               <Route path="/story" element={<Story />} />
               <Route path="/network" element={<Network />} />
               <Route path="/blog/:slug" element={<BlogPost />} />
+              <Route
+                path="/admin"
+                element={
+                  <Suspense
+                    fallback={
+                      <p
+                        className="section-shell"
+                        style={{ paddingBlock: '4rem', color: 'var(--color-ink-muted)' }}
+                      >
+                        Loading…
+                      </p>
+                    }
+                  >
+                    <Admin />
+                  </Suspense>
+                }
+              />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

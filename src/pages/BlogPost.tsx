@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { FaArrowLeft } from 'react-icons/fa6';
-import { fetchPostBySlug, formatPostMeta } from '../api/strapi';
-import type { CmsPost } from '../types/post';
+import { fetchPostBySlug, formatPostMeta } from '../api/posts';
+import type { Post } from '../types/post';
 import '../styles/BlogPost.css';
 
 function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<CmsPost | null>(null);
+  const [post, setPost] = useState<Post | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -75,6 +75,18 @@ function BlogPost() {
                 <span className="blog-post-meta">{formatPostMeta(post)}</span>
                 <h1 className="blog-post-title">{post.title}</h1>
               </header>
+
+              {post.cover && (
+                <div className="photo-frame blog-post-cover">
+                  <img
+                    src={post.cover}
+                    alt=""
+                    width={1600}
+                    height={900}
+                    decoding="async"
+                  />
+                </div>
+              )}
 
               <div className="blog-post-body">
                 <ReactMarkdown>{post.body}</ReactMarkdown>

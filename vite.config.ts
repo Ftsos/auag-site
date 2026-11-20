@@ -8,8 +8,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), flowbiteReact()],
   server: {
     proxy: {
+      // Admin writes go to the local Vercel-function stand-in.
+      // Start it with `npm run dev:api` — the public site never calls it.
       '/api': {
-        target: 'http://localhost:1337',
+        target: 'http://localhost:8787',
         changeOrigin: true,
       },
     },
